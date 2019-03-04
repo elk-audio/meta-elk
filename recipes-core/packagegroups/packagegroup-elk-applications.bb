@@ -5,6 +5,4 @@ inherit packagegroup
 RDEPENDS_packagegroup-elk-applications = "\
     sushi \
     sensei \
-    swupdate \
-    swupdate-client \
     "
