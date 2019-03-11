@@ -14,4 +14,5 @@ RDEPENDS_packagegroup-elk-libs = "\
     twine \
     twine-dev \
     python-libconf \
+    python-io \
     "
