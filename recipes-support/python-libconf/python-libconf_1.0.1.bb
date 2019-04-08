@@ -14,7 +14,3 @@ SRCREV = "be0b04abd486159afcfadd24dd303e5a2a1c431a"
 S = "${WORKDIR}/git"
 
 inherit setuptools
-
-do_install_append() {
-}
-

@@ -2,8 +2,8 @@ SUMMARY = "Package group for python packages needed by elk"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-python-pkgs = "\
-    python \
+RDEPENDS_packagegroup-elk-python-pkgs = "python \
+    python-pip \
     python3 \
     python3-pip \
     python3-six \
@@ -12,5 +12,4 @@ RDEPENDS_packagegroup-elk-python-pkgs = "\
     python3-grpcio-tools \
     python3-futures \
     python3-setuptools \
-    python-alsaseq \
-    "
+    python-alsaseq"

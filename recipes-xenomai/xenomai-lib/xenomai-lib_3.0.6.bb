@@ -44,4 +44,3 @@ FILES_${PN} += "usr/xenomai/demo/*"
 FILES_${PN} += "${UDEV_RULES_DIR}/*"
 
 INSANE_SKIP_${PN} += "ldflags"
-

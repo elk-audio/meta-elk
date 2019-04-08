@@ -1,4 +1,4 @@
-DESCRIPTION = "Demo which add file(s) with a custom owner"
+DESCRIPTION = "Adds a custom owner along with home files"
 SECTION = "misc"
 LICENSE = "CLOSED"
 
@@ -6,7 +6,7 @@ HOME_DIR = "/home/mind"
 
 inherit useradd extrausers
 
-### password generated with the command:  openssl passwd "******"
+### password generated with the command: openssl passwd "******"
 MIND_PASSWD = "RxEA3Y8sRxpxw"
 
 USERADD_PACKAGES = "${PN}"
@@ -18,9 +18,6 @@ SRC_URI = "file://README"
 do_install() {
 
   install -d ${D}${HOME_DIR}
-  install -d ${D}${HOME_DIR}/logs/sushi
-  install -d ${D}${HOME_DIR}/logs/sensei
-  install -d ${D}${HOME_DIR}/logs/zenbridge
   install -m 0755 ${WORKDIR}/README ${D}${HOME_DIR}/README
   chown -R mind:mind ${D}${HOME_DIR}/
   chown mind:mind ${D}${HOME_DIR}/README

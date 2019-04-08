@@ -44,4 +44,3 @@ do_install_append() {
 }
 
 FILES_{PN} += "${D}${sysconfdir}/sushi_conf/*"
-

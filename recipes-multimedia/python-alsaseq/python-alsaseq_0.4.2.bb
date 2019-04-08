@@ -19,4 +19,3 @@ inherit setuptools3
 do_install_append() {
     rm -rf ${D}/usr/share
 }
-

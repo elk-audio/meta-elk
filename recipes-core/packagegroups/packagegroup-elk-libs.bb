@@ -2,8 +2,7 @@ SUMMARY = "Package group for libraries needed by elk"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-libs = "\
-    xenomai-lib \
+RDEPENDS_packagegroup-elk-libs = "xenomai-lib \
     alsa-utils \
     libstdc++ \
     liblo \
@@ -14,5 +13,4 @@ RDEPENDS_packagegroup-elk-libs = "\
     twine \
     twine-dev \
     python-libconf \
-    python-io \
-    "
+    python-io"

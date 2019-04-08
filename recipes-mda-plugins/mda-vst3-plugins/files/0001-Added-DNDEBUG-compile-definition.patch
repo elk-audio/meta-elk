@@ -1,0 +1,24 @@
+From 7b2131c508d689e8c3e0de9ab1d312991a1c2678 Mon Sep 17 00:00:00 2001
+From: Sharan Yagneswar <sharan.yagneswar@mindmusiclabs.com>
+Date: Mon, 8 Apr 2019 14:29:24 +0200
+Subject: [PATCH] Added DNDEBUG compile definition
+
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ba4d5e8..abce434 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 3.8)
+ 
+ set(VST3_SDK_ROOT "${PROJECT_SOURCE_DIR}/vst3sdk" CACHE PATH "Location of VST3 SDK")
+ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
++add_definitions(-DNDEBUG)
+ include(AddVST3SDK)
+ 
+ set(mda-vst3_sources
+-- 
+2.17.1
+

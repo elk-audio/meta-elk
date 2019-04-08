@@ -32,5 +32,3 @@ RDEPENDS_${PN} += "python3-core"
 # WARNING: We were unable to map the following python package/module
 # dependencies to the bitbake packages which include them:
 #    liblo
-
-
