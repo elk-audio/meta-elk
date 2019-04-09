@@ -19,12 +19,12 @@ LIC_FILES_CHKSUM = "file://debian/copyright;md5=b845d61ada88e4a5e0df2b2b74272db7
 
 UDEV_RULES_DIR = "/etc/udev/rules.d"
 
-SRC_URI = "https://gitlab.denx.de/Xenomai/xenomai/-/archive/v${PV}/xenomai-v${PV}.tar.gz;name=xenolib"
-SRC_URI[xenolib.md5sum] = "baf014ba32fd97be7512961163e40109"
-SRC_URI[xenolib.sha256sum] = "79fa86c56e8a1a9715c70aaf715bc5feb7779fcabb60c158e8487027477e3424"
+SRC_URI = "http://xenomai.org/downloads/xenomai/stable/xenomai-${PV}.tar.bz2;name=xenolib"
+SRC_URI[xenolib.md5sum] = "eafe3b789651f0db9575599dffc60a19"
+SRC_URI[xenolib.sha256sum] = "c373261ddb8280d9d7078cdd9cd9646dfb7d70d8cd3aa9693d9148f03990d711"
 SRC_URI += "file://rtdm.rules"
 
-S = "${WORKDIR}/xenomai-v${PV}"
+S = "${WORKDIR}/xenomai-${PV}"
 
 inherit pkgconfig autotools
 
