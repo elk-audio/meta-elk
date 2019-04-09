@@ -13,4 +13,6 @@ RDEPENDS_packagegroup-elk-libs = "xenomai-lib \
     twine \
     twine-dev \
     python-libconf \
-    python-io"
+    python-io \
+    grpc \
+    protobuf"

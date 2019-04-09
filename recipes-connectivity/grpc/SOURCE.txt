@@ -1,0 +1,4 @@
+Original recipe taken as reference is from below link
+http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipes-devtools/grpc
+version: 1.8.5 
+The current recipe is ported to 1.10 
