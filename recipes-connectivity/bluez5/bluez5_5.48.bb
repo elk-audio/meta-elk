@@ -67,7 +67,5 @@ NOINST_TOOLS_BT ?= " \
     tools/gatt-service \
     profiles/iap/iapd \
 "
-PACKAGECONFIG_append = " midi"
 
 EXTRA_OECONF += " --enable-experimental --localstatedir=/udata"
-

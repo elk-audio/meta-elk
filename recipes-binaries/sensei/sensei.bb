@@ -6,17 +6,13 @@ LIC_FILES_CHKSUM = "file://test/gtest_1_7_0/LICENSE;md5=cbbd27594afd089daa160d3a
 DEPENDS = "liblo jsoncpp libserialport"
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sensei.git;protocol=ssh;nobranch=1"
 
-# Modify these as desired in the product layer
+# Modify the following as desired in the product layer
 SRCREV = ""
-
-PV = "0.1.0+${SRCREV}"
+PV = ""
 
 S = "${WORKDIR}/git/linux"
 
 inherit cmake pythonnative
-
-# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
-EXTRA_OECMAKE = "-DWITH_UNIT_TESTS=FALSE"
 
 do_install() {
     install -d ${D}${bindir}
