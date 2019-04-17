@@ -20,4 +20,6 @@ RDEPENDS_packagegroup-elk-devtools = "util-linux \
     nano \
     cgdb \
     valgrind \
-    tmux"
+    tmux \
+    libstdc++ \
+    libstdc++-staticdev"
