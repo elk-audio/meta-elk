@@ -5,7 +5,7 @@ PN = "elk-systemd-services"
 PV = "0.1"
 S = "${WORKDIR}"
 
-PACKAGE_ARCH = "all"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit systemd
 
