@@ -5,6 +5,7 @@ inherit packagegroup
 RDEPENDS_packagegroup-elk-libs = "xenomai-lib \
     alsa-utils \
     libstdc++ \
+    libstdc++-staticdev \
     liblo \
     libsndfile1 \
     jsoncpp \
@@ -15,4 +16,5 @@ RDEPENDS_packagegroup-elk-libs = "xenomai-lib \
     python-libconf \
     python-io \
     grpc \
-    protobuf"
+    protobuf \
+    "

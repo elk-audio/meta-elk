@@ -21,5 +21,4 @@ RDEPENDS_packagegroup-elk-devtools = "util-linux \
     cgdb \
     valgrind \
     tmux \
-    libstdc++ \
-    libstdc++-staticdev"
+    "
