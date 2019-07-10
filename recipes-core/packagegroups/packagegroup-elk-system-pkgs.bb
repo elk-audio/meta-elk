@@ -4,4 +4,6 @@ inherit packagegroup
 
 RDEPENDS_packagegroup-elk-system-pkgs = "kernel-modules \
     custom-owner \
-    elk-systemd-services"
+    elk-systemd-services \
+    zsh \
+    bash"

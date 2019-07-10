@@ -10,8 +10,10 @@ inherit useradd extrausers
 MIND_PASSWD = "RxEA3Y8sRxpxw"
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-g xenomai -G audio -p '${MIND_PASSWD}' -m -d ${HOME_DIR} mind"
+USERADD_PARAM_${PN} = "-g xenomai -G audio -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
 GROUPADD_PARAM_${PN} = "mind; -g 2004 xenomai"
+
+EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
 
 SRC_URI = "file://README"
 
