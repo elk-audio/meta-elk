@@ -5,6 +5,5 @@ inherit packagegroup
 RDEPENDS_packagegroup-elk-clang-pkgs = " clang \
     compiler-rt \
     libcxx \
-    lld \
     llvm-common \
     "
