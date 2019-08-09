@@ -1,4 +1,0 @@
-Recipe originally taken from the below link
-https://github.com/openembedded/openembedded-core/commits/master/meta/recipes-connectivity/bluez5
-Branch=master commit id: 61444fd318c266800ef8fb308a5c16f90d5e3a3f
-
