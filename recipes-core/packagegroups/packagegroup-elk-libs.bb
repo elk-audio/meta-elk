@@ -4,6 +4,11 @@ inherit packagegroup
 
 RDEPENDS_packagegroup-elk-libs = "xenomai-lib \
     alsa-utils \
+    libjack \
+    jack-server \
+    jack-utils \
+    stk \
+    csound \
     libstdc++ \
     libstdc++-staticdev \
     liblo \
