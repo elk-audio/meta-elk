@@ -19,6 +19,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=817ab7bd0deff07f9f518bc30434cea3 \
                     file://third-party/EASTL/LICENSE;md5=f2de4603fe498daf092ef9ab24e3c4e4"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1"
+SRC_URI += "file://sushi"
 
 # NOTE: This is most likely overiden as desired from meta-<product> layer with a .bbappend recipe"
 SRCREV = ""
@@ -28,11 +29,28 @@ PV = ""
 
 S = "${WORKDIR}/git"
 
+SUPPORTED_BUFFER_SIZES="16 32 64 128"
+
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
 #       (this is based on recipes that have previously been built and packaged)
 inherit cmake pythonnative
 DEPENDS = "xenomai-lib twine liblo alsa-utils libsndfile1"
 RDEPENDS_{PN} = "twine"
+
+# Override compilation step to build multiple binaries with different buffer sizes
+do_compile() {
+    for b in ${SUPPORTED_BUFFER_SIZES};
+    do
+	    cmake \
+	      ${OECMAKE_GENERATOR_ARGS} \
+	      $oecmake_sitefile \
+	      ${OECMAKE_SOURCEPATH} \
+          -DAUDIO_BUFFER_SIZE=$b
+
+	    cmake_runcmake_build --target ${OECMAKE_TARGET_COMPILE}
+        mv ${WORKDIR}/build/sushi ${WORKDIR}/build/sushi_b$b
+    done
+}
 
 do_install_append() {
     install -d ${D}${sysconfdir}/sushi_conf
@@ -41,6 +59,12 @@ do_install_append() {
     rm -f ${D}/usr/HISTORY.md
     rm -f ${D}/usr/LICENSE
     rm -rf ${D}/usr/example_configs/
+
+    for b in ${SUPPORTED_BUFFER_SIZES};
+    do
+        install -m 0755 sushi_b$b ${D}${bindir}
+    done
+    install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
 }
 
 FILES_{PN} += "${D}${sysconfdir}/sushi_conf/*"

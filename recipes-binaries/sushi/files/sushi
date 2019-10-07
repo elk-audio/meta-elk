@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SUSHI_BINARY=sushi_b64
+SUSHI_ARGS=${@}
+
+if [ "$#" -ge 2 ]; then
+    if [ "$1" == "-b" ]; then
+        SUSHI_BINARY=sushi_b$2
+        SUSHI_ARGS=${@:3}
+    fi
+fi
+
+$SUSHI_BINARY $SUSHI_ARGS
+
