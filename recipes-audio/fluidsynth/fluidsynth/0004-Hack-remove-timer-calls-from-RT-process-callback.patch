@@ -1,0 +1,88 @@
+From 0948333e351658405a9def8a99653af98e136668 Mon Sep 17 00:00:00 2001
+From: stez-mind <stefano.zambon@mindmusiclabs.com>
+Date: Mon, 7 Oct 2019 19:54:32 +0200
+Subject: [PATCH] Hack: remove timer calls from RT process callback
+
+---
+ src/synth/fluid_synth.c | 30 +++++++++++++++++++++---------
+ 1 file changed, 21 insertions(+), 9 deletions(-)
+
+diff --git a/src/synth/fluid_synth.c b/src/synth/fluid_synth.c
+index 37a819d..880046a 100644
+--- a/src/synth/fluid_synth.c
++++ b/src/synth/fluid_synth.c
+@@ -3360,7 +3360,9 @@ fluid_synth_nwrite_float(fluid_synth_t *synth, int len,
+ {
+     fluid_real_t *left_in, *fx_left_in;
+     fluid_real_t *right_in, *fx_right_in;
+-    double time = fluid_utime();
++    // STEZ_HACK : remove timing calls
++    // double time = fluid_utime();
++    double time = 0.0;
+     int i, num, available, count;
+ #ifdef WITH_FLOAT
+     int bytes;
+@@ -3514,8 +3516,10 @@ fluid_synth_nwrite_float(fluid_synth_t *synth, int len,
+ 
+     synth->cur = num;
+ 
+-    time = fluid_utime() - time;
+-    cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    // STEZ_HACK : remove timer calls
++    // time = fluid_utime() - time;
++    // cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    cpu_load = 0.0;
+     fluid_atomic_float_set(&synth->cpu_load, cpu_load);
+ 
+     return FLUID_OK;
+@@ -3645,7 +3649,9 @@ fluid_synth_process_LOCAL(fluid_synth_t *synth, int len, int nfx, float *fx[],
+     fluid_real_t *right_in, *fx_right_in;
+     int nfxchan, nfxunits, naudchan;
+ 
+-    double time = fluid_utime();
++    // STEZ_HACK : remove timer calls
++    // double time = fluid_utime();
++    double time = 0.0;
+     int i, f, num, count, buffered_blocks;
+ 
+     float cpu_load;
+@@ -3755,8 +3761,10 @@ fluid_synth_process_LOCAL(fluid_synth_t *synth, int len, int nfx, float *fx[],
+ 
+     synth->cur = num;
+ 
+-    time = fluid_utime() - time;
+-    cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    // STEZ_HACK : remove timer calls
++    // time = fluid_utime() - time;
++    // cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    cpu_load = 0.0;
+     fluid_atomic_float_set(&synth->cpu_load, cpu_load);
+ 
+     return FLUID_OK;
+@@ -3790,7 +3798,9 @@ fluid_synth_write_float(fluid_synth_t *synth, int len,
+     float *right_out = (float *) rout;
+     fluid_real_t *left_in;
+     fluid_real_t *right_in;
+-    double time = fluid_utime();
++    // STEZ_HACK : remove timer calls
++    // double time = fluid_utime();
++    double time = 0.0;
+     float cpu_load;
+ 
+     fluid_profile_ref_var(prof_ref);
+@@ -3821,8 +3831,10 @@ fluid_synth_write_float(fluid_synth_t *synth, int len,
+ 
+     synth->cur = l;
+ 
+-    time = fluid_utime() - time;
+-    cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    // STEZ_HACK : remove timer calls
++    // time = fluid_utime() - time;
++    // cpu_load = 0.5 * (fluid_atomic_float_get(&synth->cpu_load) + time * synth->sample_rate / len / 10000.0);
++    cpu_load = 0.0;
+     fluid_atomic_float_set(&synth->cpu_load, cpu_load);
+ 
+     fluid_profile_write(FLUID_PROF_WRITE, prof_ref,
+-- 
+2.20.1
+
