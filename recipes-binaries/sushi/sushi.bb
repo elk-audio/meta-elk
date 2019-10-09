@@ -62,6 +62,7 @@ do_install_append() {
 
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
+        chrpath -d sushi_b$b
         install -m 0755 sushi_b$b ${D}${bindir}
     done
     install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
