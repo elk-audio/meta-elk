@@ -7,4 +7,10 @@ RDEPENDS_packagegroup-elk-audio-extra = "libjack \
     jack-utils \
     stk \
     csound \
+    fluidsynth \
+    lv2 \
+    sord \
+    serd \
+    sratom \
+    lilv \
     "

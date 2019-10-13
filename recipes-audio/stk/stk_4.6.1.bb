@@ -17,4 +17,5 @@ inherit autotools-brokensep pkgconfig
 # PACKAGECONFIG[jack] = "--with-jack,--without-jack,jack"
 
 DISABLE_STATIC = ""
+DEPENDS = "alsa-utils"
 EXTRA_OECONF = "--enable-realtime --without-alsa --without-jack"
