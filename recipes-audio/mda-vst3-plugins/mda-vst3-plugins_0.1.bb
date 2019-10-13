@@ -18,8 +18,10 @@ MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3"
 
 do_install() {
     install -d ${D}${MDA_PLUGIN_DIR}
-    cp -r "${WORKDIR}/build/VST3/mda.vst3" ${D}${MDA_PLUGIN_DIR}
+    cp -r "${WORKDIR}/build/VST3/Release/mda.vst3" ${D}${MDA_PLUGIN_DIR}
 }
 
 FILES_${PN} += "${MDA_PLUGIN_DIR}"
 FILES_${PN} += "${MDA_PLUGIN_DIR}/*"
+
+INSANE_SKIP_${PN} += "already-stripped"
