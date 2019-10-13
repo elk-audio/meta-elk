@@ -14,6 +14,9 @@ S = "${WORKDIR}/git/linux"
 
 inherit cmake pythonnative
 
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+
 do_install() {
     install -d ${D}${bindir}
     install -m 0755 sensei ${D}${bindir}

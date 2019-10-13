@@ -37,6 +37,10 @@ inherit cmake pythonnative
 DEPENDS = "xenomai-lib twine liblo alsa-utils libsndfile1"
 RDEPENDS_{PN} = "twine"
 
+# Set CMAKE optimization flags
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+
 # Override compilation step to build multiple binaries with different buffer sizes
 do_compile() {
     for b in ${SUPPORTED_BUFFER_SIZES};
