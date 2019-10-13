@@ -1,0 +1,34 @@
+From 2e53c44c1c9390f9ccdd4bc4feead3f25a19028c Mon Sep 17 00:00:00 2001
+From: Sharan Yagneswar <sharan.yagneswar@mindmusiclabs.com>
+Date: Mon, 14 Oct 2019 00:46:56 +0200
+Subject: [PATCH] Removed auto strip with Release build as Yocto takes care of
+ it
+
+---
+ modules/AddSMTGLibrary.cmake | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake b/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
+index e67fac7..376ff73 100644
+--- a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
++++ b/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
+@@ -272,11 +272,11 @@ function(smtg_make_plugin_package target extension)
+         )
+ 
+         # Strip symbols in Release config
+-        if(${CMAKE_BUILD_TYPE} MATCHES Release)
+-            smtg_strip_symbols(${target})
+-        elseif(${CMAKE_BUILD_TYPE} MATCHES RelWithDebInfo)
+-            smtg_strip_symbols_with_dbg(${target})
+-        endif()
++        #if(${CMAKE_BUILD_TYPE} MATCHES Release)
++        #    smtg_strip_symbols(${target})
++        #elseif(${CMAKE_BUILD_TYPE} MATCHES RelWithDebInfo)
++        #    smtg_strip_symbols_with_dbg(${target})
++        #endif()
+     endif()
+ endfunction()
+ 
+-- 
+2.17.1
+
