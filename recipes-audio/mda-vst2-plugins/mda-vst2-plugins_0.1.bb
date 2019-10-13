@@ -11,6 +11,10 @@ S = "${WORKDIR}/git"
 
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst2"
 
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
+
 do_install() {
     install -d ${D}${MDA_PLUGIN_DIR}
     cp "${WORKDIR}/build/plugins/mdaAmbience.so" ${D}${MDA_PLUGIN_DIR}

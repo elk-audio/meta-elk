@@ -13,7 +13,8 @@ S = "${WORKDIR}/git"
 SRCREV = "${AUTOREV}"
 BRANCH = "v1.10.x"
 SRC_URI = "git://github.com/grpc/grpc.git;protocol=https;branch=${BRANCH}"
-SRC_URI += "file://CMakeLists_cross_compilation_patch.patch"
+SRC_URI += "file://CMakeLists_cross_compilation_patch.patch \
+ 	    file://0001-fix-for-gettid-call.patch"
 
 inherit cmake
 

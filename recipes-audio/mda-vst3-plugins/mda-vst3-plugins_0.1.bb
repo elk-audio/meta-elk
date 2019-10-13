@@ -10,6 +10,9 @@ SRCREV = "0f6c8e1e840a9897e156ce46e38e0ca2ba43684d"
 PV = "0.1.0+${SRCREV}"
 S = "${WORKDIR}/git"
 
+OECMAKE_C_FLAGS += "-O3"
+OECMAKE_CXX_FLAGS += "-O3"
+
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3"
 
 do_install() {
