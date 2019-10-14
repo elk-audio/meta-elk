@@ -4,7 +4,7 @@ LICENSE = "CLOSED"
 inherit cmake
 
 SRC_URI = "git://git@bitbucket.org/mindswteam/vst2-cmake.git;protocol=ssh;nobranch=1"
-SRCREV = "921bd723c939d2ade30eb85d1e414ea9586c2df8"
+SRCREV = "99c3ba3d5b44602fd74da33f9bf7acb815c45473"
 
 PV = "0.1.0+${SRCREV}"
 S = "${WORKDIR}/git"
