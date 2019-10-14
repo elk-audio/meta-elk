@@ -18,11 +18,10 @@ EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3"
 
 do_install() {
-    install -d ${D}${MDA_PLUGIN_DIR}
+    mv "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux"  "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/${TARGET_ARCH}-linux"
+    install -d ${D}${MDA_PLUGIN_DIR}/Contents/{TARGET_ARCH}-linux
     cp -r "${WORKDIR}/build/VST3/Release/mda.vst3" ${D}${MDA_PLUGIN_DIR}
 }
 
 FILES_${PN} += "${MDA_PLUGIN_DIR}"
 FILES_${PN} += "${MDA_PLUGIN_DIR}/*"
-
-#INSANE_SKIP_${PN} += "already-stripped"
