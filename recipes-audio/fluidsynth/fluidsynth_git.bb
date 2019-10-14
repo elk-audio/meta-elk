@@ -13,6 +13,8 @@ SRC_URI += " \
 # not the command-line synthesizer
 
 EXTRA_OECMAKE = "-Denable-floats=ON -DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')} -Denable-alsa=OFF -Denable-aufile=OFF -Denable-dbus=OFF -Denable-dsound=OFF -Denable-ipv6=OFF -Denable-jack=OFF -Denable-ladspa=OFF -Denable-lash=OFF -Denable-midishare=OFF -Denable-network=OFF -Denable-oss=OFF -Denable-pulseaudio=OFF -Denable-readline=OFF -Denable-systemd=OFF -Denable-threads=OFF -Denable-winmidi=OFF"
+OECMAKE_C_FLAGS_RELEASE += " -O3"
+OECMAKE_CXX_FLAGS_RELEASE += " -O3"
 
 do_configure_append() {
     make_tables.exe ${B}/

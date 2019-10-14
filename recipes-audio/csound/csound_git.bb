@@ -52,6 +52,9 @@ EXTRA_OECMAKE += " \
     -DUSE_LIB64=${@bb.utils.contains("baselib", "lib64", "ON", "OFF",d)} \
 "
 
+OECMAKE_C_FLAGS_RELEASE += " -O3"
+OECMAKE_CXX_FLAGS_RELEASE += " -O3"
+
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio', d)}"
 PACKAGECONFIG[pulseaudio] = "-DUSE_PULSEAUDIO=ON,-DUSE_PULSEAUDIO=OFF,pulseaudio,pulseaudio-server"
 PACKAGECONFIG[luajit] = "-DLUA_MODULE_INSTALL_DIR=${libdir}/lua/${LUA_VERSION},,luajit"

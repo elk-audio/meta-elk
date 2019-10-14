@@ -19,3 +19,6 @@ inherit autotools-brokensep pkgconfig
 DISABLE_STATIC = ""
 DEPENDS = "alsa-utils"
 EXTRA_OECONF = "--enable-realtime --without-alsa --without-jack"
+
+TARGET_CFLAGS += " -O3"
+TARGET_CXXFLAGS += " -O3"
