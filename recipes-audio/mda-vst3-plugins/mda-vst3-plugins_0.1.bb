@@ -6,7 +6,7 @@ inherit cmake
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/mda-vst3.git;protocol=ssh;nobranch=1"
 SRC_URI += "file://0001-Added-DNDEBUG-compile-definition.patch"
 SRC_URI += "file://0002-Removed-auto-strip-with-Release-build-as-Yocto-takes.patch"
-SRCREV = "0f6c8e1e840a9897e156ce46e38e0ca2ba43684d"
+SRCREV = "abbca58836ddeb9304a511c155dc0abcc1ba2b7d"
 
 PV = "0.1.0+${SRCREV}"
 S = "${WORKDIR}/git"
@@ -19,7 +19,6 @@ MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3"
 
 do_install() {
     mv "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux"  "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/${TARGET_ARCH}-linux"
-    install -d ${D}${MDA_PLUGIN_DIR}/Contents/{TARGET_ARCH}-linux
     cp -r "${WORKDIR}/build/VST3/Release/mda.vst3" ${D}${MDA_PLUGIN_DIR}
 }
 
