@@ -1,3 +1,0 @@
-All the python recipes here are originally taken from the below link
-http://cgit.openembedded.org/meta-openembedded/tree/meta-python/recipes-devtools/python
-Branch=master. ported to python3 by using setuptools3 bitbake class
