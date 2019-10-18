@@ -8,7 +8,6 @@ RDEPENDS_packagegroup-elk-python-pkgs = "python \
     python3-pip \
     python3-six \
     pyliblo \
-    python3-futures \
     python3-setuptools \
     python-alsaseq \
     python3-grpcio \
