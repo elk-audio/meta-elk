@@ -11,8 +11,7 @@ RDEPENDS_packagegroup-elk-python-pkgs = "python \
     python3-futures \
     python3-setuptools \
     python-alsaseq \
+    python3-grpcio \
+    python3-grpcio-tools \
+    python3-protobuf \
     "
-
-#    python3-grpcio \
-#    python3-grpcio-tools \
-#    python3-protobuf \
