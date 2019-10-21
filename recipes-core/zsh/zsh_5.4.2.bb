@@ -17,8 +17,6 @@ SRC_URI[sha256sum] = "957bcdb2c57f64c02f673693ea5a7518ef24b6557aeb3a4ce222cefa6d
 SRC_URI += "git://github.com/robbyrussell/oh-my-zsh;name=oh-my-zsh;protocol=https;branch=master;destsuffix=oh-my-zsh"
 SRCREV_oh-my-zsh="b259cdf7e71ad6c3cc1a66a48c6c79cf63f38590"
 
-SRC_URI += "file://bullet-train.zsh-theme"
-
 inherit autotools gettext update-alternatives
 
 EXTRA_OECONF = " \
@@ -50,7 +48,6 @@ do_configure () {
 do_install_append() {
     install -d ${D}${sysconfdir}/oh-my-zsh
     cp -r ${WORKDIR}/oh-my-zsh ${D}${sysconfdir}
-    install -m 0644 ${WORKDIR}/bullet-train.zsh-theme ${D}${sysconfdir}/oh-my-zsh/themes/
 }
 
 pkg_postinst_${PN} () {
