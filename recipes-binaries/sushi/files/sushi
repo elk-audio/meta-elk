@@ -10,5 +10,5 @@ if [ "$#" -ge 2 ]; then
     fi
 fi
 
-$SUSHI_BINARY $SUSHI_ARGS
+exec -a sushi $SUSHI_BINARY $SUSHI_ARGS
 
