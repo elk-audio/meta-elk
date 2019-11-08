@@ -6,5 +6,9 @@ RDEPENDS_packagegroup-elk-system-pkgs = "kernel-modules \
     custom-owner \
     elk-systemd-services \
     zsh \
-    bash\
-    ldd"
+    bash \
+    ldd \
+    samba-server \
+    samba-base \
+    samba-common \
+    "
