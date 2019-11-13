@@ -11,4 +11,5 @@ RDEPENDS_packagegroup-elk-system-pkgs = "kernel-modules \
     samba-server \
     samba-base \
     samba-common \
+    i2c-tools \
     "
