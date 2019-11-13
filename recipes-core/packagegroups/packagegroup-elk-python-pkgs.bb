@@ -13,4 +13,8 @@ RDEPENDS_packagegroup-elk-python-pkgs = "python \
     python3-grpcio \
     python3-grpcio-tools \
     python3-protobuf \
+    python3-pyftdi \
+    python3-smbus2 \
+    python3-luma-core \
+    python3-luma-oled \
     "
