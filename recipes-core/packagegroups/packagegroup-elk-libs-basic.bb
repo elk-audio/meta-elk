@@ -13,5 +13,7 @@ RDEPENDS_packagegroup-elk-libs-basic = "xenomai-lib \
     python-libconf \
     python-io \
     grpc \
+    raspa-dev \
+    raspa-staticdev \
     protobuf \
     "
