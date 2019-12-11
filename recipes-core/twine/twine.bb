@@ -1,9 +1,11 @@
 SUMMARY = "Twine multicore library for Xenomai"
-LICENSE = "CLOSED"
+LICENSE = "GPLv3"
 
 inherit cmake
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/twine.git;protocol=ssh;nobranch=1"
+SRC_URI = "gitsm://git@bitbucket.org/mindswteam/twine-public-mirror.git;protocol=ssh;nobranch=1"
+
+LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
 SRCREV = ""
