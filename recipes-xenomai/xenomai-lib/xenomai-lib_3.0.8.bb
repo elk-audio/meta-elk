@@ -36,9 +36,12 @@ EXTRA_OECONF = "--enable-smp --with-core=cobalt"
 do_install_append() {
     install -d ${D}${UDEV_RULES_DIR}
     install -m 0644 ${WORKDIR}/rtdm.rules ${D}${UDEV_RULES_DIR}
+
+    # xenomai installs rtp device. We do not want that in the image as its only
+    # needed for some tests
+    rm -rf ${D}/dev
 }
-    
-FILES_${PN} += "/dev"
+
 FILES_${PN} += "/usr/xenomai/lib/*"
 FILES_${PN} += "usr/xenomai/demo/*"
 FILES_${PN} += "${UDEV_RULES_DIR}/*"
