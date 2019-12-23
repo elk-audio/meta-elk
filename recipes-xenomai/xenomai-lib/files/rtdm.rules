@@ -1,0 +1,1 @@
+SUBSYSTEM=="rtdm", MODE="0660", GROUP="xenomai"

@@ -1,0 +1,26 @@
+README
+=================
+
+First setup with:
+
+TEMPLATECONF=meta-elk/conf source oe-init-build-env build-elk
+
+
+Then build your image with:
+
+bitbake elk-core-image-sato
+
+
+Bootable images can be found inside:
+
+build-elk/tmp/deploy/images/up-board-elk
+
+Available images
+.iso: live read-only iso
+.hddimg: bootable image (rootfs is a single file .img file mounted in readwrite at boot)
+.wic: "classic" disc image with a complete rootfs, ready to be dd-ed on the USB key
+
+
+Layer Depends on meta-openembedded layer https://github.com/openembedded/meta-openembedded branch: rocko  
+----------------
+Copyright 2016-2018 MIND Music Labs AB, Stockholm, Sweden.
