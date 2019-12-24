@@ -19,4 +19,3 @@ OECMAKE_CXX_FLAGS_RELEASE += " -O3 -ffast-math"
 do_configure_append() {
     make_tables.exe ${B}/
 }
-
