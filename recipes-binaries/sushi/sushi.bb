@@ -1,10 +1,8 @@
-# Recipe created by recipetool
+DESCRIPTION = "Headless plugin host for ELK Audio OS."
 LICENSE = "AGPL-3.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
                     file://test/gtest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
                     file://third-party/spdlog/LICENSE;md5=6e5242b8f24d08c5e948675102937cc9 \
-                    file://third-party/vstsdk2.4/vstgui.sf/vstgui/Documentation/html/license.html;md5=a0b7291eff176aa998343351b3abcdba \
-                    file://third-party/vstsdk2.4/doc/html/license.html;md5=c3b5d06993a4faa04988fc48571b7e1f \
                     file://third-party/rapidjson/license.txt;md5=ba04aa8f65de1396a7e59d1d746c2125 \
                     file://third-party/rapidjson/bin/jsonschema/LICENSE;md5=9d4de43111d33570c8fe49b4cb0e01af \
                     file://third-party/rapidjson/contrib/natvis/LICENSE;md5=ec259ab094c66e4776e1da8b023540e0 \
@@ -16,13 +14,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
                     file://third-party/vst3sdk/base/LICENSE.txt;md5=f4c1183904420f5f5e7876b26c292354 \
                     "
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1"
 SRC_URI += "file://sushi"
 
-# NOTE: This is most likely overiden as desired from meta-<product> layer with a .bbappend recipe"
+# NOTE: Override this in the meta-<product> layer with a
+# .bbappend recipe choosing the specific commit required"
 SRCREV = ""
 
-#Note: Same as SRCREV; Overiden from meta-<product>
+# Note: Same as SRCREV; Overide in meta-<product>
 PV = ""
 
 S = "${WORKDIR}/git"
