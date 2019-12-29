@@ -1,4 +1,4 @@
-DESCRIPTION = "An audio format Conversion library"
+SUMMARY = "An audio format Conversion library"
 HOMEPAGE = "http://www.mega-nerd.com/libsndfile"
 AUTHOR = "Erik de Castro Lopo"
 SECTION = "libs/multimedia"
