@@ -1,7 +1,8 @@
-SUMMARY = "Package group for Clang packages"
+SUMMARY = "Clang packages deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-clang-dev-pkgs = "libcxx-staticdev \
+RDEPENDS_packagegroup-elk-clang-dev-pkgs = "\
+    libcxx-staticdev \
     compiler-rt-staticdev \
-    "
+"

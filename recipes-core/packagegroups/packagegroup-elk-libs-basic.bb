@@ -1,8 +1,9 @@
-SUMMARY = "Package group for libraries needed by elk"
+SUMMARY = "Basic set of libraries deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-libs-basic = "xenomai-lib \
+RDEPENDS_packagegroup-elk-libs-basic = "\
+    xenomai-lib \
     alsa-utils \
     libstdc++ \
     libstdc++-staticdev \
@@ -16,4 +17,4 @@ RDEPENDS_packagegroup-elk-libs-basic = "xenomai-lib \
     raspa-dev \
     raspa-staticdev \
     protobuf \
-    "
+"

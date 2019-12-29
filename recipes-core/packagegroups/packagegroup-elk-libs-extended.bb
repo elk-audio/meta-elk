@@ -1,8 +1,9 @@
-SUMMARY = "Package group for libraries needed by elk"
+SUMMARY = "Extended set of libraries deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-libs-basic = "libjack \
+RDEPENDS_packagegroup-elk-libs-extended = "\
+    libjack \
     jack-server \
     jack-utils \
     stk \
@@ -10,4 +11,4 @@ RDEPENDS_packagegroup-elk-libs-basic = "libjack \
     libsndfile1 \
     libserialport \
     bluez5 \
-    "
+"

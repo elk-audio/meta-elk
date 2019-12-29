@@ -1,9 +1,10 @@
-SUMMARY = "Package group for Clang packages"
+SUMMARY = "Clang packages deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-clang-pkgs = " clang \
+RDEPENDS_packagegroup-elk-clang-pkgs = "\
+    clang \
     compiler-rt \
     libcxx \
     llvm-common \
-    "
+"

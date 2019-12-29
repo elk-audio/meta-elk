@@ -1,7 +1,6 @@
-# Recipe created by recipetool
-
 SUMMARY = "libconf implementation for Python"
 HOMEPAGE = "https://github.com/Grk0/python-libconf"
+
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=05f696c084eaaf5d75bc150f70975758"
 

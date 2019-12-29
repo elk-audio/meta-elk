@@ -1,13 +1,11 @@
-SUMMARY = "Package group for dev tools needed by elk during development"
+SUMMARY = "Basic development tools deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-devtools-basic = "util-linux \
+RDEPENDS_packagegroup-elk-devtools-basic = "\
+    util-linux \
     packagegroup-core-buildessential \
-    sudo \
     vim \
-    connman \
-    connman-client \
     cmake \
     nano \
-    "
+"

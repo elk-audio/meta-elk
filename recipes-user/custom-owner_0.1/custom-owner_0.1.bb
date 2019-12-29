@@ -1,30 +1,27 @@
-DESCRIPTION = "Adds a custom owner along with home files"
+SUMMARY = "Adds a custom owner along with home files for Elk Audio OS devices"
 SECTION = "misc"
-LICENSE = "CLOSED"
 
-HOME_DIR = "/home/mind"
+HOMEPAGE = "https://elk-audio.github.io/elk-docs/html/index.html"
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+
+SRC_URI = "\
+    file://README \
+    file://logo.sh \
+    file://display-elk-logo.sh \
+"
 
 inherit useradd extrausers
 
 ### password generated with the command: openssl passwd "******"
 MIND_PASSWD = "RxEA3Y8sRxpxw"
-
 USERADD_PACKAGES = "${PN}"
+HOME_DIR = "/home/mind"
 USERADD_PARAM_${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
 GROUPADD_PARAM_${PN} = "mind; -g 2004 xenomai"
-
 EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
 
-SRC_URI = " \
-    file://README \
-    file://logo.sh \
-    file://display-elk-logo.sh \
-    "
-
-RDEPENDS_${PN} += "bash"
-
 do_install() {
-
     install -d ${D}${HOME_DIR}
     install -m 0755 ${WORKDIR}/README ${D}${HOME_DIR}/README
     chown -R mind:mind ${D}${HOME_DIR}/
@@ -38,3 +35,5 @@ do_install() {
 
 FILES_${PN} = "${HOME_DIR}/*"
 FILES_${PN} += "${sysconfdir}/*"
+
+RDEPENDS_${PN} += "bash"

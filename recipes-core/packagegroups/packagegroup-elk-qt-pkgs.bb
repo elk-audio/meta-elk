@@ -1,13 +1,14 @@
-SUMMARY = "Package group for all the qt packages needed by elk"
+SUMMARY = "Qt packages deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-qt-pkgs = "qtbase \
+RDEPENDS_packagegroup-elk-qt-pkgs = "\
+    qtbase \
     qtbase-dev \
     qtbase-mkspecs \
     qtbase-plugins \
     qtbase-tools \
-	qt3d \
+    qt3d \
     qt3d-dev \
     qt3d-mkspecs \
     qtcharts \
@@ -23,5 +24,5 @@ RDEPENDS_packagegroup-elk-qt-pkgs = "qtbase \
     qtdeclarative-mkspecs \
     qtgraphicaleffects \
     qtgraphicaleffects-dev \
-	cinematicexperience \
+    cinematicexperience \
 "

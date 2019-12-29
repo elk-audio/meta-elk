@@ -1,6 +1,8 @@
-SUMMARY = "Package group for user space applications and services needed by elk"
+SUMMARY = "User space applications in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-applications = "sushi \
-                                          sensei"
+RDEPENDS_packagegroup-elk-applications = "\
+    sushi \
+    sensei \
+"

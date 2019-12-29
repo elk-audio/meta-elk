@@ -1,8 +1,9 @@
-SUMMARY = "Package group for dev tools needed by elk during development"
+SUMMARY = "Extended development tools deployed in Elk Audio OS devices"
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-devtools-extended = "gdbserver \
+RDEPENDS_packagegroup-elk-devtools-extended = "\
+    gdbserver \
     psplash \
     strace \
     file \
@@ -13,4 +14,4 @@ RDEPENDS_packagegroup-elk-devtools-extended = "gdbserver \
     valgrind \
     tmux \
     perf \
-    "
+"

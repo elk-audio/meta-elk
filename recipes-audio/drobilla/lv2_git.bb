@@ -4,6 +4,4 @@ DEPENDS = "libsndfile1"
 
 EXTRA_OECONF = "--libdir=${libdir}"
 
-FILES_${PN} += " \
-    ${datadir} \
-"
+FILES_${PN} += "${datadir}"

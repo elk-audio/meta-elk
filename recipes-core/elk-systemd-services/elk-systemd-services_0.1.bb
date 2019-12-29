@@ -1,20 +1,22 @@
-DESCRIPTION = "All custom systemd services for ELK"
-LICENSE = "CLOSED"
+SUMMARY = "All custom systemd services for ELK Audio OS systems"
+HOMEPAGE = "https://elk-audio.github.io/elk-docs/html/index.html"
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+
 PR = "r0"
 PN = "elk-systemd-services"
 PV = "0.1"
-S = "${WORKDIR}"
 
-PACKAGE_ARCH = "${MACHINE_ARCH}"
+SRC_URI += "file://custom-elk.target"
+
+S = "${WORKDIR}"
 
 inherit systemd
 
-FILES_${PN} += "${systemd_system_unitdir}/*"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
-
-SRC_URI += "file://custom-elk.target"
 
 do_install () {
     install -d ${D}${systemd_system_unitdir}
@@ -25,3 +27,5 @@ NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_PACKAGES = "${PN}"
 
 SYSTEMD_AUTO_ENABLE = "enable"
+
+FILES_${PN} += "${systemd_system_unitdir}/*"

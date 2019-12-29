@@ -1,7 +1,8 @@
 SUMMARY = "Recipe adapted from oe zsh recipe with few modifications."
-DESCRIPTION = "Zsh is a shell designed for interactive use, although it is also a \
-               powerful scripting language. Many of the useful features of bash, \
-               ksh, and tcsh were incorporated into zsh; many original features were added."
+DESCRIPTION = "Zsh is a shell designed for interactive use, although it is \
+               also a powerful scripting language. Many of the useful features \
+               of bash, ksh, and tcsh were incorporated into zsh; many \
+               original features were added."
 HOMEPAGE = "http://www.zsh.org"
 SECTION = "base/shell"
 
@@ -19,7 +20,7 @@ SRCREV_oh-my-zsh="b259cdf7e71ad6c3cc1a66a48c6c79cf63f38590"
 
 inherit autotools gettext update-alternatives
 
-EXTRA_OECONF = " \
+EXTRA_OECONF = "\
     --bindir=${base_bindir} \
     --enable-etcdir=${sysconfdir} \
     --enable-fndir=${datadir}/${PN}/${PV}/functions \
