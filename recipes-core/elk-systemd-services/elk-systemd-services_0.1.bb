@@ -1,5 +1,5 @@
 SUMMARY = "All custom systemd services for ELK Audio OS systems"
-HOMEPAGE = "https://elk-audio.github.io/elk-docs/html/index.html"
+HOMEPAGE = "https://github.com/elk-audio/meta-elk"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
