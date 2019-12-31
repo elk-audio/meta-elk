@@ -1,3 +1,7 @@
+# Original recipe taken from the below link
+# http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-devtools/protobuf
+# Branch:master
+
 SUMMARY = "Protocol Buffers - structured data serialisation mechanism"
 DESCRIPTION = "Protocol Buffers are a way of encoding structured data in an \
 efficient yet extensible format. Google uses Protocol Buffers for almost \

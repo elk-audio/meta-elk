@@ -1,3 +1,7 @@
+# Original recipe taken from the below link
+# http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-devtools/protobuf
+# Branch:master
+
 SUMMARY = "Protocol Buffers - structured data serialisation mechanism"
 DESCRIPTION = "This is protobuf-c, a C implementation of the Google Protocol Buffers data \
 serialization format. It includes libprotobuf-c, a pure C library that \
