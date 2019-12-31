@@ -1,4 +1,5 @@
-SUMMARY = "Adds a custom owner along with home files for Elk Audio OS devices"
+SUMMARY = "Adds a custom user named "mind" with right groups membership \
+	 and privileges for Elk Audio OS devices"
 SECTION = "misc"
 
 HOMEPAGE = "https://github.com/elk-audio/meta-elk"

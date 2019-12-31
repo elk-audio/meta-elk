@@ -5,7 +5,7 @@ packages which make up the core Elk Audio OS.
 
 The key contributions of this layer to Elk PI Audio OS image are:
 - All core Elk Audio OS software such as [SUSHI](https://github.com/elk-audio/sushi), [SENSEI](https://github.com/elk-audio/sensei), [RASPA](https://github.com/elk-audio/raspa) and [TWINE](https://github.com/elk-audio/twine).
-- Example audio plugins and various audip porgramming language support
+- Example audio plugins and various audio porgramming language support
 - All development tools and libraries.
 - Creation of users.
 - Important system tools.

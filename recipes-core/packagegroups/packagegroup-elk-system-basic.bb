@@ -7,7 +7,7 @@ inherit packagegroup
 
 RDEPENDS_packagegroup-elk-system-basic = " \
     kernel-modules \
-    custom-owner \
+    custom-user \
     elk-systemd-services \
     bash \
     connman \
