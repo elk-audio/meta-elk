@@ -1,4 +1,4 @@
-# Original recipe taken from the below link
+# Adapted from original recipe in:
 # http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-devtools/protobuf
 # Branch:master
 

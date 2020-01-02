@@ -1,4 +1,4 @@
-SUMMARY = "A gpio control abstraction daemon for Elk Audio OS."
+SUMMARY = "A sensor & control abstraction daemon for Elk Audio OS."
 HOMEPAGE = "https://github.com/elk-audio/sensei"
 
 LICENSE = "AGPL-3.0"
@@ -16,7 +16,7 @@ PV = ""
 SRC_URI = "gitsm://github.com/elk-audio/sensei;protocol=https;nobranch=1"
 
 # NOTE: Override this in the meta-<product> layer with a
-# .bbappend recipe choosing the specific commit required"
+# .bbappend recipe choosing the specific commit required
 SRCREV = ""
 
 S = "${WORKDIR}/git/"
