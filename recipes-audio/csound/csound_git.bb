@@ -1,3 +1,8 @@
+# Adapted from recipe in meta-musicians layer:
+# https://github.com/schnitzeltony/meta-musicians/tree/master/recipes-musicians/csound
+# with tweaks for headless build and minimizing dependencies for Elk
+# Original license: MIT
+
 SUMMARY = "A sound and music computing system"
 HOMEPAGE = "https://csound.com/"
 

@@ -1,3 +1,8 @@
+# Adapted from recipe in meta-multimedia layer:
+# http://cgit.openembedded.org/meta-openembedded/tree/meta-multimedia?h=master
+# with extra patch to remove timer-related calls that cause lock-ups on Xenomai.
+# Original license: MIT
+
 require ${BPN}.inc
 
 DEPENDS = "\
