@@ -1,20 +1,20 @@
 SUMMARY = "A user space library for accessing the rtdm audio driver and device"
+HOMEPAGE = "https://github.com/elk-audio/raspa"
 LICENSE = "GPLv3"
+LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+DEPENDS = "xenomai-lib"
 
-inherit cmake
+#Note: Same as SRCREV; Overiden from meta-<product>
+PV = ""
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/raspalib-elk.git;protocol=ssh;nobranch=1"
+SRC_URI = "git://github.com/elk-audio/raspa;protocol=https;nobranch=1"
 
 # NOTE: This is most likely overiden as desired from meta-<product> layer with a .bbappend recipe"
 SRCREV = ""
 
-#Note: Same as SRCREV; Overiden from meta-<product>
-PV = ""
-LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
-
 S = "${WORKDIR}/git"
 
-DEPENDS = "xenomai-lib"
+inherit cmake
 
 # Set CMAKE optimization flags
 OECMAKE_C_FLAGS_RELEASE += "-O3"

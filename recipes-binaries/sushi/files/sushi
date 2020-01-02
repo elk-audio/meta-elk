@@ -1,14 +1,8 @@
 #!/bin/sh
 
-SUSHI_BINARY=sushi_b64
+BUFFER_SIZE=$(cat /sys/module/audio_rtdm/parameters/audio_buffer_size)
+SUSHI_BINARY=sushi_b$BUFFER_SIZE
 SUSHI_ARGS=${@}
-
-if [ "$#" -ge 2 ]; then
-    if [ "$1" == "-b" ]; then
-        SUSHI_BINARY=sushi_b$2
-        SUSHI_ARGS=${@:3}
-    fi
-fi
 
 exec -a sushi $SUSHI_BINARY $SUSHI_ARGS
 

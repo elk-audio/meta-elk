@@ -1,8 +1,10 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-SRC_URI += "file://dhcpd-elk.conf \
-            file://default-server-elk \
-            file://dhcpd-elk.service"
+SRC_URI += "\
+    file://dhcpd-elk.conf \
+    file://default-server-elk \
+    file://dhcpd-elk.service \
+"
 
 NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_AUTO_ENABLE_${PN}-server = "enable"
