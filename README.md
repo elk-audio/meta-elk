@@ -12,9 +12,9 @@ The key contributions of this layer to Elk PI Audio OS image are:
 
 #### About mda-vst2 plugins
 In order to include the mda-vst2 plugins into the image, you need to have a copy of the
-VST 2.4 SDK and add the following line to the [mda-vst2 recipe](recipes-audio/mda-vst2-plugins/mda-vst2-plugins_0.1.bb):
+VST 2.4 SDK and define the its path in a variable `VST2SDK_PATH` in your local.conf file:
 ```
-EXTRA_OECMAKE += " -DVST2_SDK_PATH=path/to/the/vst2sdk/in/your/build/machine"
+VST2SDK_PATH = "path/to/the/vst2sdk/in/your/build/machine"
 ```
 
 Please note that in order to redistribute a binary that includes any VST 2.x plugins you need to have signed an agreement

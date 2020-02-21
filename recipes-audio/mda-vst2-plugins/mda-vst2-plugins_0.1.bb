@@ -15,12 +15,22 @@ inherit cmake
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"
 
-EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
-
-# Set the path to the vst2sdk in your build machine here
-# EXTRA_OECMAKE += -DVST2_SDK_PATH=< path to the vst2sdk in your build machine>
+# VST2SDK_PATH should be defined in the local.conf file
+EXTRA_OECMAKE = "\
+    -DCMAKE_BUILD_TYPE=Release \
+    -DVST2_SDK_PATH=${@d.getVar('VST2SDK_PATH')} \
+"
 
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst2"
+
+# Check if VST2_SDK_PATH is defined in local.conf
+do_configure_prepend() {
+    if [ "${VST2SDK_PATH}" = "" ]; then
+        bbfatal "VST2SDK_PATH variable in local.conf is not set!"
+        bbfatal " Please set the path or exclude mda-vst2-plugins from the image."
+    fi
+}
+
 do_install() {
     install -d ${D}${MDA_PLUGIN_DIR}
     cp "${WORKDIR}/build/plugins/mdaAmbience.so" ${D}${MDA_PLUGIN_DIR}
