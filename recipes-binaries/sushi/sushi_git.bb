@@ -24,6 +24,12 @@ DEPENDS = "\
     liblo \
     alsa-utils \
     libsndfile1 \
+    grpc \
+    grpc-native \
+    protobuf \
+    protobuf-native \
+    protobuf-c \
+    protobuf-c-native\
 "
 
 # Note: Same as SRCREV; Overide in meta-<product>
@@ -87,3 +93,5 @@ RDEPENDS_{PN} = "\
     twine \
     xenomai-lib \
 "
+
+INSANE_SKIP_${PN} += "dev-deps"
