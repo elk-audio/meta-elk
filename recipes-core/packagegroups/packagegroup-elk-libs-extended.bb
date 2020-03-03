@@ -12,6 +12,5 @@ RDEPENDS_packagegroup-elk-libs-extended = "\
     stk \
     csound \
     libsndfile1 \
-    libserialport \
     bluez5 \
 "
