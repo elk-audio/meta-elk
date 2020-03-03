@@ -10,4 +10,5 @@ RDEPENDS_packagegroup-elk-system-extended = "\
     ldd \
     i2c-tools \
     iproute2-tc \
+    usbutils \
 "
