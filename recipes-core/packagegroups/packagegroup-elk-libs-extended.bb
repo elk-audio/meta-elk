@@ -13,4 +13,6 @@ RDEPENDS_packagegroup-elk-libs-extended = "\
     csound \
     libsndfile1 \
     bluez5 \
+    elkcpp-dev \
+    elkcpp-staticdev \
 "
