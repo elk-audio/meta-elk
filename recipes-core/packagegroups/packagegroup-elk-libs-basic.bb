@@ -19,5 +19,5 @@ RDEPENDS_packagegroup-elk-libs-basic = "\
     grpc \
     raspa-dev \
     raspa-staticdev \
-    protobuf \
+    protobuf-dev \
 "
