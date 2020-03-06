@@ -10,4 +10,5 @@ RDEPENDS_packagegroup-elk-python-extended = "\
     python3-setuptools \
     python3-pyftdi \
     python3-smbus2 \
+    python3-elkpy \
 "
