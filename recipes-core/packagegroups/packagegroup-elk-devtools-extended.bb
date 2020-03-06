@@ -11,6 +11,8 @@ RDEPENDS_packagegroup-elk-devtools-extended = "\
     strace \
     file \
     git \
+    findutils \
+    git-perltools \
     dmidecode \
     htop \
     cgdb \
