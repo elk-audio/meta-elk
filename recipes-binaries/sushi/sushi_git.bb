@@ -46,7 +46,7 @@ SRCREV = ""
 
 S = "${WORKDIR}/git"
 
-SUPPORTED_BUFFER_SIZES="16 32 64 128"
+SUPPORTED_BUFFER_SIZES="16 32 64 128 256 512"
 
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
 #       (this is based on recipes that have previously been built and packaged)
