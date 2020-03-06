@@ -30,6 +30,8 @@ DEPENDS = "\
     protobuf-native \
     protobuf-c \
     protobuf-c-native\
+    lv2 \
+    lilv \
 "
 
 # Note: Same as SRCREV; Overide in meta-<product>
