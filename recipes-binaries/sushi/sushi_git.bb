@@ -72,13 +72,6 @@ do_compile() {
 }
 
 do_install_append() {
-    install -d ${D}${sysconfdir}/sushi_conf
-    install -m 0644 ${S}/misc/config_files/config_empty.json ${D}${sysconfdir}/sushi_conf/
-    rm -f ${D}/usr/README.md
-    rm -f ${D}/usr/HISTORY.md
-    rm -f ${D}/usr/LICENSE.md
-    rm -rf ${D}/usr/example_configs/
-
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
         chrpath -d sushi_b$b
@@ -86,8 +79,6 @@ do_install_append() {
     done
     install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
 }
-
-FILES_{PN} += "${D}${sysconfdir}/sushi_conf/*"
 
 RDEPENDS_{PN} = "\
     twine \
