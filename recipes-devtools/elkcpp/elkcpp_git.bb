@@ -13,10 +13,8 @@ DEPENDS = "\
     protobuf-c-native\
 "
 
-PV = "0.1.0"
-
 SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
-SRCREV = "52ba8d2ab34cdaffc679be8559c24dfa3dae5932"
+SRCREV = "9a9ec0ccf4521e691f535aaa12c69f72c7192c45"
 
 S = "${WORKDIR}/git"
 
