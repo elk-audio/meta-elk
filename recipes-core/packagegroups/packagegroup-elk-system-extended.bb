@@ -11,4 +11,5 @@ RDEPENDS_packagegroup-elk-system-extended = "\
     i2c-tools \
     iproute2-tc \
     usbutils \
+    libusb1 \
 "
