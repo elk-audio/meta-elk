@@ -7,9 +7,10 @@ PR = "r0"
 PN = "elk-systemd-services"
 PV = "0.1"
 
-SRC_URI += "file://custom-elk.target \
+SRC_URI += "\
+    file://custom-elk.target \
     file://var-lib-overlay.service \
-    "
+"
 
 S = "${WORKDIR}"
 
