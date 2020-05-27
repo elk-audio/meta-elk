@@ -1,0 +1,18 @@
+[Unit]
+Description=Overlay mount volatile /var/lib
+DefaultDependencies=false
+Wants=local-fs.target
+After=udata.mount var-volatile-lib.service
+Before=local-fs.target connman.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=Yes
+StandardOutput=syslog
+TimeoutSec=0
+ExecStartPre=/bin/mkdir -p /udata/.elk-system/.work-var-lib
+ExecStartPre=/bin/mkdir -p /udata/.elk-system/var/lib
+ExecStart=/bin/mount -t overlay overlay -o lowerdir=/var/lib,upperdir=/udata/.elk-system/var/lib,workdir=/udata/.elk-system/.work-var-lib /var/lib
+
+[Install]
+WantedBy=local-fs.target

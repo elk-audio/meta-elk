@@ -7,7 +7,10 @@ PR = "r0"
 PN = "elk-systemd-services"
 PV = "0.1"
 
-SRC_URI += "file://custom-elk.target"
+SRC_URI += "\
+    file://custom-elk.target \
+    file://var-lib-overlay.service \
+"
 
 S = "${WORKDIR}"
 
@@ -21,10 +24,12 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 do_install () {
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/custom-elk.target ${D}${systemd_system_unitdir}/
+    install -m 0644 ${WORKDIR}/var-lib-overlay.service ${D}${systemd_system_unitdir}/
 }
 
 NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_PACKAGES = "${PN}"
+SYSTEMD_SERVICE_${PN} += "var-lib-overlay.service"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 

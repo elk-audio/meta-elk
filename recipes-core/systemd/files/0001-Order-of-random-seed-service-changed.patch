@@ -1,0 +1,25 @@
+From e1f3bb1835885a2207a6fc1b0f2caefa2bcee24e Mon Sep 17 00:00:00 2001
+From: kknitin <nitin@elk.audio>
+Date: Sat, 23 May 2020 00:16:09 +0000
+Subject: [PATCH] Order of random-seed service changed
+
+---
+ units/systemd-random-seed.service.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/units/systemd-random-seed.service.in b/units/systemd-random-seed.service.in
+index 8903ee896c..a96ebe5ed5 100644
+--- a/units/systemd-random-seed.service.in
++++ b/units/systemd-random-seed.service.in
+@@ -13,7 +13,7 @@ Documentation=man:systemd-random-seed.service(8) man:random(4)
+ DefaultDependencies=no
+ RequiresMountsFor=@RANDOM_SEED@
+ Conflicts=shutdown.target
+-After=systemd-remount-fs.service
++After=udata.mount
+ Before=sysinit.target shutdown.target
+ ConditionVirtualization=!container
+ 
+-- 
+2.17.1
+
