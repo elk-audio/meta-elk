@@ -11,4 +11,8 @@ RDEPENDS_packagegroup-elk-python-extended = "\
     python3-pyftdi \
     python3-smbus2 \
     python3-elkpy \
+    python3-werkzeug \
+    python3-requests \
+    python3-apscheduler \
+    python3-json-rpc \
 "
