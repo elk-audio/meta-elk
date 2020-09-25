@@ -1,0 +1,12 @@
+diff --git a/raveloxmidi/Makefile.am b/raveloxmidi/Makefile.am
+index 64037b4..2b303bc 100755
+--- a/raveloxmidi/Makefile.am
++++ b/raveloxmidi/Makefile.am
+@@ -4,6 +4,7 @@ CPPFLAGS = '-g -Wall -I ./include'
+ EXTRA_DIST = include LICENSE DEBIAN/control raveloxmidi.spec*
+ 
+ ACLOCAL_AMFLAGS = -I m4
++AUTOMAKE_OPTIONS = foreign
+ 
+ CLEANFILES = *.tar.gz *spec build/*deb
+ 
