@@ -13,3 +13,7 @@ SRCREV = "96a6283a5fe023c59113242631f337da5f0eb278"
 S = "${WORKDIR}/git"
 
 inherit waf pkgconfig
+
+do_configure_prepend(){
+    sed -i 's/python/python3/' ${S}/waf
+}

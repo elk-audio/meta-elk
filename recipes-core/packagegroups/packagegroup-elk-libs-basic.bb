@@ -14,8 +14,8 @@ RDEPENDS_packagegroup-elk-libs-basic = "\
     jsoncpp \
     twine \
     twine-dev \
-    python-libconf \
-    python-io \
+    python3-libconf \
+    python3-io \
     grpc \
     raspa-dev \
     raspa-staticdev \

@@ -6,8 +6,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 inherit packagegroup
 
 RDEPENDS_packagegroup-elk-python-basic = "\
-    python \
-    python-pip \
     python3 \
     python3-pip \
     pyliblo \

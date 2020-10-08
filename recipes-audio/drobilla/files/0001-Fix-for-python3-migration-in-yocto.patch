@@ -1,0 +1,22 @@
+From e37035b46c3def9967d8e1c5d824d95496ee1757 Mon Sep 17 00:00:00 2001
+From: kknitin <nitin@elk.audio>
+Date: Wed, 23 Sep 2020 14:12:58 +0000
+Subject: [PATCH] Fix for python3 migration in yocto
+
+---
+ serd_bench.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/serd_bench.py b/serd_bench.py
+index 719fff3..5b16b1f 100755
+--- a/serd_bench.py
++++ b/serd_bench.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ import optparse
+ import os
+-- 
+2.17.1
+

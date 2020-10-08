@@ -35,7 +35,7 @@ SRCREV = "3b08a449cc147dec35ba843ced86e0058a9ac865"
 
 S = "${WORKDIR}/git"
 
-inherit cmake gettext python-dir
+inherit cmake gettext python3-dir
 
 # Where to get lua-version from?
 LUA_VERSION = "5.3"

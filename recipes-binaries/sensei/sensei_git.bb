@@ -21,7 +21,7 @@ SRCREV = ""
 
 S = "${WORKDIR}/git/"
 
-inherit cmake pythonnative
+inherit cmake python3native
 
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"

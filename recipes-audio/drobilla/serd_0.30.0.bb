@@ -3,9 +3,16 @@ HOMEPAGE = "http://drobilla.net/software/serd"
 
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;md5=7aceb3a3edc99517b08f5cdd557e11fb"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-SRC_URI = "http://download.drobilla.net/${BPN}-${PV}.tar.bz2"
-SRC_URI[md5sum] = "82243362b8b5a47dd46dac7ae893f562"
-SRC_URI[sha256sum] = "6efb0efa5c2155e6bbac941cddeeabb7ed26d70a57d24178894ff169d8f6cefb"
+S = "${WORKDIR}/git"
+
+SRCREV = "45f0b7c3a042d42aeee3263e84d61e3a55809763"
+SRC_URI = "git://github.com/drobilla/serd.git;protocol=https;nobranch=1"
+SRC_URI += "file://0001-Fix-for-python3-migration-in-yocto.patch"
 
 inherit waf
+
+do_configure_prepend(){
+    sed -i 's/python/python3/' ${S}/waf
+}

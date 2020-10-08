@@ -11,3 +11,7 @@ SRC_URI[md5sum] = "aa3c540032da43cf6cf68f684983d7f5"
 SRC_URI[sha256sum] = "0a514a55d6b6cb7b5d6f32d1dcb78a1e6e54537fa22fce533e4ef6adf240e853"
 
 inherit waf pkgconfig
+
+do_configure_prepend(){
+    sed -i 's/python/python3/' ${S}/waf
+}
