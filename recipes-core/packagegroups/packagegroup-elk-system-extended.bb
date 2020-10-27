@@ -12,4 +12,6 @@ RDEPENDS_packagegroup-elk-system-extended = "\
     iproute2-tc \
     usbutils \
     libusb1 \
+    connman-client \
+    sudo \
 "

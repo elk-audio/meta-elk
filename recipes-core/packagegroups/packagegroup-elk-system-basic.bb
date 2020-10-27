@@ -11,6 +11,5 @@ RDEPENDS_packagegroup-elk-system-basic = " \
     elk-systemd-services \
     bash \
     connman \
-    connman-client \
-    sudo \
+    avahi-daemon \
 "

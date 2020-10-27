@@ -13,8 +13,4 @@ RDEPENDS_packagegroup-elk-python-basic = "\
     python3-grpcio \
     python3-grpcio-tools \
     python3-protobuf \
-    python3-werkzeug \
-    python3-requests \
-    python3-apscheduler \
-    python3-json-rpc \
 "

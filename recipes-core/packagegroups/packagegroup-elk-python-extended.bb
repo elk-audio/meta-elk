@@ -15,4 +15,5 @@ RDEPENDS_packagegroup-elk-python-extended = "\
     python3-requests \
     python3-apscheduler \
     python3-json-rpc \
+    python3-pytz \
 "
