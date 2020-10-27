@@ -21,4 +21,5 @@ RDEPENDS_packagegroup-elk-libs-basic = "\
     raspa-staticdev \
     protobuf-dev \
     miniupnp-client \
+    freetype \
 "
