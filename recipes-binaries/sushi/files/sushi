@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BUFFER_SIZE=$(cat /sys/module/audio_rtdm/parameters/audio_buffer_size)
+BUFFER_SIZE=$(cat /sys/class/audio_rtdm/audio_buffer_size)
 SUSHI_BINARY=sushi_b$BUFFER_SIZE
 SUSHI_ARGS=${@}
 
