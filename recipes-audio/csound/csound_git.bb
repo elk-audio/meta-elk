@@ -14,7 +14,7 @@ DEPENDS += "\
     flex-native \
     bison-native \
     swig-native \
-    python \
+    python3 \
     libsndfile1 \
     fluidsynth \
     curl \
@@ -67,11 +67,12 @@ OECMAKE_C_FLAGS_RELEASE += " -O3 -ffast-math"
 OECMAKE_CXX_FLAGS_RELEASE += " -O3 -ffast-math"
 
 PACKAGES =+ "\
-    ${PN}-python2 \
+    ${PN}-python3 \
     ${PN}-luajit \
 "
 
-FILES_${PN}-python2 = "${PYTHON_SITEPACKAGES_DIR}"
+FILES_${PN}-python3 = "${PYTHON_SITEPACKAGES_DIR}"
 FILES_${PN}-luajit = "${libdir}/lua"
 
-RDEPENDS_${PN}-python2 += "python"
+RDEPENDS_${PN}-python3 += "python3"
+
