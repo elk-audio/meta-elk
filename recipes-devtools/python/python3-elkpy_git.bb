@@ -16,6 +16,7 @@ RDEPENDS_${PN} = "\
     python3-grpcio \
     python3-grpcio-tools \
     python3-protobuf \
+    liberation-fonts \
 "
 
 BBCLASSEXTEND = "native nativesdk"
