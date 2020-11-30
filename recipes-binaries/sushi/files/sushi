@@ -1,6 +1,16 @@
 #!/bin/sh
 
 BUFFER_SIZE=$(cat /sys/module/audio_rtdm/parameters/audio_buffer_size)
+if [ -z "$BUFFER_SIZE" ]
+then
+    echo -e "\t Audio driver not loaded. Please check if the audio hat configured is right."
+    echo -e "\t The current audio hat is configured as:"
+    AUDIO_HAT=`cat /udata/.elk-system/elk-system.conf | grep AUDIO_HAT | cut -d'=' -f 2`
+    echo -e "\t $AUDIO_HAT"
+    echo -e "\t If it doesn't match the one you are using,"
+    echo -e "\t you can set it right with the help of elk_system_utils."
+    exit 1
+fi
 SUSHI_BINARY=sushi_b$BUFFER_SIZE
 SUSHI_ARGS=${@}
 
