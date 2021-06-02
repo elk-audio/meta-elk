@@ -18,5 +18,8 @@ RDEPENDS_${PN} = "\
     python3-protobuf \
     liberation-fonts \
 "
+do_install_append(){
+    rm -r ${D}${PYTHON_SITEPACKAGES_DIR}/tests
+}
 
 BBCLASSEXTEND = "native nativesdk"
