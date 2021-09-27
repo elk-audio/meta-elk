@@ -1,13 +1,15 @@
 SUMMARY = "A custom recipe to install miniupnp client"
 HOMEPAGE = "http://miniupnp.free.fr/"
 LICENSE = "miniupnpc"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=11993c723f7a8a97f5f849e86d7d8e44"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=412eb0d8803af0731e98dfec30cd701d"
 NO_GENERIC_LICENSE[miniupnpc] = "LICENSE"
 
-SRC_URI = "git://github.com/miniupnp/miniupnp.git;protocol=https"
+SRC_URI = "git://github.com/miniupnp/miniupnp.git;protocol=https \
+    file://0001-Patch-for-aloha.patch;striplevel=2 \
+    "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "388d93d678fb5659383463222ec22d0b087b2c4f"
+SRCREV = "384268ac46e9ae337438f73382c967406804bc60"
 
 S = "${WORKDIR}/git/miniupnpc"
 

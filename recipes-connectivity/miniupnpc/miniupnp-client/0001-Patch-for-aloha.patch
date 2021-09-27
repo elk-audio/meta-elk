@@ -1,0 +1,44 @@
+From b07ad88967a2c30bf510080138489f3d6c3ed2d5 Mon Sep 17 00:00:00 2001
+From: kknitin <nitin@elk.audio>
+Date: Mon, 13 Sep 2021 14:27:33 +0000
+Subject: [PATCH] Patch for aloha
+
+---
+ miniupnpc/miniupnpcmodule.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/miniupnpc/miniupnpcmodule.c b/miniupnpc/miniupnpcmodule.c
+index 22be532..8b8894b 100644
+--- a/miniupnpc/miniupnpcmodule.c
++++ b/miniupnpc/miniupnpcmodule.c
+@@ -363,16 +363,24 @@ UPnP_addanyportmapping(UPnPObject *self, PyObject *args)
+ 	const char * host;
+ 	const char * desc;
+ 	const char * remoteHost;
+-	const char * leaseDuration = "0";
++	unsigned int intLeaseDuration = 0;
++	char strLeaseDuration[12];
+ 	int r;
+-	if (!PyArg_ParseTuple(args, "HssHzz", &ePort, &proto, &host, &iPort, &desc, &remoteHost))
++#if (PY_MAJOR_VERSION >= 3) || (PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION > 3)
++	if (!PyArg_ParseTuple(args, "HssHzz|I", &ePort, &proto,
++	                                     &host, &iPort, &desc, &remoteHost, &intLeaseDuration))
++#else
++	if (!PyArg_ParseTuple(args, "HssHzz|i", &ePort, &proto,
++	                                     &host, &iPort, &desc, &remoteHost, (int *)&intLeaseDuration))
++#endif
+         return NULL;
+ Py_BEGIN_ALLOW_THREADS
+ 	sprintf(extPort, "%hu", ePort);
+ 	sprintf(inPort, "%hu", iPort);
++	sprintf(strLeaseDuration, "%u", intLeaseDuration);
+ 	r = UPNP_AddAnyPortMapping(self->urls.controlURL, self->data.first.servicetype,
+ 	                           extPort, inPort, host, desc, proto,
+-	                           remoteHost, leaseDuration, reservedPort);
++	                           remoteHost, strLeaseDuration, reservedPort);
+ Py_END_ALLOW_THREADS
+ 	if(r==UPNPCOMMAND_SUCCESS) {
+ 		return Py_BuildValue("i", atoi(reservedPort));
+-- 
+2.17.1
+
