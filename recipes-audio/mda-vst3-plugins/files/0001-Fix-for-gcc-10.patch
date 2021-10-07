@@ -1,0 +1,25 @@
+From 0c5911fd7db4fe1b54389e4fdc07507024dbb4e2 Mon Sep 17 00:00:00 2001
+From: kknitin <nitin@elk.audio>
+Date: Wed, 6 Oct 2021 17:36:10 +0000
+Subject: [PATCH] Fix for gcc 10
+
+---
+ source/mdaPianoProcessor.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/source/mdaPianoProcessor.cpp b/source/mdaPianoProcessor.cpp
+index f01e591..d91e905 100644
+--- a/source/mdaPianoProcessor.cpp
++++ b/source/mdaPianoProcessor.cpp
+@@ -17,7 +17,7 @@
+ #include "mdaPianoProcessor.h"
+ #include "mdaPianoController.h"
+ #include "mdaPianoData.h"
+-
++#include <cstdio>
+ #include <math.h>
+ 
+ namespace Steinberg {
+-- 
+2.17.1
+

@@ -8,6 +8,7 @@ PV = "0.1.0+${SRCREV}"
 SRC_URI = "\
     gitsm://github.com/elk-audio/mda-vst3;protocol=https;nobranch=1 \
     file://0001-Added-DNDEBUG-compile-definition.patch \
+    file://0001-Fix-for-gcc-10.patch \
     file://0002-Removed-auto-strip-with-Release-build-as-Yocto-takes.patch \
 "
 

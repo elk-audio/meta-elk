@@ -39,6 +39,7 @@ PV = ""
 
 SRC_URI = "\
     gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
+    file://0001-Fix-for-vst3-publicsdk.patch;patchdir=${S}/third-party/vst3sdk/public.sdk \
     file://sushi \
 "
 
