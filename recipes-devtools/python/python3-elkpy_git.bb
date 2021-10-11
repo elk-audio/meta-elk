@@ -5,7 +5,7 @@ LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 SRC_URI = "git://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
-SRCREV = "5435eb8741d114607f5ce286ec0a67840483caf2"
+SRCREV = "c5b0566580779f6a1b380c4f4a580003fedeec1b"
 
 S = "${WORKDIR}/git/"
 
