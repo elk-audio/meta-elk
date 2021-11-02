@@ -12,9 +12,9 @@ LIC_FILES_CHKSUM = "\
     file://third-party/rapidjson/thirdparty/gtest/googletest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
     file://third-party/rapidjson/thirdparty/gtest/googlemock/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
     file://third-party/rapidjson/thirdparty/gtest/googlemock/scripts/generator/LICENSE;md5=2c0b90db7465231447cf2dd2e8163333 \
-    file://third-party/vst3sdk/public.sdk/LICENSE.txt;md5=cbd8a39170645aac3bbb1d6281723eeb \
-    file://third-party/vst3sdk/pluginterfaces/LICENSE.txt;md5=b351e6cd8ecd13e18278f5c8c89ea7c0 \
-    file://third-party/vst3sdk/base/LICENSE.txt;md5=cbd8a39170645aac3bbb1d6281723eeb \
+    file://third-party/vst3sdk/public.sdk/LICENSE.txt;md5=877a735bada051024f9e0bcfc9c01b90 \
+    file://third-party/vst3sdk/pluginterfaces/LICENSE.txt;md5=46baf041e3597aae01603ee85e212c4e \
+    file://third-party/vst3sdk/base/LICENSE.txt;md5=877a735bada051024f9e0bcfc9c01b90 \
 "
 
 DEPENDS = "\
@@ -39,7 +39,6 @@ PV = ""
 
 SRC_URI = "\
     gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
-    file://0001-Fix-for-vst3-publicsdk.patch;patchdir=${S}/third-party/vst3sdk/public.sdk \
     file://sushi \
 "
 

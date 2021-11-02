@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BUFFER_SIZE=$(cat /sys/module/audio_rtdm/parameters/audio_buffer_size)
+BUFFER_SIZE=$(cat /sys/class/audio_rtdm/audio_buffer_size)
 if [ -z "$BUFFER_SIZE" ]
 then
     echo -e "\t Audio driver not loaded. Please check if the audio hat configured is right."

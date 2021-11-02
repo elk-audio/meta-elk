@@ -19,7 +19,7 @@ SRC_URI = "gitsm://github.com/elk-audio/sensei;protocol=https;nobranch=1"
 # .bbappend recipe choosing the specific commit required
 SRCREV = ""
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 inherit cmake python3native
 
