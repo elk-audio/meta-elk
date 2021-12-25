@@ -9,5 +9,4 @@ RDEPENDS_packagegroup-elk-clang-pkgs = "\
     clang \
     compiler-rt \
     libcxx \
-    llvm-common \
 "
