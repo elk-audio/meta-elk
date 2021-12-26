@@ -7,7 +7,6 @@ inherit packagegroup
 
 RDEPENDS_packagegroup-elk-devtools-extended = "\
     gdbserver \
-    psplash \
     strace \
     file \
     git \
