@@ -23,7 +23,7 @@ LIC_FILES_CHKSUM = "\
 "
 
 SRC_URI = "\
-    git://gitlab.denx.de/Xenomai/xenomai;protocol=https;nobranch=1 \
+    git://source.denx.de/Xenomai/xenomai;protocol=https;nobranch=1 \
     file://rtdm.rules \
 "
 
