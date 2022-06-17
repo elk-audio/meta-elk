@@ -13,7 +13,7 @@ PYPI_PACKAGE = "pyftdi"
 
 inherit pypi setuptools3
 
-RDEPENDS_${PN} += "\
+RDEPENDS:${PN} += "\
     ${PYTHON_PN}-pyusb \
     ${PYTHON_PN}-pyserial \
 "

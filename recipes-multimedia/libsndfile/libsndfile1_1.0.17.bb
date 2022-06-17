@@ -19,7 +19,7 @@ S = "${WORKDIR}/libsndfile-${PV}"
 
 inherit autotools lib_package pkgconfig
 
-do_configure_prepend_arm() {
+do_configure:prepend:arm() {
     export ac_cv_sys_largefile_source=1
     export ac_cv_sys_file_offset_bits=64
     ac_cv_sizeof_off_t=8
@@ -32,4 +32,4 @@ do_stage() {
 
 PACKAGES =+ "${PN}-octave"
 
-FILES_${PN}-octave += "/usr/share/octave/site/m"
+FILES:${PN}-octave += "/usr/share/octave/site/m"

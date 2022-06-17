@@ -24,6 +24,6 @@ do_install () {
 	oe_runmake install 'DESTDIR=${D}' 'PREFIX=/usr'
 }
 
-FILES_${PN} += "${libdir}/lv2/*"
-INSANE_SKIP_${PN} += "already-stripped"
+FILES:${PN} += "${libdir}/lv2/*"
+INSANE_SKIP:${PN} += "already-stripped"
 

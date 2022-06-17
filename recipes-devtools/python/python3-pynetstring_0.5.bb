@@ -11,7 +11,7 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-do_install_append(){
+do_install:append(){
     rm -r ${D}${PYTHON_SITEPACKAGES_DIR}/tests
 }
 

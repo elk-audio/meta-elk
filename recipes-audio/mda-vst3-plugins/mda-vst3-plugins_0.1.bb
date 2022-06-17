@@ -29,5 +29,5 @@ do_install() {
     cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/mda.vst3/Contents/${TARGET_ARCH}-linux/"
 }
 
-FILES_${PN} += "${MDA_PLUGIN_DIR}"
-FILES_${PN} += "${MDA_PLUGIN_DIR}/*"
+FILES:${PN} += "${MDA_PLUGIN_DIR}"
+FILES:${PN} += "${MDA_PLUGIN_DIR}/*"

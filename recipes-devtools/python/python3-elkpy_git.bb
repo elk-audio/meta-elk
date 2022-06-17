@@ -11,14 +11,14 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-RDEPENDS_${PN} = "\
+RDEPENDS:${PN} = "\
     sushi \
     python3-grpcio \
     python3-grpcio-tools \
     python3-protobuf \
     liberation-fonts \
 "
-do_install_append(){
+do_install:append(){
     rm -r ${D}${PYTHON_SITEPACKAGES_DIR}/tests
 }
 

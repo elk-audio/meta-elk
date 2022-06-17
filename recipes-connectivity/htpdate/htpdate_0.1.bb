@@ -29,6 +29,6 @@ do_install () {
 	oe_runmake install 'DESTDIR=${D}'
 }
 
-FILES_${PN} = "${bindir}/*"
-INSANE_SKIP_${PN} += "already-stripped"
+FILES:${PN} = "${bindir}/*"
+INSANE_SKIP:${PN} += "already-stripped"
 

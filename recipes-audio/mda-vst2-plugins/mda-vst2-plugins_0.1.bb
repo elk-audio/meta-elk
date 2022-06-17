@@ -24,7 +24,7 @@ EXTRA_OECMAKE = "\
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst2"
 
 # Check if VST2_SDK_PATH is defined in local.conf
-do_configure_prepend() {
+do_configure:prepend() {
     if [ "${VST2SDK_PATH}" = "" ]; then
         bbfatal "VST2SDK_PATH variable in local.conf is not set!"
         bbfatal " Please set the path or exclude mda-vst2-plugins from the image."
@@ -72,5 +72,5 @@ do_install() {
     cp "${WORKDIR}/build/plugins/mdaVocoder.so" ${D}${MDA_PLUGIN_DIR}
 }
 
-FILES_${PN} += "${MDA_PLUGIN_DIR}"
-FILES_${PN} += "${MDA_PLUGIN_DIR}/*"
+FILES:${PN} += "${MDA_PLUGIN_DIR}"
+FILES:${PN} += "${MDA_PLUGIN_DIR}/*"

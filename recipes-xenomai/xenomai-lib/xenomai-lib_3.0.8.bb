@@ -39,7 +39,7 @@ UDEV_RULES_DIR = "/etc/udev/rules.d"
 # Specify any options you want to pass to the configure script using EXTRA_OECONF:
 EXTRA_OECONF = "--enable-smp --with-core=cobalt"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
     install -m 0644 ${WORKDIR}/rtdm.rules ${D}${UDEV_RULES_DIR}
 
@@ -48,8 +48,8 @@ do_install_append() {
     rm -rf ${D}/dev
 }
 
-FILES_${PN} += "/usr/xenomai/lib/*"
-FILES_${PN} += "usr/xenomai/demo/*"
-FILES_${PN} += "${UDEV_RULES_DIR}/*"
+FILES:${PN} += "/usr/xenomai/lib/*"
+FILES:${PN} += "usr/xenomai/demo/*"
+FILES:${PN} += "${UDEV_RULES_DIR}/*"
 
-INSANE_SKIP_${PN} += "ldflags"
+INSANE_SKIP:${PN} += "ldflags"

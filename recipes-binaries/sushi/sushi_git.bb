@@ -73,7 +73,7 @@ do_compile() {
     done
 }
 
-do_install_append() {
+do_install:append() {
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
         chrpath -d sushi_b$b
@@ -82,9 +82,9 @@ do_install_append() {
     install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
 }
 
-RDEPENDS_{PN} = "\
+RDEPENDS:{PN} = "\
     twine \
     xenomai-lib \
 "
 
-INSANE_SKIP_${PN} += "dev-deps"
+INSANE_SKIP:${PN} += "dev-deps"

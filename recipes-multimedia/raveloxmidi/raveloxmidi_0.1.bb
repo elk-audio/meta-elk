@@ -20,22 +20,22 @@ do_patch(){
    patch -p1 < ${WORKDIR}/0001-patch-for-autotools.patch
 }
 
-do_configure_prepend(){
+do_configure:prepend(){
     cd ${S}
     ./autogen.sh
 }
 
-do_configure_append(){
+do_configure:append(){
     echo "#define HAVE_ALSA 1" >> ${S}/config.h
 }
 
-do_compile_prepend(){
+do_compile:prepend(){
     cd ${S}
 }
 
-do_install_prepend(){
+do_install:prepend(){
     cd ${S}
 }
 
-FILES_${PN} = "${bindir}/*"
+FILES:${PN} = "${bindir}/*"
 

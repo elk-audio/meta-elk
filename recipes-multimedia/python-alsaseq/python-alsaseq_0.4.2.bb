@@ -14,6 +14,6 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-do_install_append() {
+do_install:append() {
     rm -rf ${D}/usr/share
 }

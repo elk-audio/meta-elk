@@ -21,14 +21,14 @@ EXTRA_OECMAKE = "\
     -DLIB_INSTALL_DIR=${baselib} \
 "
 
-do_install_append () {
+do_install:append () {
     rm -rf ${D}/usr/lib/cmake
 }
 
 PACKAGES =+ "${PN}-bash-completion"
 
-FILES_${PN}-bash-completion += "${bindir}/gflags_completions.sh"
+FILES:${PN}-bash-completion += "${bindir}/gflags_completions.sh"
 
-RDEPENDS_${PN}-bash-completion = "bash bash-completion"
+RDEPENDS:${PN}-bash-completion = "bash bash-completion"
 
 BBCLASSEXTEND = "native"

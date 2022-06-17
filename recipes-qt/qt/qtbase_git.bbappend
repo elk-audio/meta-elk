@@ -1,4 +1,4 @@
-PACKAGECONFIG_append = "\
+PACKAGECONFIG:append = "\
     gbm \
     kms \
     sql-sqlite \

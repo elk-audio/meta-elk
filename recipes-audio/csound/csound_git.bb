@@ -71,8 +71,8 @@ PACKAGES =+ "\
     ${PN}-luajit \
 "
 
-FILES_${PN}-python3 = "${PYTHON_SITEPACKAGES_DIR}"
-FILES_${PN}-luajit = "${libdir}/lua"
+FILES:${PN}-python3 = "${PYTHON_SITEPACKAGES_DIR}"
+FILES:${PN}-luajit = "${libdir}/lua"
 
-RDEPENDS_${PN}-python3 += "python3"
+RDEPENDS:${PN}-python3 += "python3"
 

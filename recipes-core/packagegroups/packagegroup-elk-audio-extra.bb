@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-audio-extra = "\
+RDEPENDS:packagegroup-elk-audio-extra = "\
     libjack \
     jack-server \
     jack-utils \
