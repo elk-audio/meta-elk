@@ -13,5 +13,4 @@ RDEPENDS:packagegroup-elk-python-basic = "\
     python3-grpcio \
     python3-grpcio-tools \
     python3-protobuf \
-    python3-elkpy \
 "
