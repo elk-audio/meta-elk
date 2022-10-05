@@ -18,7 +18,6 @@ LIC_FILES_CHKSUM = "\
 "
 
 DEPENDS = "\
-    xenomai-lib \
     raspa \
     twine \
     liblo \
@@ -84,7 +83,7 @@ do_install:append() {
 
 RDEPENDS:{PN} = "\
     twine \
-    xenomai-lib \
 "
 
 INSANE_SKIP:${PN} += "dev-deps"
+
