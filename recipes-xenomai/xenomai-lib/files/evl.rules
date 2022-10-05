@@ -3,4 +3,4 @@ KERNEL=="control", SUBSYSTEM=="evl", OWNER="mind", GROUP="xenomai", MODE="0660"
 KERNEL=="poll", SUBSYSTEM=="evl", OWNER="mind", GROUP="xenomai", MODE="0660"
 KERNEL=="latmus", SUBSYSTEM=="latmus", OWNER="mind", GROUP="xenomai", MODE="0660"
 KERNEL=="monotonic|realtime", SUBSYSTEM=="clock", OWNER="mind", GROUP="xenomai", MODE="0660"
-
+KERNEL=="audio_rtdm", SUBSYSTEM=="audio_rtdm", OWNER="mind", GROUP="xenomai", MODE="0660"
