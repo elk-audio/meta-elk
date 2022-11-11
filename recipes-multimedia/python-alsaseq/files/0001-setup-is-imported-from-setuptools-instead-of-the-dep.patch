@@ -1,0 +1,24 @@
+From 4b3130a740b2fcb590ac2c815e7a5a573e402727 Mon Sep 17 00:00:00 2001
+From: Sharan Yagneswar <sharan.yagneswar@mindmusiclabs.com>
+Date: Mon, 7 Nov 2022 10:39:37 +0100
+Subject: [PATCH] setup is imported from setuptools instead of the deprecated
+ distutils
+
+This is needed to ensure that when yocto calls setup.py bdist_wheel, things play nice
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 88f9a27..6ffe993 100644
+--- a/setup.py
++++ b/setup.py
+@@ -1,4 +1,4 @@
+-from distutils.core import setup, Extension
++from setuptools import setup, Extension
+ 
+ version = '0.4.2'
+ 
+-- 
+2.34.1
+

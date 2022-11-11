@@ -1,7 +1,7 @@
 SUMMARY = "A sensor & control abstraction daemon for Elk Audio OS."
 HOMEPAGE = "https://github.com/elk-audio/sensei"
 
-LICENSE = "AGPL-3.0"
+LICENSE = "AGPL-3.0-only"
 LIC_FILES_CHKSUM = "\
     file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
     file://test/gtest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \

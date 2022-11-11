@@ -1,10 +1,10 @@
 # Recipe created by recipetool
 # This is the basis of a recipe and may need further editing in order to be fully functional.
 # (Feel free to remove these comments when editing.)
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=d21c96584427f10166aee1daeae1e332"
 
-SRC_URI = "git://github.com/angeloc/htpdate.git;protocol=https"
+SRC_URI = "git://github.com/angeloc/htpdate.git;protocol=https;branch=master"
 
 inherit pkgconfig
 

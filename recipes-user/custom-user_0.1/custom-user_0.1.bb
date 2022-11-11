@@ -1,5 +1,5 @@
 SUMMARY = "Adds a custom user named "mind" with right groups membership \
-	 and privileges for Elk Audio OS devices"
+            and privileges for Elk Audio OS devices"
 SECTION = "misc"
 
 HOMEPAGE = "https://github.com/elk-audio/meta-elk"

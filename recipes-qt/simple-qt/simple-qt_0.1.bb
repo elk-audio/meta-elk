@@ -11,7 +11,7 @@ DEPENDS += "\
     qtquickcontrols2 \
 "
 
-SRC_URI = "git://github.com/shigmas/BasicQuick.git"
+SRC_URI = "git://github.com/shigmas/BasicQuick.git;branch=master;protocol=https"
 SRCREV = "bf7bd0c462cf2d760278ae0a4fed9c36e11f3fba"
 S = "${WORKDIR}/git"
 

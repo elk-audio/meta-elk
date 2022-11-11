@@ -3,7 +3,7 @@ DESCRIPTION = "Provides userspace xenomai support and libraries needed to for \
 real-time applications using the xenomai RTOS implementation (3.0.8)"
 HOMEPAGE = "https://gitlab.denx.de/Xenomai/xenomai/wikis/Start_Here"
 
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "\
     file://debian/copyright;md5=b845d61ada88e4a5e0df2b2b74272db7 \
     file://kernel/cobalt/COPYING;md5=073dc31ccb2ebed70db54f1e8aeb4c33 \

@@ -6,7 +6,7 @@
 SUMMARY = "A sound and music computing system"
 HOMEPAGE = "https://csound.com/"
 
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
 
 # TBD: fltk is not propely detected
@@ -27,7 +27,7 @@ DEPENDS += "\
 
 PV = "6.13.0"
 SRC_URI = "\
-    git://github.com/csound/csound.git;nobranch=1 \
+    git://github.com/csound/csound.git;nobranch=1;protocol=https \
     file://0001-Do-not-set-include-path-to-usr-local-include.patch \
     file://0002-Do-not-use-try_run-for-portaudio.patch \
 "
