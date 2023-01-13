@@ -1,7 +1,7 @@
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/x42/testsignal.lv2.git;protocol=https"
+SRC_URI = "git://github.com/x42/testsignal.lv2.git;protocol=https;branch=master"
 
 # Modify these as desired
 PV = "0.1+git${SRCPV}"
@@ -24,6 +24,6 @@ do_install () {
 	oe_runmake install 'DESTDIR=${D}' 'PREFIX=/usr'
 }
 
-FILES_${PN} += "${libdir}/lv2/*"
-INSANE_SKIP_${PN} += "already-stripped"
+FILES:${PN} += "${libdir}/lv2/*"
+INSANE_SKIP:${PN} += "already-stripped"
 

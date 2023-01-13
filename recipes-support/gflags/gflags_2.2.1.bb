@@ -8,7 +8,7 @@ HOMEPAGE = "https://gflags.github.io/gflags/"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYING.txt;md5=c80d1a3b623f72bb85a4c75b556551df"
 
-SRC_URI = "git://github.com/gflags/gflags.git"
+SRC_URI = "git://github.com/gflags/gflags.git;branch=master;protocol=https"
 SRCREV = "f8a0efe03aa69b3336d8e228b37d4ccb17324b88"
 
 S = "${WORKDIR}/git"
@@ -21,14 +21,14 @@ EXTRA_OECMAKE = "\
     -DLIB_INSTALL_DIR=${baselib} \
 "
 
-do_install_append () {
+do_install:append () {
     rm -rf ${D}/usr/lib/cmake
 }
 
 PACKAGES =+ "${PN}-bash-completion"
 
-FILES_${PN}-bash-completion += "${bindir}/gflags_completions.sh"
+FILES:${PN}-bash-completion += "${bindir}/gflags_completions.sh"
 
-RDEPENDS_${PN}-bash-completion = "bash bash-completion"
+RDEPENDS:${PN}-bash-completion = "bash bash-completion"
 
 BBCLASSEXTEND = "native"

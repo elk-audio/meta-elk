@@ -1,6 +1,6 @@
 SUMMARY = "A simple wrapper for controlling sushi over gRPC via C++."
 HOMEPAGE = "https://github.com/elk-audio/elkcpp"
-LICENSE = "GPL-3.0"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 DEPENDS = "\
@@ -14,7 +14,7 @@ DEPENDS = "\
 "
 
 SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
-SRCREV = "447edd726d18849dd82365d35671e364614f7bfa"
+SRCREV = "83d6d002246a25223113c65327ec44a275211e26"
 
 S = "${WORKDIR}/git"
 
@@ -37,6 +37,6 @@ EXTRA_OECMAKE += "\
 
 PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-staticdev"
 
-RDEPENDS_${PN}-staticdev = ""
-RDEPENDS_${PN}-dev = ""
-RDEPENDS_${PN}-dbg = ""
+RDEPENDS:${PN}-staticdev = ""
+RDEPENDS:${PN}-dev = ""
+RDEPENDS:${PN}-dbg = ""

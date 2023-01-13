@@ -3,7 +3,7 @@ HOMEPAGE = "http://www.mega-nerd.com/libsndfile"
 AUTHOR = "Erik de Castro Lopo"
 SECTION = "libs/multimedia"
 
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e77fe93202736b47c07035910f47974a"
 
 DEPENDS = "sqlite3"
@@ -17,7 +17,7 @@ S = "${WORKDIR}/libsndfile-${PV}"
 
 inherit autotools  lib_package pkgconfig
 
-do_configure_prepend_arm() {
+do_configure:prepend:arm() {
     ac_cv_sizeof_off_t=8
     # they are not in one of site/ files because they are common with
     # glib-2.0 if they are moved to common site files then they break
@@ -27,7 +27,7 @@ do_configure_prepend_arm() {
     export ac_cv_sys_file_offset_bits=64
 }
 
-do_configure_prepend_chinook-compat () {
+do_configure:prepend_chinook-compat () {
     for i in  lt~obsolete.m4 ltsugar.m4 libtool.m4 ltoptions.m4 ltversion.m4
     do
             rm ${S}/M4/${i}
@@ -36,4 +36,4 @@ do_configure_prepend_chinook-compat () {
 
 PACKAGES =+ "${PN}-octave"
 
-FILES_${PN}-octave += "/usr/share/octave/site/m"
+FILES:${PN}-octave += "/usr/share/octave/site/m"

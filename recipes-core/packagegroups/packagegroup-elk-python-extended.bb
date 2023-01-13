@@ -5,11 +5,10 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-python-extended = "\
+RDEPENDS:packagegroup-elk-python-extended = "\
     python3-six \
     python3-setuptools \
     python3-pyftdi \
     python3-smbus2 \
-    python3-json-rpc \
     python3-pytz \
 "

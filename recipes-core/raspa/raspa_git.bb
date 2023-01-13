@@ -1,6 +1,6 @@
 SUMMARY = "A user space library for accessing the rtdm audio driver and device"
 HOMEPAGE = "https://github.com/elk-audio/raspa"
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 DEPENDS = "xenomai-lib"
 
@@ -22,6 +22,6 @@ OECMAKE_CXX_FLAGS_RELEASE += "-O3"
 
 PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-staticdev"
 
-RDEPENDS_${PN}-staticdev = ""
-RDEPENDS_${PN}-dev = ""
-RDEPENDS_${PN}-dbg = ""
+RDEPENDS:${PN}-staticdev = ""
+RDEPENDS:${PN}-dev = ""
+RDEPENDS:${PN}-dbg = ""

@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-system-basic = " \
+RDEPENDS:packagegroup-elk-system-basic = " \
     kernel-modules \
     custom-user \
     elk-systemd-services \

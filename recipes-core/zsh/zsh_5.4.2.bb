@@ -46,23 +46,23 @@ do_configure () {
     oe_runconf
 }
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/oh-my-zsh
     cp -r ${WORKDIR}/oh-my-zsh ${D}${sysconfdir}
 }
 
-pkg_postinst_${PN} () {
+pkg_postinst:${PN} () {
     touch $D${sysconfdir}/shells
     grep -q "bin/zsh" $D${sysconfdir}/shells || echo /bin/zsh >> $D${sysconfdir}/shells
     grep -q "bin/sh" $D${sysconfdir}/shells || echo /bin/sh >> $D${sysconfdir}/shells
 }
 
-FILES_${PN}-dbg += "\
+FILES:${PN}-dbg += "\
     ${libdir}/${PN}/${PV}/${PN}/.debug/*.so \
     ${libdir}/${PN}/${PV}/${PN}/db/.debug/*.so \
     ${libdir}/${PN}/${PV}/${PN}/net/.debug/*.so \
 "
 
-RDEPENDS_zsh += "perl"
-FILES_${PN} += "${sysconfdir}/oh-my-zsh"
-FILES_${PN} += "${sysconfdir}/oh-my-zsh/*"
+RDEPENDS:zsh += "perl"
+FILES:${PN} += "${sysconfdir}/oh-my-zsh"
+FILES:${PN} += "${sysconfdir}/oh-my-zsh/*"

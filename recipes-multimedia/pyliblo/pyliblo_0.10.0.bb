@@ -1,7 +1,7 @@
 SUMMARY = "Python bindings for the liblo OSC library"
 HOMEPAGE = "http://das.nasophon.de/pyliblo/"
 
-LICENSE = "LGPL-2.1"
+LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
 
 DEPENDS += "\
@@ -18,4 +18,4 @@ SRC_URI[sha256sum] = "fc67f1950b827272b00f9f0dc4ed7113c0ccef0c1c09e9976dead40ebb
 
 inherit setuptools3
 
-RDEPENDS_${PN} += "python3-core"
+RDEPENDS:${PN} += "python3-core"

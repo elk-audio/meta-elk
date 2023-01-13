@@ -29,8 +29,8 @@ do_install () {
 
 NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} += "var-lib-overlay.service"
+SYSTEMD_SERVICE:${PN} += "var-lib-overlay.service"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 
-FILES_${PN} += "${systemd_system_unitdir}/*"
+FILES:${PN} += "${systemd_system_unitdir}/*"

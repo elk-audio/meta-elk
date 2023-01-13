@@ -3,7 +3,7 @@ DESCRIPTION = "Provides userspace xenomai support and libraries needed to for \
 real-time applications using the xenomai RTOS implementation (3.0.8)"
 HOMEPAGE = "https://gitlab.denx.de/Xenomai/xenomai/wikis/Start_Here"
 
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "\
     file://debian/copyright;md5=b845d61ada88e4a5e0df2b2b74272db7 \
     file://kernel/cobalt/COPYING;md5=073dc31ccb2ebed70db54f1e8aeb4c33 \
@@ -39,7 +39,7 @@ UDEV_RULES_DIR = "/etc/udev/rules.d"
 # Specify any options you want to pass to the configure script using EXTRA_OECONF:
 EXTRA_OECONF = "--enable-smp --with-core=cobalt"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
     install -m 0644 ${WORKDIR}/rtdm.rules ${D}${UDEV_RULES_DIR}
 
@@ -48,8 +48,8 @@ do_install_append() {
     rm -rf ${D}/dev
 }
 
-FILES_${PN} += "/usr/xenomai/lib/*"
-FILES_${PN} += "usr/xenomai/demo/*"
-FILES_${PN} += "${UDEV_RULES_DIR}/*"
+FILES:${PN} += "/usr/xenomai/lib/*"
+FILES:${PN} += "usr/xenomai/demo/*"
+FILES:${PN} += "${UDEV_RULES_DIR}/*"
 
-INSANE_SKIP_${PN} += "ldflags"
+INSANE_SKIP:${PN} += "ldflags"

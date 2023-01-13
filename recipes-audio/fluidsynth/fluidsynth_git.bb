@@ -46,6 +46,6 @@ EXTRA_OECMAKE = "\
 OECMAKE_C_FLAGS_RELEASE += " -O3 -ffast-math"
 OECMAKE_CXX_FLAGS_RELEASE += " -O3 -ffast-math"
 
-do_configure_append() {
+do_configure:append() {
     make_tables.exe ${B}/
 }

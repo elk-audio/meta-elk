@@ -1,7 +1,7 @@
 SUMMARY = "MDA VST3 plugins for Linux"
 HOMEPAGE = "http://mda.smartelectronix.com/"
 
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 PV = "0.1.0+${SRCREV}"
@@ -29,5 +29,5 @@ do_install() {
     cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/mda.vst3/Contents/${TARGET_ARCH}-linux/"
 }
 
-FILES_${PN} += "${MDA_PLUGIN_DIR}"
-FILES_${PN} += "${MDA_PLUGIN_DIR}/*"
+FILES:${PN} += "${MDA_PLUGIN_DIR}"
+FILES:${PN} += "${MDA_PLUGIN_DIR}/*"

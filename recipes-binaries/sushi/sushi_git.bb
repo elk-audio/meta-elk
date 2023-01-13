@@ -1,7 +1,7 @@
 SUMMARY = "Headless plugin host for ELK Audio OS."
 HOMEPAGE = "https://github.com/elk-audio/sushi"
 
-LICENSE = "AGPL-3.0"
+LICENSE = "AGPL-3.0-only"
 LIC_FILES_CHKSUM = "\
     file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
     file://test/gtest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
@@ -18,7 +18,6 @@ LIC_FILES_CHKSUM = "\
 "
 
 DEPENDS = "\
-    xenomai-lib \
     raspa \
     twine \
     liblo \
@@ -73,18 +72,20 @@ do_compile() {
     done
 }
 
-do_install_append() {
+do_install:append() {
+    install -d ${D}/usr/bin
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
         chrpath -d sushi_b$b
-        install -m 0755 sushi_b$b ${D}${bindir}
+        install -m 0755 sushi_b$b ${D}/usr/bin
     done
-    install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
+    install -m 0755 ${WORKDIR}/sushi ${D}/usr/bin
+    rm -rf ${D}/usr/bin,
 }
 
-RDEPENDS_{PN} = "\
+RDEPENDS:{PN} = "\
     twine \
-    xenomai-lib \
 "
 
-INSANE_SKIP_${PN} += "dev-deps"
+INSANE_SKIP:${PN} += "dev-deps"
+

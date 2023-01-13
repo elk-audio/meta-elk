@@ -1,5 +1,5 @@
 SUMMARY = "Adds a custom user named "mind" with right groups membership \
-	 and privileges for Elk Audio OS devices"
+            and privileges for Elk Audio OS devices"
 SECTION = "misc"
 
 HOMEPAGE = "https://github.com/elk-audio/meta-elk"
@@ -18,8 +18,8 @@ inherit useradd extrausers
 MIND_PASSWD = "RxEA3Y8sRxpxw"
 USERADD_PACKAGES = "${PN}"
 HOME_DIR = "/home/mind"
-USERADD_PARAM_${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
-GROUPADD_PARAM_${PN} = "mind; -g 2004 xenomai"
+USERADD_PARAM:${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
+GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"
 EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
 
 do_install() {
@@ -34,7 +34,7 @@ do_install() {
     install -m 0755 ${WORKDIR}/display-elk-logo.sh ${D}${sysconfdir}/display-elk-logo.sh
 }
 
-FILES_${PN} = "${HOME_DIR}/*"
-FILES_${PN} += "${sysconfdir}/*"
+FILES:${PN} = "${HOME_DIR}/*"
+FILES:${PN} += "${sysconfdir}/*"
 
-RDEPENDS_${PN} += "bash"
+RDEPENDS:${PN} += "bash"

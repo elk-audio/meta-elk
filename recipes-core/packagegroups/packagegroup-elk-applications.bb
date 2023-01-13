@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
-RDEPENDS_packagegroup-elk-applications = "\
+RDEPENDS:packagegroup-elk-applications = "\
     sushi \
     sensei \
     "

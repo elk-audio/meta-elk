@@ -2,7 +2,7 @@ SUMMARY = "Thread and Worker INterface for Elk Audio OS"
 DESCRIPTION = "Support library for managing realtime threads and worker pools"
 HOMEPAGE = "https://github.com/elk-audio/twine"
 
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 DEPENDS = "xenomai-lib"
 
@@ -19,7 +19,7 @@ S = "${WORKDIR}/git"
 inherit cmake
 
 EXTRA_OECMAKE += "\
-    -DTWINE_WITH_XENOMAI=TRUE \
+    -DTWINE_WITH_XENOMAI=FALSE \
     -DTWINE_WITH_TESTS=FALSE \
     -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
 "
