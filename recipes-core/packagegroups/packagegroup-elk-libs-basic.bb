@@ -6,7 +6,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 inherit packagegroup
 
 RDEPENDS:packagegroup-elk-libs-basic = "\
-    xenomai-lib \
     alsa-utils \
     libstdc++ \
     libstdc++-staticdev \
@@ -21,4 +20,9 @@ RDEPENDS:packagegroup-elk-libs-basic = "\
     raspa-staticdev \
     protobuf-dev \
     freetype \
+"
+
+# If DISTRO_FEAUTURES has evl present, then install libevl, else install xenomai-lib
+RDEPENDS:packagegroup-elk-libs-basic:append = "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
 "
