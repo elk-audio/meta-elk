@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
 RDEPENDS:packagegroup-elk-libs-basic = "\
     alsa-utils \
     libstdc++ \

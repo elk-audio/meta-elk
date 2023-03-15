@@ -8,5 +8,5 @@ inherit packagegroup
 RDEPENDS:packagegroup-elk-applications = "\
     sushi \
     sensei \
-    "
+"
 

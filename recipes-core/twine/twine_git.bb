@@ -4,22 +4,29 @@ HOMEPAGE = "https://github.com/elk-audio/twine"
 
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
-DEPENDS = "xenomai-lib"
+
+# if DISTRO features has evl, then twine depends on libevl, else it depends on xenomai-lib
+DEPENDS += "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
+"
 
 # The specific version should be oeridden in the meta-product layers
-PV = ""
+PV = "0.3.2"
 
 SRC_URI = "git://github.com/elk-audio/twine;protocol=https;nobranch=1"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = ""
+SRCREV = "9d57a73a2d1290d2aea5e8e4a84eeeae8753d594"
 
 S = "${WORKDIR}/git"
 
 inherit cmake
 
 EXTRA_OECMAKE += "\
-    -DTWINE_WITH_XENOMAI=FALSE \
     -DTWINE_WITH_TESTS=FALSE \
     -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
+"
+
+EXTRA_OECMAKE += "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'evl', '-DTWINE_WITH_EVL=TRUE', '-DTWINE_WITH_XENOMAI=TRUE', d)} \
 "

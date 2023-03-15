@@ -1,0 +1,34 @@
+From a6b9def2014ebf2022b7b4b96a7e41ba04b7e59a Mon Sep 17 00:00:00 2001
+From: Sharan Yagneswar <sharan.yagneswar@mindmusiclabs.com>
+Date: Mon, 13 Mar 2023 12:20:50 +0100
+Subject: [PATCH] Fixes mips/musl build, since sgidefs.h is not present on all
+ C libraries but on linux asm/sgidefs.h is there and contains same
+ definitions, using that makes it portable.
+
+Patch ported from abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch to work with 20220623.rc1
+---
+ absl/base/internal/direct_mmap.h | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/absl/base/internal/direct_mmap.h b/absl/base/internal/direct_mmap.h
+index e492bb00..c8a4fbab 100644
+--- a/absl/base/internal/direct_mmap.h
++++ b/absl/base/internal/direct_mmap.h
+@@ -41,13 +41,9 @@
+ 
+ #ifdef __mips__
+ // Include definitions of the ABI currently in use.
+-#if defined(__BIONIC__) || !defined(__GLIBC__)
+-// Android doesn't have sgidefs.h, but does have asm/sgidefs.h, which has the
++// bionic/musl C libs don't have sgidefs.h, but do have asm/sgidefs.h, which has the
+ // definitions we need.
+ #include <asm/sgidefs.h>
+-#else
+-#include <sgidefs.h>
+-#endif  // __BIONIC__ || !__GLIBC__
+ #endif  // __mips__
+ 
+ // SYS_mmap and SYS_munmap are not defined in Android.
+-- 
+2.34.1
+
