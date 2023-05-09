@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
+# Sensei was removed from this list since it is not currently supported
+# on EVL based images because underlying driver is not implemented.
 RDEPENDS:packagegroup-elk-applications = "\
     sushi \
-    sensei \
 "
-
