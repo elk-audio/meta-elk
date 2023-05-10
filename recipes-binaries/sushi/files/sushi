@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Buffer size is provided systemwide  by elk-system.conf
+# Buffer size is provided systemwide by elk-system.conf
 ELK_SYSTEM_CONF="/udata/.elk-system/elk-system.conf"
 if [ -e $ELK_SYSTEM_CONF ]; then
     source $ELK_SYSTEM_CONF
@@ -10,8 +10,9 @@ else
 fi
 
 # Select the right sushi binary depening on AUDIO_BUFFER_SIZE
+# and also provide a default plugins path
 SUSHI_BINARY=sushi_b$AUDIO_BUFFER_SIZE
+SUSHI_DEFAULT_ARGS="--base-plugin-path=/home/mind/plugins"
 SUSHI_ARGS=${@}
 
-exec -a sushi $SUSHI_BINARY $SUSHI_ARGS
-
+exec -a sushi $SUSHI_BINARY $SUSHI_DEFAULT_ARGS $SUSHI_ARGS
