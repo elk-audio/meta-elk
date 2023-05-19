@@ -8,10 +8,10 @@ EXTRA_OECMAKE += "\
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0755 apps/test_tone ${D}${bindir}/raspa_test_tone
-    install -m 0755 apps/loopback ${D}${bindir}/raspa_loopback
-    install -m 0755 apps/load_test ${D}${bindir}/raspa_load_test
-    install -m 0755 apps/raspa_signal_recorder ${D}${bindir}/.
+    install -m 0755 apps/raspa_test_tone ${D}${bindir}
+    install -m 0755 apps/raspa_loopback ${D}${bindir}
+    install -m 0755 apps/raspa_load_test ${D}${bindir}
+    install -m 0755 apps/raspa_signal_recorder ${D}${bindir}
 }
 
 FILES:${PN} = "\
