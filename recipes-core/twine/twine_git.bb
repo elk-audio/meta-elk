@@ -13,7 +13,7 @@ DEPENDS += "\
 # The specific version should be oeridden in the meta-product layers
 PV = "0.3.2"
 
-SRC_URI = "git://github.com/elk-audio/twine;protocol=https;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/twine;protocol=https;nobranch=1"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
 SRCREV = "9d57a73a2d1290d2aea5e8e4a84eeeae8753d594"

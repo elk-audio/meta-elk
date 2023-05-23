@@ -28,4 +28,4 @@ BBMASK += "meta-elk/recipes-qt/qt/qtbase_git.bbappend"
 ```
 
 ---
-Copyright 2017-2019 Modern Ancient Instruments Networked AB, dba Elk, Stockholm, Sweden.
+Copyright 2017-2023 Elk Audio AB, Stockholm, Sweden.
