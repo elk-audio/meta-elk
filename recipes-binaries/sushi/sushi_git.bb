@@ -47,7 +47,7 @@ SRC_URI = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "6f561106cc0138d602b4cef570d82587ebc8c5a9"
+SRCREV = "cc72169c21e09e531a4ea9a18771cd83b6ac49ef"
 
 S = "${WORKDIR}/git"
 
