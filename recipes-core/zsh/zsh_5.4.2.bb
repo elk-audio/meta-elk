@@ -1,4 +1,6 @@
-SUMMARY = "Recipe adapted from oe zsh recipe with few modifications."
+# Recipe adapted from oe zsh recipe with few modifications
+
+SUMMARY = "Zsh shell"
 DESCRIPTION = "Zsh is a shell designed for interactive use, although it is \
                also a powerful scripting language. Many of the useful features \
                of bash, ksh, and tcsh were incorporated into zsh; many \

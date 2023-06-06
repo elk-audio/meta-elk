@@ -1,3 +1,5 @@
+# Qt base append
+ 
 PACKAGECONFIG:append = "\
     gbm \
     kms \

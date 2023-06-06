@@ -22,4 +22,3 @@ EXTRA_OECONF = " \
 "
 
 FILES:${PN} += "${libdir}/lv2"
-

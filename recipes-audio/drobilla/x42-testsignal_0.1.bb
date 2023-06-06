@@ -1,3 +1,4 @@
+SUMMARY = "testsignal.lv2 is an audio-plugin for generating test-signals in LV2 format"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
@@ -16,14 +17,13 @@ do_configure () {
 }
 
 do_compile () {
-	# You will almost certainly need to add additional arguments here
-	oe_runmake
+    # You will almost certainly need to add additional arguments here
+    oe_runmake
 }
 
 do_install () {
-	oe_runmake install 'DESTDIR=${D}' 'PREFIX=/usr'
+    oe_runmake install 'DESTDIR=${D}' 'PREFIX=/usr'
 }
 
 FILES:${PN} += "${libdir}/lv2/*"
 INSANE_SKIP:${PN} += "already-stripped"
-

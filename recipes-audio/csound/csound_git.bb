@@ -75,4 +75,3 @@ FILES:${PN}-python3 = "${PYTHON_SITEPACKAGES_DIR}"
 FILES:${PN}-luajit = "${libdir}/lua"
 
 RDEPENDS:${PN}-python3 += "python3"
-

@@ -125,4 +125,3 @@ RDEPENDS:{PN}:append = "\
 "
 
 INSANE_SKIP:${PN} += "dev-deps"
-

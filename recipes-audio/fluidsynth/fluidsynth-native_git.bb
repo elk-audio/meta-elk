@@ -1,3 +1,5 @@
+# Recipe for fluidsynth host tools
+
 require ${BPN}.inc
 
 inherit native

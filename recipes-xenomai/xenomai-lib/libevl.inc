@@ -24,4 +24,3 @@ do_install:append() {
 
 FILES:${PN}-dev += "/usr/tests/*"
 FILES:${PN} += "${UDEV_RULES_DIR}/*"
-

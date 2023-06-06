@@ -1,4 +1,5 @@
-SUMMARY = "Adds custom vimrc config file"
+# Vim append
+# Add custom vimrc configuration
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 

@@ -1,4 +1,7 @@
-SUMMARY = "Install raspa test apps to the file system"
+SUMMARY = "Raspa test applications"
+HOMEPAGE = "https://github.com/elk-audio/raspa"
+LICENSE = "GPL-3.0-only"
+LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 require raspa-common.inc
 

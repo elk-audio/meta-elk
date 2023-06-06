@@ -1,4 +1,5 @@
-SUMMARY = "Install the right abseil-cpp needed for GRPC 1.48.0"
+# Abseil C++ append
+# Install the right abseil-cpp needed for GRPC 1.48.0
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 

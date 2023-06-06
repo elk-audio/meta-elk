@@ -1,3 +1,6 @@
+# Samba append
+# Add custom samba configuration
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI += " file://custom-smb.conf"
 

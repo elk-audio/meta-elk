@@ -1,4 +1,4 @@
-DESCRIPTION = "Google gRPC tools"
+SUMMARY = "Google gRPC tools"
 HOMEPAGE = "http://www.grpc.io/"
 SECTION = "devel/python"
 

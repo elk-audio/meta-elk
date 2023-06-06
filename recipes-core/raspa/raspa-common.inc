@@ -1,7 +1,4 @@
-SUMMARY = "A user space library for accessing the rtdm audio driver and device"
-HOMEPAGE = "https://github.com/elk-audio/raspa"
-LICENSE = "GPL-3.0-only"
-LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+# Raspa common definitions
 
 # if DISTRO features has evl, then RASPA depends on libevl, else it depends on xenomai-lib
 DEPENDS:append = "\

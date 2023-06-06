@@ -1,4 +1,5 @@
-SUMMARY = "Elk Audio OS specific configuration changes to hostapd"
+# hostapd append
+# Add Elk Audio OS specific configuration changes to hostapd
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 # Hostapd is disabled by default

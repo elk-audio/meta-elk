@@ -1,4 +1,4 @@
-SUMARRY = "Xenomai real time core and supporting libraries"
+SUMMARY = "Xenomai real time core and supporting libraries"
 DESCRIPTION = "Provides userspace xenomai support and libraries needed to for \
 real-time applications using the xenomai RTOS implementation (3.0.8)"
 HOMEPAGE = "https://gitlab.denx.de/Xenomai/xenomai/wikis/Start_Here"

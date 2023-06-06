@@ -1,4 +1,4 @@
-DESCRIPTION = "Google gRPC"
+SUMMARY = "Google gRPC"
 HOMEPAGE = "http://www.grpc.io/"
 SECTION = "devel/python"
 LICENSE = "Apache-2.0 & BSD-3-Clause"
