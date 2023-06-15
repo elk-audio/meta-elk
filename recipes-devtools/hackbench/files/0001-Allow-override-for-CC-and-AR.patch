@@ -1,0 +1,25 @@
+From c8dbb8508a40289f7b90202a7617ab651d290265 Mon Sep 17 00:00:00 2001
+From: Marco Del Fiasco <marco@elk.audio>
+Date: Thu, 15 Jun 2023 12:17:30 +0200
+Subject: [PATCH] Allow override for CC and AR.
+
+---
+ Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 4df61ec..a229986 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,6 @@
+ VERSION = 2.5
+-CC = $(CROSS_COMPILE)gcc
+-AR = $(CROSS_COMPILE)ar
++CC ?= $(CROSS_COMPILE)gcc
++AR ?= $(CROSS_COMPILE)ar
+ 
+ OBJDIR = bld
+ 
+-- 
+2.34.1
+
