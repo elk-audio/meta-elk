@@ -10,13 +10,13 @@ DEPENDS += "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
 "
 
-# The specific version should be oeridden in the meta-product layers
-PV = "0.3.2"
+# The specific version should be overidden in the meta-product layers
+PV = "0.4.0"
 
 SRC_URI = "gitsm://github.com/elk-audio/twine;protocol=https;nobranch=1"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "b5c29d4a85e5f12e85548aa21658f78a9acd0890"
+SRCREV = "8ddc08fb9ec9a8e84b3d53ec4a8834b433be50ea"
 
 S = "${WORKDIR}/git"
 
