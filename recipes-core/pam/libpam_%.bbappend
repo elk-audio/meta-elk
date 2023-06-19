@@ -7,4 +7,3 @@ do_install:append() {
     echo "mind	- memlock unlimited" >> ${D}${sysconfdir}/security/limits.conf
     echo "mind	- rtprio 99" >> ${D}${sysconfdir}/security/limits.conf
 }
-
