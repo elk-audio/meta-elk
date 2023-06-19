@@ -1,4 +1,4 @@
-SUMMARY = "Version R40"
+# Libevl version R38
 
 require libevl.inc
 
