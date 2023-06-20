@@ -6,5 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 inherit packagegroup
 
 RDEPENDS:packagegroup-elk-image-testing = "\
+    raspa-test-apps \
+    stress-ng \
     hackbench \
 "
