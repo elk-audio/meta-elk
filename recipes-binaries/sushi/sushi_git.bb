@@ -20,6 +20,7 @@ LIC_FILES_CHKSUM = "\
 DEPENDS = "\
     raspa \
     twine \
+    libevl \
     liblo \
     alsa-utils \
     libsndfile1 \
@@ -31,10 +32,6 @@ DEPENDS = "\
     protobuf-c-native\
     lv2 \
     lilv \
-"
-# if DISTRO features has evl, then SUSHI depends on libevl, else it depends on xenomai-lib
-DEPENDS += "\
-    ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
 "
 
 # Note: Same as SRCREV; Overide in meta-<product>
@@ -58,25 +55,26 @@ SUPPORTED_BUFFER_SIZES="16 32 64 128 256 512"
 inherit cmake python3native
 
 # Default config of SUSHI should take care of compiling under cross environments
-# THe following list is more for readability and fulfills the need to be explicit
+# The following list is more for readability and fulfills the need to be explicit
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=Release \
-    -DSUSHI_BUILD_TWINE=OFF \
+    -DSUSHI_WITH_RASPA=ON \
     -DSUSHI_RASPA_FLAVOR=evl \
-    -DSUSHI_TWINE_STATIC=OFF \
-    -DSUSHI_WITH_ALSA_MIDI=ON \
     -DSUSHI_WITH_JACK=OFF \
-    -DSUSHI_WITH_LINK=ON \
+    -DSUSHI_WITH_PORTAUDIO=OFF \
+    -DSUSHI_WITH_APPLE_COREAUDIO=OFF \
+    -DSUSHI_WITH_ALSA_MIDI=ON \
+    -DSUSHI_WITH_RT_MIDI=OFF \
+    -DSUSHI_WITH_VST3=TRUE \
     -DSUSHI_WITH_LV2=ON \
     -DSUSHI_WITH_LV2_MDA_TESTS=OFF \
-    -DSUSHI_WITH_PORTAUDIO=OFF \
-    -DSUSHI_WITH_RASPA=ON \
-    -DSUSHI_WITH_RPC_INTERFACE=TRUE \
-    -DSUSHI_WITH_RT_MIDI=OFF \
     -DSUSHI_WITH_UNIT_TESTS=OFF \
-    -DSUSHI_WITH_VST3=TRUE \
-    -DSUSHI_WITH_APPLE_COREAUDIO=OFF \
-    -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
+    -DSUSHI_WITH_LINK=ON \
+    -DSUSHI_WITH_RPC_INTERFACE=TRUE \
+    -DSUSHI_BUILD_TWINE=OFF \
+    -DSUSHI_TWINE_STATIC=OFF \
+    -DSUSHI_WITH_SENTRY=OFF \
+    -DSUSHI_DISABLE_MULTICORE_UNIT_TESTS=OFF \
 "
 
 # Add VST2 support if VST2SDK_PATH variable in local.conf is set and not empty.
@@ -115,13 +113,9 @@ do_install:append() {
 }
 
 RDEPENDS:{PN} = "\
-    twine \
     raspa \
-"
-
-# if DISTRO features has evl, then SUSHI Rdepends on libevl, else it Rdepends on xenomai-lib
-RDEPENDS:{PN}:append = "\
-    ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
+    twine \
+    libevl \
 "
 
 INSANE_SKIP:${PN} += "dev-deps"
