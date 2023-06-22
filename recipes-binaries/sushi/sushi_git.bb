@@ -44,11 +44,11 @@ SRC_URI = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "dc343c4c8009609388ad9b09e7966ee7b8922b2d"
+SRCREV = "983c780637da673440496994a1fb2fbe48360b86"
 
 S = "${WORKDIR}/git"
 
-SUPPORTED_BUFFER_SIZES="16 32 64 128 256 512"
+SUPPORTED_BUFFER_SIZES = "16 32 64 128 256 512"
 
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
 #       (this is based on recipes that have previously been built and packaged)
