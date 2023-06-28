@@ -16,7 +16,7 @@ PV = "0.4.0"
 SRC_URI = "gitsm://github.com/elk-audio/twine;protocol=https;nobranch=1"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "8ddc08fb9ec9a8e84b3d53ec4a8834b433be50ea"
+SRCREV = "a799cf86cdfa1687a1bd497df94fddeb6cf114e4"
 
 S = "${WORKDIR}/git"
 
