@@ -12,7 +12,7 @@ DEPENDS:append = "\
 
 PV = "1.1.0"
 SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
-SRCREV = "6f8f3fa0dbb4540711c4b4aa4a28a8d3c965646e"
+SRCREV = "79f0422edc67920bf0a31f10f960810e30c315ff"
 
 S = "${WORKDIR}/git"
 
@@ -36,3 +36,4 @@ EXTRA_OECMAKE += "\
 # Set CMAKE optimization flags
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+
