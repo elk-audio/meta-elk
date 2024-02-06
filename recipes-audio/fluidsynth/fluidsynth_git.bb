@@ -5,8 +5,6 @@
 
 require ${BPN}.inc
 
-# Replace pretty much all the flags since we only want to build the shared library and
-# not the command-line synthesizer
 DEPENDS = "\
     ${BPN}-native\
     alsa-lib \
@@ -21,6 +19,8 @@ SRC_URI += "\
     file://0004-Hack-remove-timer-calls-from-RT-process-callback.patch \
 "
 
+# Replace pretty much all the flags since we only want to build the shared library and
+# not the command-line synthesizer
 EXTRA_OECMAKE = "\
     -Denable-floats=ON \
     -DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')} \

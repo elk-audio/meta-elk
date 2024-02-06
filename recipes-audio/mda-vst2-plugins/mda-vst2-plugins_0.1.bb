@@ -24,6 +24,11 @@ do_configure:prepend() {
         bbfatal " Please set the path or exclude mda-vst2-plugins from the image."
     fi
 }
+
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst2"
+
 do_install() {
     install -d ${D}${MDA_PLUGIN_DIR}
     cp "${WORKDIR}/build/plugins/mdaAmbience.so" ${D}${MDA_PLUGIN_DIR}
@@ -68,6 +73,3 @@ do_install() {
 FILES:${PN} += "${MDA_PLUGIN_DIR}"
 FILES:${PN} += "${MDA_PLUGIN_DIR}/*"
 
-OECMAKE_C_FLAGS_RELEASE += "-O3"
-OECMAKE_CXX_FLAGS_RELEASE += "-O3"
-MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst2"

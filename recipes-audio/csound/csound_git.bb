@@ -64,7 +64,6 @@ RDEPENDS:${PN}-python3 += "python3"
 FILES:${PN}-python3 = "${PYTHON_SITEPACKAGES_DIR}"
 FILES:${PN}-luajit = "${libdir}/lua"
 
-# Where to get lua-version from?
 LUA_VERSION = "5.3"
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio', d)}"
 PACKAGECONFIG[pulseaudio] = "-DUSE_PULSEAUDIO=ON,-DUSE_PULSEAUDIO=OFF,pulseaudio,pulseaudio-server"

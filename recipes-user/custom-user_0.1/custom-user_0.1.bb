@@ -15,6 +15,7 @@ inherit useradd extrausers
 
 EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
 
+HOME_DIR = "/home/mind"
 do_install() {
     install -d ${D}${HOME_DIR}
     install -m 0755 ${WORKDIR}/README ${D}${HOME_DIR}/README
@@ -31,10 +32,9 @@ RDEPENDS:${PN} += "bash"
 FILES:${PN} = "${HOME_DIR}/*"
 FILES:${PN} += "${sysconfdir}/*"
 
+### password generated with the command: openssl passwd "******"
+GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"
 USERADD_PACKAGES = "${PN}"
+MIND_PASSWD = "RxEA3Y8sRxpxw"
 USERADD_PARAM:${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
 
-### password generated with the command: openssl passwd "******"
-MIND_PASSWD = "RxEA3Y8sRxpxw"
-HOME_DIR = "/home/mind"
-GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"

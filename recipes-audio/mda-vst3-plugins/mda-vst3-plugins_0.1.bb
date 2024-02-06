@@ -18,6 +18,10 @@ inherit cmake
 
 EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
 
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"
+MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3.vst3"
+
 do_install() {
     install -d ${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux
     cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux/mda-vst3.so"
@@ -26,6 +30,3 @@ do_install() {
 FILES:${PN} += "${MDA_PLUGIN_DIR}"
 FILES:${PN} += "${MDA_PLUGIN_DIR}/*"
 
-OECMAKE_C_FLAGS_RELEASE += "-O3"
-OECMAKE_CXX_FLAGS_RELEASE += "-O3"
-MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3.vst3"

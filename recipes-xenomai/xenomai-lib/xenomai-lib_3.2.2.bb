@@ -34,6 +34,7 @@ inherit pkgconfig autotools
 
 # Specify any options you want to pass to the configure script using EXTRA_OECONF:
 EXTRA_OECONF = "--enable-smp --with-core=cobalt"
+UDEV_RULES_DIR = "/etc/udev/rules.d"
 
 do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
@@ -51,4 +52,3 @@ FILES:${PN} += "${UDEV_RULES_DIR}/*"
 INSANE_SKIP:${PN} += "ldflags"
 
 prefix = "/usr/xenomai"
-UDEV_RULES_DIR = "/etc/udev/rules.d"
