@@ -1,4 +1,5 @@
 # Raspa common definitions
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 # if DISTRO features has evl, then RASPA depends on libevl, else it depends on xenomai-lib
 DEPENDS:append = "\
@@ -8,10 +9,12 @@ DEPENDS:append = "\
 DEPENDS:append = "\
     alsa-lib \
     libsndfile1 \
+    kernel-devsrc \
 "
 
 PV = "1.1.0"
-SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1 \
+           file://0001-Fix-for-scarthgap-gcc-version.patch"
 SRCREV = "79f0422edc67920bf0a31f10f960810e30c315ff"
 
 S = "${WORKDIR}/git"

@@ -13,14 +13,19 @@ SRC_URI = "\
 S = "${WORKDIR}/git"
 
 EXTRA_OEMESON += "-Duapi=${STAGING_KERNEL_DIR}"
-UDEV_RULES_DIR = "/etc/udev/rules.d"
+UDEV_RULES_DIR = "/etc/udev/rules.di"
+UAPIDIR = "/usr/include/uapi"
 
 inherit meson pkgconfig
 
 do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
     install -m 0644 ${WORKDIR}/evl.rules ${D}${UDEV_RULES_DIR}
+    bbdebug 2 "builddir = ${B}"
+    install -d ${D}${UAPIDIR}/evl
+    cp -r ${B}/include/evl/* ${D}${UAPIDIR}/evl
 }
 
 FILES:${PN}-dev += "/usr/tests/*"
 FILES:${PN} += "${UDEV_RULES_DIR}/*"
+FILES:${PN} += "${UAPIDIR}/*"
