@@ -13,9 +13,9 @@ DEPENDS:append = "\
 "
 
 PV = "1.1.0"
-SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1 \
+SRC_URI = "gitsm://git@bitbucket.org/mindswteam/raspalib-elk.git;protocol=ssh;nobranch=1 \
            file://0001-Fix-for-scarthgap-gcc-version.patch"
-SRCREV = "79f0422edc67920bf0a31f10f960810e30c315ff"
+SRCREV = "def9f5806061305416f1c2748ad4da3b748b7712"
 
 S = "${WORKDIR}/git"
 
