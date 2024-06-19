@@ -15,6 +15,7 @@ do_install() {
     install -m 0755 apps/raspa_loopback ${D}${bindir}
     install -m 0755 apps/raspa_load_test ${D}${bindir}
     install -m 0755 apps/raspa_signal_recorder ${D}${bindir}
+    install -m 0755 apps/raspa_latency ${D}${bindir}
 }
 
 FILES:${PN} = "\
