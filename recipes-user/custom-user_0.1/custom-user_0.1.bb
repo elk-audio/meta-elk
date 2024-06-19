@@ -32,7 +32,6 @@ do_install() {
     install -d ${D}${sysconfdir}/profile.d
     install -m 0755 ${WORKDIR}/logo.sh ${D}${sysconfdir}/profile.d/logo.sh
     install -m 0755 ${WORKDIR}/display-elk-logo.sh ${D}${sysconfdir}/display-elk-logo.sh
-    echo ${ELK_AUDIO_OS_VERSION} > ${D}${sysconfdir}/sw_version
 }
 
 FILES:${PN} = "${HOME_DIR}/*"
