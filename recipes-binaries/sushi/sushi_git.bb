@@ -5,7 +5,6 @@ LICENSE = "AGPL-3.0-only"
 LIC_FILES_CHKSUM = "\
     file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
     file://test/gtest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
-    file://third-party/spdlog/LICENSE;md5=bd5cc7fa6ff5ee46fc1047f0f0c895b7 \
     file://third-party/rapidjson/license.txt;md5=ba04aa8f65de1396a7e59d1d746c2125 \
     file://third-party/rapidjson/bin/jsonschema/LICENSE;md5=9d4de43111d33570c8fe49b4cb0e01af \
     file://third-party/rapidjson/contrib/natvis/LICENSE;md5=ec259ab094c66e4776e1da8b023540e0 \
@@ -44,7 +43,7 @@ SRC_URI = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "4218c2b971ccb065db6b2fe276253ec3efc83e45"
+SRCREV = "bc843a77089ae3a7555152801d6de75960e035d7"
 
 S = "${WORKDIR}/git"
 
@@ -99,7 +98,7 @@ do_compile() {
         -DSUSHI_AUDIO_BUFFER_SIZE=$b
 
         cmake_runcmake_build --target ${OECMAKE_TARGET_COMPILE}
-        mv ${WORKDIR}/build/sushi ${WORKDIR}/build/sushi_b$b
+        mv ${WORKDIR}/build/apps/sushi ${WORKDIR}/build/sushi_b$b
     done
 }
 
