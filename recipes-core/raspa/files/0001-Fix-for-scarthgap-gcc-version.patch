@@ -21,18 +21,6 @@ index ded3892..9acf615 100644
  target_include_directories(raspa PRIVATE ${PROJECT_SOURCE_DIR}/src/)
  set_property(TARGET raspa PROPERTY CXX_STANDARD 17)
  target_compile_options(raspa PRIVATE -Wall -Wextra -ffast-math -feliminate-unused-debug-types -fno-exceptions)
-diff --git a/src/raspa_pimpl.h b/src/raspa_pimpl.h
-index 9db186f..e915d09 100644
---- a/src/raspa_pimpl.h
-+++ b/src/raspa_pimpl.h
-@@ -57,6 +57,7 @@
- #include <memory>
- #include <string>
- #include <algorithm>
-+#include <vector>
- 
- #include "audio_control_protocol/audio_control_protocol.h"
- #include "audio_control_protocol/audio_packet_helper.h"
 -- 
 2.25.1
 
