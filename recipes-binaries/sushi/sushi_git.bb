@@ -21,7 +21,6 @@ DEPENDS = "\
     raspa \
     twine \
     libevl \
-    liblo \
     alsa-utils \
     libsndfile1 \
     grpc \
