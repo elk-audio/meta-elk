@@ -5,10 +5,21 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 
 inherit packagegroup
 
+#RDEPENDS:packagegroup-elk-python-basic = "\
+#    python3 \
+#    python3-pip \
+#    pyliblo \
+#    python-alsaseq \
+#    python3-grpcio \
+#    python3-grpcio-tools \
+#    python3-protobuf \
+#    python3-elkpy \
+#"
+
+# TODO: add pyliblo back 
 RDEPENDS:packagegroup-elk-python-basic = "\
     python3 \
     python3-pip \
-    pyliblo \
     python-alsaseq \
     python3-grpcio \
     python3-grpcio-tools \

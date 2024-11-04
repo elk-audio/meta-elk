@@ -22,10 +22,11 @@ FILES:${PN}:append = "\
     ${PYTHON_SITEPACKAGES_DIR}/elkpy \
 "
 
+#TODO: 
+#python3-grpcio 
+#python3-grpcio-tools 
 RDEPENDS:${PN} = "\
     sushi \
-    python3-grpcio \
-    python3-grpcio-tools \
     python3-protobuf \
     liberation-fonts \
 "
