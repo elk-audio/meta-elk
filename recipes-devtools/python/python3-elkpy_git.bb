@@ -5,10 +5,10 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 SRC_URI = "git://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
-SRCREV = "49a7d2e0485e0c3df6cb9c863f696ed9cbea5cfd"
+SRCREV = "59bb27ec4772e9b04a523279cdbf1d846fe4c46d"
 
 S = "${WORKDIR}/git"
-PV = "1.1.8"
+PV = "1.2.0"
 
 inherit python_setuptools_build_meta
 
