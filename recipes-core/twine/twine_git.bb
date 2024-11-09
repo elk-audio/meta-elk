@@ -2,8 +2,7 @@ SUMMARY = "Thread and Worker INterface for Elk Audio OS"
 DESCRIPTION = "Support library for managing realtime threads and worker pools"
 HOMEPAGE = "https://github.com/elk-audio/twine"
 
-# LICENSE = "GPL-3.0-only"
-LICENSE = "CLOSED"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 # if DISTRO features has evl, then twine depends on libevl, else it depends on xenomai-lib
@@ -13,12 +12,12 @@ DEPENDS += "\
 "
 
 # The specific version should be overidden in the meta-product layers
-PV = "0.4.0"
+PV = "1.0.0"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/twine.git;protocol=ssh;nobranch=1" 
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "451e2a33180b8a19574549c64eaa2943f186fc01"
+SRCREV = "be2191a80c83a01d211ae501af04a1acfd6cee22"
 
 S = "${WORKDIR}/git"
 
