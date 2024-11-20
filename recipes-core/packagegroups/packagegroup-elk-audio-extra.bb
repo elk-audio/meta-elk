@@ -8,9 +8,6 @@ PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit packagegroup
 
 RDEPENDS:packagegroup-elk-audio-extra = "\
-    libjack \
-    jack-server \
-    jack-utils \
     stk \
     fluidsynth \
     lv2 \

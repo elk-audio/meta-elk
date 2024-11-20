@@ -7,9 +7,6 @@ PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit packagegroup
 
 RDEPENDS:packagegroup-elk-libs-extended = "\
-    libjack \
-    jack-server \
-    jack-utils \
     stk \
     bluez5 \
 "
