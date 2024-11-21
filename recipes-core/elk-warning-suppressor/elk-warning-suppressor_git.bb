@@ -10,7 +10,7 @@ DEPENDS = ""
 # The specific version should be overidden in the meta-product layers
 PV = "0.1.0"
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/elk-warning-suppressor.git;protocol=ssh;nobranch=1" 
+SRC_URI = "gitsm://github.com/elk-audio/elk-warning-suppressor;protocol=https;nobranch=1"
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
 SRCREV = "56dc1d4a30519c8a33fde567adbbe3719878aceb"
