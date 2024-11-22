@@ -101,7 +101,10 @@ do_compile() {
     done
 }
 
-do_install:append() {
+do_install() {
+    # This is to override unwanted behaviour of cmake_do_install
+    DESTDIR='${D}' cmake_runcmake_build --target ${OECMAKE_TARGET_INSTALL}
+
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
         chrpath -d sushi_b$b
