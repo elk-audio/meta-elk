@@ -12,9 +12,9 @@ DEPENDS:append = "\
     kernel-devsrc \
 "
 
-PV = "1.1.0"
+PV = "1.2.0"
 SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
-SRCREV = "521feeac98e46ab1d20675e44f763bf034f67e51"
+SRCREV = "25643e36b3fa864ccd112a37c0f65fad47f02118"
 
 S = "${WORKDIR}/git"
 
