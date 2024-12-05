@@ -27,5 +27,10 @@ This layer depends on the [Qt5](https://github.com/meta-qt5/meta-qt5) layer. If 
 BBMASK += "meta-elk/recipes-qt/qt/qtbase_git.bbappend"
 ```
 
+## Supported distro features
+This layer handles the following distro features:
+- `user-autostart-service`
+- `evl`
+
 ---
-Copyright 2017-2023 Elk Audio AB, Stockholm, Sweden.
+Copyright 2017-2024 Elk Audio AB, Stockholm, Sweden.
