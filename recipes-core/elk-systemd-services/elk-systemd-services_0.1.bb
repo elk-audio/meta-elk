@@ -10,9 +10,12 @@ PV = "0.1"
 SRC_URI += "\
     file://custom-elk.target \
     file://var-lib-overlay.service \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'user-autostart-service', 'file://user-autostart.service', '', d)} \
 "
 
 S = "${WORKDIR}"
+
+REQUIRED_DISTRO_FEATURES += "systemd overlayfs"
 
 inherit systemd
 
@@ -25,11 +28,17 @@ do_install () {
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/custom-elk.target ${D}${systemd_system_unitdir}/
     install -m 0644 ${WORKDIR}/var-lib-overlay.service ${D}${systemd_system_unitdir}/
+    if ${@bb.utils.contains('DISTRO_FEATURES', 'user-autostart-service', 'true', 'false', d)}; then
+        install -m 0644 ${WORKDIR}/user-autostart.service ${D}${systemd_system_unitdir}/
+    fi
 }
 
 NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE:${PN} += "var-lib-overlay.service"
+SYSTEMD_SERVICE:${PN} += " \
+    var-lib-overlay.service \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'user-autostart-service', 'user-autostart.service', '', d)} \
+"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 

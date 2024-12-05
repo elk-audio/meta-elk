@@ -1,0 +1,18 @@
+[Unit]
+Description=User autostart service
+After=load-drivers.service
+ConditionPathExists=/dev/audio_evl
+ConditionPathExists=/udata/autostart.sh
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+LimitRTPRIO=infinity
+LimitMEMLOCK=infinity
+LimitSTACK=infinity
+WorkingDirectory=/udata/
+ExecStart=/udata/autostart.sh
+User=mind
+
+[Install]
+WantedBy=multi-user.target
