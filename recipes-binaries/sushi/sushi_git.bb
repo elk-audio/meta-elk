@@ -36,7 +36,7 @@ DEPENDS = "\
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1 \
+    gitsm://github.com/elk-audio/sushi;protocol=ssh;nobranch=1 \
     file://sushi \
 "
 
