@@ -6,29 +6,11 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;m
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit packagegroup
 
-#RDEPENDS:packagegroup-elk-libs-basic = "\
-#    alsa-utils \
-#    libstdc++ \
-#    libstdc++-staticdev \
-#    liblo \
-#    jsoncpp \
-#    twine \
-#    twine-dev \
-#    python3-libconf \
-#    python3-io \
-#    grpc \
-#    raspa-dev \
-#    raspa-staticdev \
-#    protobuf-dev \
-#    freetype \
-#    libsndfile1 \
-#"
-
-# TODO: Add liblo back in (see above)
 RDEPENDS:packagegroup-elk-libs-basic = "\
     alsa-utils \
     libstdc++ \
     libstdc++-staticdev \
+    liblo \
     jsoncpp \
     twine \
     twine-dev \
