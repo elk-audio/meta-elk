@@ -15,9 +15,10 @@ SRC_URI += "\
 
 S = "${WORKDIR}"
 
-REQUIRED_DISTRO_FEATURES += "systemd overlayfs"
+REQUIRED_DISTRO_FEATURES += "systemd"
 
 inherit systemd
+inherit features_check
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
