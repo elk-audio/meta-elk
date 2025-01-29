@@ -1,6 +1,5 @@
 # Recipe for fluidsynth host tools
 
-inherit native
 
 do_install() {
     install -d ${D}/${bindir}
@@ -10,3 +9,5 @@ do_install() {
 require ${BPN}.inc
 
 OECMAKE_SOURCEPATH = "${S}/src/gentables"
+
+inherit native

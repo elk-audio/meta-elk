@@ -1,4 +1,3 @@
+require ${BPN}.inc
 
 inherit native
-
-require ${BPN}.inc
