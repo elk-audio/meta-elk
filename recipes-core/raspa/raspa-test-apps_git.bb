@@ -3,8 +3,6 @@ HOMEPAGE = "https://github.com/elk-audio/raspa"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
-require raspa-common.inc
-
 EXTRA_OECMAKE += "\
     -DRASPA_WITH_APPS=ON \
 "
@@ -22,3 +20,5 @@ FILES:${PN} = "\
     ${bindir} \
     ${bindir}/* \
 "
+
+require raspa-common.inc
