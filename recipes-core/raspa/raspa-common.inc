@@ -1,5 +1,4 @@
 # Raspa common definitions
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 # if DISTRO features has evl, then RASPA depends on libevl, else it depends on xenomai-lib
 DEPENDS:append = "\
@@ -9,7 +8,6 @@ DEPENDS:append = "\
 DEPENDS:append = "\
     alsa-lib \
     libsndfile1 \
-    kernel-devsrc \
 "
 
 PV = "1.2.0"
