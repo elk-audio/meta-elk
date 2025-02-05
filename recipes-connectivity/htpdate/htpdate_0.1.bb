@@ -13,9 +13,9 @@ PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/angeloc/htpdate.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
-
 inherit pkgconfig
+
+S = "${WORKDIR}/git"
 
 do_configure () {
     # Specify any needed configure commands here

@@ -16,10 +16,12 @@ SRCREV = "83d6d002246a25223113c65327ec44a275211e26"
 SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
+
+inherit cmake
+
 # This is installed in the sysroot by sushi
 SUSHI_PROTO_FILE_PATH = "${STAGING_DATADIR}/sushi/sushi_rpc.proto"
 
-inherit cmake
 
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=Release \
