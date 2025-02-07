@@ -29,14 +29,16 @@ DEPENDS = "\
     lv2 \
     lilv \
 "
+
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
 SRCREV = "cc6beefdc9a889e7075c51c64b1efe1cac34a19e"
+
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://github.com/elk-audio/sushi;protocol=ssh;nobranch=1 \
+    gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
     file://sushi \
 "
 
