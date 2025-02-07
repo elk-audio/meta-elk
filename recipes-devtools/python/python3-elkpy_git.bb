@@ -3,8 +3,8 @@ HOMEPAGE = "https://github.com/elk-audio/elkpy"
 SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
-SRCREV = "59bb27ec4772e9b04a523279cdbf1d846fe4c46d"
-PV = "1.2.0"
+SRCREV = "5b8808da487543cdb0acf9cf13533eb955e3cba0"
+PV = "1.2.3"
 
 SRC_URI = "git://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
 
