@@ -9,7 +9,7 @@ DEPENDS += "\
 SRCREV = "72ddb3d31c032071150a98ff1d3488edc5a1560d"
 PV = "0.16.2"
 
-SRC_URI = "gitsm://git@github.com/gesellkammer/pyliblo3.git;protocol=ssh;nobranch=1 \
+SRC_URI = "gitsm://github.com/gesellkammer/pyliblo3.git;protocol=https;nobranch=1 \
            file://0001-Remove-hardcoded-include-paths.patch \
           "
 
