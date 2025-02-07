@@ -29,8 +29,14 @@ BBMASK += "meta-elk/recipes-qt/qt/qtbase_git.bbappend"
 
 ## Supported distro features
 This layer handles the following distro features:
-- `user-autostart-service`
-- `evl`
+- `user-autostart-service`: it will enable the user-autostart systemd service
+- `evl`: required distro feature for Xenomai 4
+
+### User autostart service
+This systemd service will look for an executable script under `/udata/autostart.sh` and execute it if it exists.
+Typical usage is to use the script to setup machine specific operations and run `sushi` with a selected configuration.
+
+This distro feature can be enabled in the `local.conf` with `DISTRO_FEATURES += "user-autostart-service"`.
 
 ---
 Copyright 2017-2025 Elk Audio AB, Stockholm, Sweden.
