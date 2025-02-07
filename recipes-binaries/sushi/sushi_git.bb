@@ -36,7 +36,7 @@ SRCREV = "cc6beefdc9a889e7075c51c64b1efe1cac34a19e"
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1 \
+    gitsm://github.com/elk-audio/sushi;protocol=ssh;nobranch=1 \
     file://sushi \
 "
 
