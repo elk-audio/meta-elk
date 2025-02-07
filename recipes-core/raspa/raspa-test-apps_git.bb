@@ -22,3 +22,4 @@ FILES:${PN} = "\
     ${bindir} \
     ${bindir}/* \
 "
+

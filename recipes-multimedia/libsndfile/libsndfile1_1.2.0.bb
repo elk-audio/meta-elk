@@ -5,19 +5,19 @@ one standard library interface."
 AUTHOR = "Erik de Castro Lopo"
 HOMEPAGE = "https://libsndfile.github.io/libsndfile/"
 SECTION = "libs/multimedia"
-
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e77fe93202736b47c07035910f47974a"
-
 DEPENDS = "flac libogg libvorbis"
+SRCREV = "2ed38b57c5838ba6b7c8e726a62855845bd42ec5"
 
 SRC_URI = "\
     gitsm://github.com/libsndfile/libsndfile.git;protocol=https;nobranch=1 \
 "
 SRC_URI[sha256sum] = "75c4813917b53990c5ca3117d6bedb3f95bf5f656def1129514c0d92b28d40ed"
-SRCREV = "2ed38b57c5838ba6b7c8e726a62855845bd42ec5"
 
-CVE_PRODUCT = "libsndfile"
+S = "${WORKDIR}/git"
+
+inherit cmake
 
 EXTRA_OECMAKE += "\
     -DCMAKE_INSTALL_LIBDIR=lib \
@@ -33,6 +33,4 @@ EXTRA_OECMAKE += "\
     -DENABLE_EXTERNAL_LIBS=OFF \
 "
 
-S = "${WORKDIR}/git"
-
-inherit cmake
+CVE_PRODUCT = "libsndfile"
