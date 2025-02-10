@@ -3,13 +3,16 @@ DESCRIPTION = "Support library for managing realtime threads and worker pools"
 HOMEPAGE = "https://github.com/elk-audio/twine"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+
 # if DISTRO features has evl, then twine depends on libevl, else it depends on xenomai-lib
 DEPENDS += "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'evl', 'libevl', 'xenomai-lib', d)} \
     elk-warning-suppressor \
 "
+
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "be2191a80c83a01d211ae501af04a1acfd6cee22"
+SRCREV = "7eb8d290573b61ca4daaea0c88fe92a124776b48"
+
 # The specific version should be overidden in the meta-product layers
 PV = "1.0.0"
 

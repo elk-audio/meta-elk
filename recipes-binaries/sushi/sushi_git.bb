@@ -14,6 +14,7 @@ LIC_FILES_CHKSUM = "\
     file://third-party/vst3sdk/pluginterfaces/LICENSE.txt;md5=0b0ce4a82ab708ef3811b4993aa7a047 \
     file://third-party/vst3sdk/base/LICENSE.txt;md5=514d9812d1e91c0be05f58b713ee75f3 \
 "
+
 DEPENDS = "\
     raspa \
     twine \
@@ -32,7 +33,7 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "cc6beefdc9a889e7075c51c64b1efe1cac34a19e"
+SRCREV = "1c935252d900a1c3c952a0da5977eb9e7e9d7a90"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
