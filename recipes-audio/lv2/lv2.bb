@@ -7,4 +7,3 @@ EXTRA_OECONF = "--libdir=${libdir}"
 FILES:${PN} += " \
     ${datadir} \
 "
-

@@ -7,7 +7,6 @@ PACKAGE_ARCH = "${TUNE_PKGARCH}"
 
 inherit packagegroup
 
-
 RDEPENDS:packagegroup-elk-libs-extended = "\
     stk \
     bluez5 \

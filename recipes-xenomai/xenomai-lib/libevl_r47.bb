@@ -1,4 +1,4 @@
-SUMMARY = "Version R47"
+# Libevl version R47
 SRCREV = "3bbe1d092e021113b1aa238c7a51c8f634c6cdcc"
 PV = "r47"
 

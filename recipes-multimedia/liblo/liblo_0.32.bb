@@ -2,6 +2,7 @@ SUMMARY = "liblo is an implementation of the Open Sound Control protocol"
 HOMEPAGE = "https://github.com/radarsat1/liblo"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
+
 # 0.32
 SRCREV = "c1a51bca21e8535ce77a9daf256f2e74c1a7e80f"
 

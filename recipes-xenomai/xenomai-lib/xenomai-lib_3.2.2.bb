@@ -20,6 +20,7 @@ LIC_FILES_CHKSUM = "\
     file://lib/boilerplate/iniparser/LICENSE;md5=124f16654dec67923ad76a803e102463 \
     file://include/COPYING;md5=79ed705ccb9481bf9e7026b99f4e2b0e \
 "
+
 # Tag v3.2.2
 SRCREV = "92edb496f7e8a51f986760982bfef2051ff60e9b"
 

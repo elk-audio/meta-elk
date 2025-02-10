@@ -1,5 +1,6 @@
-SUMMARY = "Version R50"
+# Libevl version R50
 DEPENDS = "libbpf"
+
 SRCREV = "c39165fc47042f3b98a32e709e8e244dc79fe165"
 PV = "r50"
 

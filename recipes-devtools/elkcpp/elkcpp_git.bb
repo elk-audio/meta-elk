@@ -2,6 +2,7 @@ SUMMARY = "A simple wrapper for controlling sushi over gRPC via C++."
 HOMEPAGE = "https://github.com/elk-audio/elkcpp"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+
 DEPENDS = "\
     sushi \
     grpc \
@@ -11,6 +12,7 @@ DEPENDS = "\
     protobuf-c \
     protobuf-c-native\
 "
+
 SRCREV = "83d6d002246a25223113c65327ec44a275211e26"
 
 SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"

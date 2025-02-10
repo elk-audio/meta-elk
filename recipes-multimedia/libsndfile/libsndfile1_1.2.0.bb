@@ -7,7 +7,9 @@ HOMEPAGE = "https://libsndfile.github.io/libsndfile/"
 SECTION = "libs/multimedia"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e77fe93202736b47c07035910f47974a"
+
 DEPENDS = "flac libogg libvorbis"
+
 SRCREV = "2ed38b57c5838ba6b7c8e726a62855845bd42ec5"
 
 SRC_URI = "\

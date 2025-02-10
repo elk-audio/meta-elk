@@ -32,9 +32,9 @@ RDEPENDS:${PN} += "bash"
 FILES:${PN} = "${HOME_DIR}/*"
 FILES:${PN} += "${sysconfdir}/*"
 
-### password generated with the command: openssl passwd "******"
-GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"
 USERADD_PACKAGES = "${PN}"
+
+### password generated with the command: openssl passwd "******"
 MIND_PASSWD = "RxEA3Y8sRxpxw"
 USERADD_PARAM:${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
-
+GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"

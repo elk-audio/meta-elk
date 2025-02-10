@@ -7,7 +7,9 @@ DESCRIPTION = "The HTTP Time Protocol (HTP) is used to synchronize a computer's 
 HOMEPAGE = "https://github.com/angeloc/htpdate"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=d21c96584427f10166aee1daeae1e332"
+
 SRCREV = "86eb1aec3169a4b81fdf160de9ce6a437e5e881c"
+
 # Modify these as desired
 PV = "0.1+git${SRCPV}"
 

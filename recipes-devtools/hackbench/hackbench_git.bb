@@ -3,8 +3,11 @@ HOMEPAGE = "https://wiki.linuxfoundation.org/realtime/documentation/start"
 SECTION = "tests"
 LICENSE = "GPL-2.0-only & GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+
 DEPENDS = "linux-libc-headers virtual/libc"
+
 SRCREV = "4579b9a6d85ae528f76e92421eb5e7b33cd26b17"
+
 PV = "2.5"
 
 SRC_URI = "\

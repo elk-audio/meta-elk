@@ -3,6 +3,7 @@ DESCRIPTION = "Support library for suppressing warnings in included 3rd party co
 HOMEPAGE = "https://github.com/elk-audio/elk-warning-suppressor"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+
 DEPENDS = ""
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.

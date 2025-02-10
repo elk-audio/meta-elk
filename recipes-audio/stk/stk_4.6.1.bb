@@ -2,6 +2,7 @@ SUMMARY = "The Synthesis ToolKit in C++"
 HOMEPAGE = "https://ccrma.stanford.edu/software/stk/"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=db6cb276e2d0659d53f51cbd97807afc"
+
 DEPENDS = "alsa-utils"
 
 SRC_URI = "\

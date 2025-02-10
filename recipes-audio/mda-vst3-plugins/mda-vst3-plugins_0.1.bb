@@ -2,7 +2,9 @@ SUMMARY = "MDA VST3 plugins for Linux"
 HOMEPAGE = "http://mda.smartelectronix.com/"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
+
 SRCREV = "5b970765c49480880e6c945de7baf040ff703c50"
+
 PV = "0.1.0+${SRCREV}"
 
 SRC_URI = "\
@@ -29,4 +31,3 @@ do_install() {
 
 FILES:${PN} += "${MDA_PLUGIN_DIR}"
 FILES:${PN} += "${MDA_PLUGIN_DIR}/*"
-

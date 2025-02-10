@@ -6,6 +6,7 @@ SUMMARY = "A sound and music computing system"
 HOMEPAGE = "https://csound.com/"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+
 # TBD: fltk is not propely detected
 DEPENDS += "\
     flex-native \
@@ -21,6 +22,7 @@ DEPENDS += "\
     libeigen \
     libwebsockets \
 "
+
 SRCREV = "3b08a449cc147dec35ba843ced86e0058a9ac865"
 PV = "6.13.0"
 

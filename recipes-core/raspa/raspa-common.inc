@@ -36,4 +36,3 @@ EXTRA_OECMAKE += "\
 # Set CMAKE optimization flags
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"
-

@@ -11,4 +11,3 @@ require ${BPN}.inc
 inherit native
 
 OECMAKE_SOURCEPATH = "${S}/src/gentables"
-

@@ -12,4 +12,3 @@ SRC_URI = " \
     file://0001-Fix-build-for-python3-only-environments.patch \
 "
 SRC_URI[sha256sum] = "672ec48f55f6f5bf1b548f3d6a76f127e803dbae2550ddb730bb02d2fd28fa87"
-

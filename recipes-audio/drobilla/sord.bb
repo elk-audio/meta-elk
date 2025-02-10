@@ -14,4 +14,3 @@ SRC_URI = " \
     file://sord-0.16.4-gcc10.patch \
 "
 SRC_URI[sha256sum] = "7c289d2eaabf82fa6ac219107ce632d704672dcfb966e1a7ff0bbc4ce93f5e14"
-

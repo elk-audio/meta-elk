@@ -2,7 +2,9 @@ SUMMARY = "MDA VST2 plugins for Linux"
 HOMEPAGE = "http://mda.smartelectronix.com/"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=6db6464f7fdbc76c1ac7c62eb23a57ee"
+
 SRCREV = "8ea6ef97946a617d73e48d245777e57fb984357f"
+
 PV = "0.1.0+${SRCREV}"
 
 SRC_URI = "git://github.com/elk-audio/mda-vst2;protocol=https;nobranch=1"
@@ -72,4 +74,3 @@ do_install() {
 
 FILES:${PN} += "${MDA_PLUGIN_DIR}"
 FILES:${PN} += "${MDA_PLUGIN_DIR}/*"
-
