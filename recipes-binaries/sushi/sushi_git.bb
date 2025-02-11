@@ -1,6 +1,5 @@
 SUMMARY = "Headless plugin host for ELK Audio OS."
 HOMEPAGE = "https://github.com/elk-audio/sushi"
-
 LICENSE = "AGPL-3.0-only"
 LIC_FILES_CHKSUM = "\
     file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
@@ -32,20 +31,20 @@ DEPENDS = "\
     lilv \
 "
 
+# NOTE: Override this in the meta-<product> layer with a
+# .bbappend recipe choosing the specific commit required"
+SRCREV = "1c935252d900a1c3c952a0da5977eb9e7e9d7a90"
+
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://github.com/elk-audio/sushi;protocol=ssh;nobranch=1 \
+    gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
     file://sushi \
 "
 
-# NOTE: Override this in the meta-<product> layer with a
-# .bbappend recipe choosing the specific commit required"
-SRCREV = "3f1dc156da95f60ef4ec4a9daa8e3f995e6b8e0c"
 
 S = "${WORKDIR}/git"
-
 SUPPORTED_BUFFER_SIZES = "16 32 64 128 256 512"
 
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
@@ -74,17 +73,12 @@ EXTRA_OECMAKE += "\
     -DSUSHI_WITH_SENTRY=OFF \
     -DSUSHI_DISABLE_MULTICORE_UNIT_TESTS=OFF \
 "
-
 # Add VST2 support if VST2SDK_PATH variable in local.conf is set and not empty.
 EXTRA_OECMAKE += "${@bb.utils.contains('VST2SDK_PATH', \
                  '', \
                  ' -DSUSHI_WITH_VST2=TRUE -DSUSHI_VST2_SDK_PATH=' + d.getVar('VST2SDK_PATH'), \
                  ' -DSUSHI_WITH_VST2=FALSE ' \
                  , d)}"
-
-# Set CMAKE optimization flags
-OECMAKE_C_FLAGS_RELEASE += "-O3"
-OECMAKE_CXX_FLAGS_RELEASE += "-O3"
 
 # Override compilation step to build multiple binaries with different buffer sizes
 do_compile() {
@@ -95,16 +89,13 @@ do_compile() {
         $oecmake_sitefile \
         ${OECMAKE_SOURCEPATH} \
         -DSUSHI_AUDIO_BUFFER_SIZE=$b
-
         cmake_runcmake_build --target ${OECMAKE_TARGET_COMPILE}
         mv ${WORKDIR}/build/apps/sushi ${WORKDIR}/build/sushi_b$b
     done
 }
-
 do_install() {
     # This is to override unwanted behaviour of cmake_do_install
     DESTDIR='${D}' cmake_runcmake_build --target ${OECMAKE_TARGET_INSTALL}
-
     for b in ${SUPPORTED_BUFFER_SIZES};
     do
         chrpath -d sushi_b$b
@@ -120,3 +111,7 @@ RDEPENDS:{PN} = "\
 "
 
 INSANE_SKIP:${PN} += "dev-deps"
+
+# Set CMAKE optimization flags
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"

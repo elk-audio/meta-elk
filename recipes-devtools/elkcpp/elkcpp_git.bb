@@ -13,19 +13,17 @@ DEPENDS = "\
     protobuf-c-native\
 "
 
-SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
 SRCREV = "83d6d002246a25223113c65327ec44a275211e26"
+
+SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
 
 inherit cmake
 
-# Set CMAKE optimization flags
-OECMAKE_C_FLAGS_RELEASE += "-O3"
-OECMAKE_CXX_FLAGS_RELEASE += "-O3"
-
 # This is installed in the sysroot by sushi
 SUSHI_PROTO_FILE_PATH = "${STAGING_DATADIR}/sushi/sushi_rpc.proto"
+
 
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=Release \
@@ -40,3 +38,7 @@ PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-staticdev"
 RDEPENDS:${PN}-staticdev = ""
 RDEPENDS:${PN}-dev = ""
 RDEPENDS:${PN}-dbg = ""
+
+# Set CMAKE optimization flags
+OECMAKE_C_FLAGS_RELEASE += "-O3"
+OECMAKE_CXX_FLAGS_RELEASE += "-O3"

@@ -1,0 +1,24 @@
+From 71d97ab32af695a33e8ec8ac8df4c4cc125e2123 Mon Sep 17 00:00:00 2001
+From: Pedro Burgos <pedro@elk.audio>
+Date: Wed, 15 Jan 2025 10:00:00 +0000
+Subject: [PATCH] Remove hardcoded include paths
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index xxxxxxx..xxxxxxx 100644
+--- a/setup.py
++++ b/setup.py
+@@ -45,7 +45,7 @@ if platformname == 'Darwin':
+     ]
+ elif platformname == 'Linux':
+     libraries.append('lo')
+-    include_dirs.extend(['/usr/include', '/usr/local/include'])
++    # Let the build system provide include paths
+     library_dirs.append("/usr/local/lib")
+     compile_args += [
+         '-fno-strict-aliasing',
+-- 
+2.25.1

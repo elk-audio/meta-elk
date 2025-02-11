@@ -1,7 +1,6 @@
 SUMMARY = "Thread and Worker INterface for Elk Audio OS"
 DESCRIPTION = "Support library for managing realtime threads and worker pools"
 HOMEPAGE = "https://github.com/elk-audio/twine"
-
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
@@ -11,13 +10,13 @@ DEPENDS += "\
     elk-warning-suppressor \
 "
 
+# SRCREV should be mentioned in the product layer as it will be specific to that.
+SRCREV = "7eb8d290573b61ca4daaea0c88fe92a124776b48"
+
 # The specific version should be overidden in the meta-product layers
 PV = "1.0.0"
 
 SRC_URI = "gitsm://github.com/elk-audio/twine;protocol=https;nobranch=1"
-
-# SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "be2191a80c83a01d211ae501af04a1acfd6cee22"
 
 S = "${WORKDIR}/git"
 
@@ -29,7 +28,6 @@ EXTRA_OECMAKE += "\
     -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
     -DTWINE_USE_INCLUDED_WARNING_SUPPRESSOR=FALSE \
 "
-
 EXTRA_OECMAKE += "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'evl', '-DTWINE_WITH_EVL=TRUE', '-DTWINE_WITH_XENOMAI=TRUE', d)} \
 "

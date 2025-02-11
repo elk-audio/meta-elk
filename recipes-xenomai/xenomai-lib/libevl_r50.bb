@@ -1,11 +1,10 @@
-SUMMARY = "Version R50"
-
+# Libevl version R50
 DEPENDS = "libbpf"
 
-require libevl.inc
-
-PV = "r50"
 SRCREV = "c39165fc47042f3b98a32e709e8e244dc79fe165"
+PV = "r50"
+
+require libevl.inc
 
 EVL_INCLUDE_DIR = "/usr/include/evl"
 

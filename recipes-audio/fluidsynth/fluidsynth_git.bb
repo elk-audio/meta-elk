@@ -21,7 +21,6 @@ SRC_URI += "\
 
 # Replace pretty much all the flags since we only want to build the shared library and
 # not the command-line synthesizer
-
 EXTRA_OECMAKE = "\
     -Denable-floats=ON \
     -DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')} \
@@ -43,9 +42,10 @@ EXTRA_OECMAKE = "\
     -Denable-winmidi=OFF \
 "
 
-OECMAKE_C_FLAGS_RELEASE += " -O3 -ffast-math"
-OECMAKE_CXX_FLAGS_RELEASE += " -O3 -ffast-math"
-
 do_configure:append() {
     make_tables.exe ${B}/
 }
+
+
+OECMAKE_C_FLAGS_RELEASE += " -O3 -ffast-math"
+OECMAKE_CXX_FLAGS_RELEASE += " -O3 -ffast-math"

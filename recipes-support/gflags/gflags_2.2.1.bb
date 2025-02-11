@@ -4,12 +4,12 @@ DESCRIPTION = "The gflags package contains a C++ library that implements \
                standard types such as string and the ability to define flags \
                in the source file in which they are used"
 HOMEPAGE = "https://gflags.github.io/gflags/"
-
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYING.txt;md5=c80d1a3b623f72bb85a4c75b556551df"
 
-SRC_URI = "git://github.com/gflags/gflags.git;branch=master;protocol=https"
 SRCREV = "f8a0efe03aa69b3336d8e228b37d4ccb17324b88"
+
+SRC_URI = "git://github.com/gflags/gflags.git;branch=master;protocol=https"
 
 S = "${WORKDIR}/git"
 
@@ -27,8 +27,8 @@ do_install:append () {
 
 PACKAGES =+ "${PN}-bash-completion"
 
-FILES:${PN}-bash-completion += "${bindir}/gflags_completions.sh"
-
 RDEPENDS:${PN}-bash-completion = "bash bash-completion"
+
+FILES:${PN}-bash-completion += "${bindir}/gflags_completions.sh"
 
 BBCLASSEXTEND = "native"

@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b698a6a2120a83eecb34a9c6f1b93989"
 inherit waf
 
 PV = "0.30.8"
+
 SRC_URI = " \
     http://download.drobilla.net/${BPN}-${PV}.tar.bz2 \
     file://0001-Fix-build-for-python3-only-environments.patch \

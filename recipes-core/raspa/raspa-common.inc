@@ -1,5 +1,4 @@
 # Raspa common definitions
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 # if DISTRO features has evl, then RASPA depends on libevl, else it depends on xenomai-lib
 DEPENDS:append = "\
@@ -9,7 +8,6 @@ DEPENDS:append = "\
 DEPENDS:append = "\
     alsa-lib \
     libsndfile1 \
-    kernel-devsrc \
 "
 
 PV = "1.2.0"
@@ -38,4 +36,3 @@ EXTRA_OECMAKE += "\
 # Set CMAKE optimization flags
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"
-

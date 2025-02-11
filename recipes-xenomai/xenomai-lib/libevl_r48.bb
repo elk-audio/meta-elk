@@ -1,9 +1,8 @@
-SUMMARY = "Version R48"
+# Libevl version R48
+SRCREV = "0716cf2ee4b040e29ad660494aa542309e25ccd9"
+PV = "r48"
 
 require libevl.inc
-
-PV = "r48"
-SRCREV = "0716cf2ee4b040e29ad660494aa542309e25ccd9"
 
 EVL_INCLUDE_DIR = "/usr/include/evl"
 

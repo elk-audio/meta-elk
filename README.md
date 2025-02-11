@@ -4,7 +4,8 @@ OpenEmbedded/Yocto layer which contains all the necessary recipes and
 packages which make up the core of Elk Audio OS.
 
 The key contributions of this layer to Elk PI Audio OS image are:
-- All core Elk Audio OS software such as [SUSHI](https://github.com/elk-audio/sushi), [SENSEI](https://github.com/elk-audio/sensei), [RASPA](https://github.com/elk-audio/raspa) and [TWINE](https://github.com/elk-audio/twine).
+
+- All core Elk Audio OS software such as [SUSHI](https://github.com/elk-audio/sushi), [RASPA](https://github.com/elk-audio/raspa) and [TWINE](https://github.com/elk-audio/twine).
 - Example audio plugins (MDA suite) and useful libraries for audio development (e.g. LV2, CSound, Fluidsynth)
 - Extra development tools and libraries.
 - Creation of users.
@@ -29,8 +30,15 @@ BBMASK += "meta-elk/recipes-qt/qt/qtbase_git.bbappend"
 
 ## Supported distro features
 This layer handles the following distro features:
-- `user-autostart-service`
-- `evl`
+
+- `user-autostart-service`: it will enable the user-autostart systemd service
+- `evl`: required distro feature for Xenomai 4
+
+### User autostart service
+This systemd service will look for an executable script under `/udata/autostart.sh` and execute it if it exists.
+Typical usage is to use the script to setup machine specific operations and run `sushi` with a selected configuration.
+
+This distro feature can be enabled in the `local.conf` with `DISTRO_FEATURES += "user-autostart-service"`.
 
 ---
-Copyright 2017-2024 Elk Audio AB, Stockholm, Sweden.
+Copyright 2017-2025 Elk Audio AB, Stockholm, Sweden.
