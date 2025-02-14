@@ -33,7 +33,7 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "1c935252d900a1c3c952a0da5977eb9e7e9d7a90"
+SRCREV = "add70cf0228440cc561f7f37efb2409de68666c0"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
