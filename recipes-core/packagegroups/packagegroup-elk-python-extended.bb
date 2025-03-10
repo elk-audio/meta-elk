@@ -11,4 +11,5 @@ RDEPENDS:packagegroup-elk-python-extended = "\
     python3-pyftdi \
     python3-smbus2 \
     python3-pytz \
+    python3-rtmidi \
 "
