@@ -10,9 +10,9 @@ DEPENDS:append = "\
     libsndfile1 \
 "
 
-PV = "1.2.0"
+PV = "1.2.1"
 SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
-SRCREV = "25643e36b3fa864ccd112a37c0f65fad47f02118"
+SRCREV = "bd91c0672b8f538209eb97f4d23c8baadb02eb0e"
 
 S = "${WORKDIR}/git"
 
@@ -22,6 +22,7 @@ EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_GMOCK=OFF \
     -DINSTALL_GTEST=OFF \
+    -DRASPA_WITH_PIPEWIRE=OFF \
     -DRASPA_WITH_TESTS=OFF \
     -DRASPA_WITH_APPS=OFF \
     -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
