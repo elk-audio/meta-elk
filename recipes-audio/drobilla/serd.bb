@@ -1,14 +1,14 @@
 SUMMARY = "C library for RDF syntax which supports accessing Turtle and NTriples"
 HOMEPAGE = "http://drobilla.net/software/serd"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING;md5=b698a6a2120a83eecb34a9c6f1b93989"
+LIC_FILES_CHKSUM = "file://COPYING;md5=558bb64a60a6e1db7037ca99f435ec2e"
 
-inherit waf
+inherit meson
 
-PV = "0.30.8"
+PV = "0.32.4"
 
 SRC_URI = " \
-    http://download.drobilla.net/${BPN}-${PV}.tar.bz2 \
-    file://0001-Fix-build-for-python3-only-environments.patch \
+    https://download.drobilla.net/${BPN}-${PV}.tar.xz \
 "
-SRC_URI[sha256sum] = "672ec48f55f6f5bf1b548f3d6a76f127e803dbae2550ddb730bb02d2fd28fa87"
+SRC_URI[sha256sum] = "cbefb569e8db686be8c69cb3866a9538c7cb055e8f24217dd6a4471effa7d349"
+

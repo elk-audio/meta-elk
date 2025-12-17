@@ -1,18 +1,17 @@
 SUMMARY = "C library providing simple use of LV2 plugins"
 HOMEPAGE = "http://drobilla.net/software/lilv"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING;md5=b698a6a2120a83eecb34a9c6f1b93989"
+LIC_FILES_CHKSUM = "file://COPYING;md5=7e70199cf220ed471b0bf4ccdd02261e"
 
-inherit waf python3native bash-completion pkgconfig
+inherit meson bash-completion pkgconfig
 
 DEPENDS += "lv2 serd sord sratom"
-PV = "0.24.12"
+PV = "0.24.26"
 
 SRC_URI = " \
-    http://download.drobilla.net/${BPN}-${PV}.tar.bz2 \
-    file://0001-Fix-build-for-python3-only-environments.patch \
+    https://download.drobilla.net/${BPN}-${PV}.tar.xz \
 "
-SRC_URI[sha256sum] = "26a37790890c9c1f838203b47f5b2320334fe92c02a4d26ebbe2669dbd769061"
+SRC_URI[sha256sum] = "22feed30bc0f952384a25c2f6f4b04e6d43836408798ed65a8a934c055d5d8ac"
 
 
 EXTRA_OECONF = "--configdir=${sysconfdir} --dyn-manifest"

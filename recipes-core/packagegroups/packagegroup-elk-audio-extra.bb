@@ -16,6 +16,7 @@ RDEPENDS:packagegroup-elk-audio-extra = "\
     serd \
     sratom \
     lilv \
+    zix \
     libfftw \
     glibmm \
 "

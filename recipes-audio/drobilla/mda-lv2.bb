@@ -10,7 +10,6 @@ PV = "1.2.6"
 
 SRC_URI = " \
     gitsm://gitlab.com/drobilla/mda-lv2.git;protocol=https;branch=master \
-    file://0001-Fix-build-for-python3-only-environments.patch \
 "
 
 S = "${WORKDIR}/git"
