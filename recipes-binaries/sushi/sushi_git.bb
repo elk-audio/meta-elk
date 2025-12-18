@@ -10,9 +10,9 @@ LIC_FILES_CHKSUM = "\
     file://third-party/rapidjson/thirdparty/gtest/googletest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
     file://third-party/rapidjson/thirdparty/gtest/googlemock/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
     file://third-party/rapidjson/thirdparty/gtest/googlemock/scripts/generator/LICENSE;md5=2c0b90db7465231447cf2dd2e8163333 \
-    file://third-party/vst3sdk/public.sdk/LICENSE.txt;md5=514d9812d1e91c0be05f58b713ee75f3 \
-    file://third-party/vst3sdk/pluginterfaces/LICENSE.txt;md5=0b0ce4a82ab708ef3811b4993aa7a047 \
-    file://third-party/vst3sdk/base/LICENSE.txt;md5=514d9812d1e91c0be05f58b713ee75f3 \
+    file://third-party/vst3sdk/public.sdk/LICENSE.txt;md5=aadb35b59414dcb1fc666a0e4f6541f5 \
+    file://third-party/vst3sdk/pluginterfaces/LICENSE.txt;md5=aadb35b59414dcb1fc666a0e4f6541f5 \
+    file://third-party/vst3sdk/base/LICENSE.txt;md5=aadb35b59414dcb1fc666a0e4f6541f5 \
 "
 
 DEPENDS = "\
@@ -33,7 +33,7 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "add70cf0228440cc561f7f37efb2409de68666c0"
+SRCREV = "abb039c81b3a528fce9acd96d58a0bc4f8345f76"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
@@ -49,7 +49,7 @@ SUPPORTED_BUFFER_SIZES = "16 32 64 128 256 512"
 
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
 #       (this is based on recipes that have previously been built and packaged)
-inherit cmake python3native
+inherit cmake python3native pkgconfig
 
 # Default config of SUSHI should take care of compiling under cross environments
 # The following list is more for readability and fulfills the need to be explicit
