@@ -39,10 +39,9 @@ SRCREV = "abb039c81b3a528fce9acd96d58a0bc4f8345f76"
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
+    gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1 \
     file://sushi \
 "
-
 
 S = "${WORKDIR}/git"
 SUPPORTED_BUFFER_SIZES = "16 32 64 128 256 512"
