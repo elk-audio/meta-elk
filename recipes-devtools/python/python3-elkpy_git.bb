@@ -4,11 +4,11 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
-SRCREV = "5b8808da487543cdb0acf9cf13533eb955e3cba0"
+SRCREV = "35c73463cb944ccfb164d07b0e0626346627a834"
 
-PV = "1.2.3"
+PV = "1.3.0"
 
-SRC_URI = "git://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
 
