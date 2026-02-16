@@ -3,7 +3,7 @@ SECTION = "libs/multimedia"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-DEPENDS += "ninja virtual/kernel kernel-devsrc"
+DEPENDS += "ninja virtual/kernel"
 
 SRC_URI = "\
     git://source.denx.de/Xenomai/xenomai4/libevl.git;protocol=https;nobranch=1 \
