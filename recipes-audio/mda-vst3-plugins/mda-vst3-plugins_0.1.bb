@@ -12,6 +12,7 @@ SRC_URI = "\
     file://0001-Added-DNDEBUG-compile-definition.patch \
     file://0001-Fix-for-gcc-10.patch \
     file://0002-Removed-auto-strip-with-Release-build-as-Yocto-takes.patch \
+    file://0003-Fix-cross-compilation-architecture-detection.patch \
 "
 
 S = "${WORKDIR}/git"
@@ -25,8 +26,8 @@ OECMAKE_CXX_FLAGS_RELEASE += "-O3"
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3.vst3"
 
 do_install() {
-    install -d ${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux
-    cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/x86_64-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux/mda-vst3.so"
+    install -d ${D}${MDA_PLUGIN_DIR}
+    cp -r "${WORKDIR}/build/VST3/Release/mda.vst3/"* "${D}${MDA_PLUGIN_DIR}/"
 }
 
 FILES:${PN} += "${MDA_PLUGIN_DIR}"

@@ -1,0 +1,19 @@
+diff --git a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake b/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
+index e67fac7..7533b9a 100644
+--- a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
++++ b/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
+@@ -135,11 +135,9 @@ endfunction()
+ # This name will be used as a folder name inside the plug-in package.
+ # The variable LINUX_ARCHITECTURE_NAME will be set.
+ function(smtg_get_linux_architecture_name)
+-    EXECUTE_PROCESS(
+-        COMMAND uname -m 
+-        COMMAND tr -d '\n' 
+-        OUTPUT_VARIABLE ARCHITECTURE
+-    )
++    # Use CMAKE_SYSTEM_PROCESSOR for proper cross-compilation support
++    # instead of uname -m which always returns the host architecture
++    set(ARCHITECTURE ${CMAKE_SYSTEM_PROCESSOR})
+ 
+     set(LINUX_ARCHITECTURE_NAME ${ARCHITECTURE}-linux PARENT_SCOPE)
+ endfunction()
