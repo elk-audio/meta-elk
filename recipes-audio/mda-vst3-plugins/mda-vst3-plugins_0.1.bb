@@ -26,8 +26,10 @@ OECMAKE_CXX_FLAGS_RELEASE += "-O3"
 MDA_PLUGIN_DIR = "/home/mind/plugins/mda-vst3.vst3"
 
 do_install() {
-    install -d ${D}${MDA_PLUGIN_DIR}
-    cp -r "${WORKDIR}/build/VST3/Release/mda.vst3/"* "${D}${MDA_PLUGIN_DIR}/"
+    install -d ${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux
+    cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/${TARGET_ARCH}-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux/mda.so"
+    # We used to manually name it mda-vst3.so - this is kept for legacy reasons.
+    cp "${WORKDIR}/build/VST3/Release/mda.vst3/Contents/${TARGET_ARCH}-linux/mda.so" "${D}${MDA_PLUGIN_DIR}/Contents/${TARGET_ARCH}-linux/mda-vst3.so"
 }
 
 FILES:${PN} += "${MDA_PLUGIN_DIR}"
