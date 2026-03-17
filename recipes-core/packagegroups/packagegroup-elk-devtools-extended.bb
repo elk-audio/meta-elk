@@ -18,4 +18,6 @@ RDEPENDS:packagegroup-elk-devtools-extended = "\
     valgrind \
     tmux \
     perf \
+    juce-dev \
+    juce-devtools \
 "
