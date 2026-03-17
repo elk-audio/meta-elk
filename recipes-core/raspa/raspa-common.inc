@@ -12,7 +12,7 @@ DEPENDS:append = "\
 
 PV = "1.2.2"
 SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
-SRCREV = "e7c4a30b662f04c00ee7ae066c3f253bfe36d08d"
+SRCREV = "3eebdd85d70d45ab22e9c4f46bc3d5331ebbe5ec"
 
 S = "${WORKDIR}/git"
 

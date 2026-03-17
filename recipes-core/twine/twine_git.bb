@@ -11,7 +11,7 @@ DEPENDS += "\
 "
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "fd59ddf7ae734bc90dc5fe5fe67e5aa4744eff84"
+SRCREV = "4a36c54419f05e74670a1afba53654c2dd0d81bc"
 
 # The specific version should be overidden in the meta-product layers
 PV = "1.0.0"
