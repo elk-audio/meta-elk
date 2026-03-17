@@ -9,7 +9,6 @@ inherit packagegroup
 
 
 RDEPENDS:packagegroup-elk-audio-extra = "\
-    stk \
     fluidsynth \
     lv2 \
     sord \
