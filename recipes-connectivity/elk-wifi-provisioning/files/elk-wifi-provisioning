@@ -1,0 +1,494 @@
+#!/usr/bin/env python3
+"""BLE GATT WiFi provisioning service for Elk Audio OS.
+
+Exposes a BLE GATT interface that allows clients to:
+- Scan for available WiFi networks
+- Connect to a WiFi network with credentials
+- Query current WiFi connection status
+- Disconnect from WiFi
+
+Uses bluezero for BLE GATT and pydbus for connman interaction.
+"""
+
+import json
+import logging
+import signal
+import sys
+import threading
+import time
+
+from gi.repository import GLib
+import pydbus
+from bluezero import adapter, peripheral
+
+# ---------------------------------------------------------------------------
+# UUIDs
+# ---------------------------------------------------------------------------
+SERVICE_UUID = "12340001-5678-9abc-def0-112233445566"
+SCAN_UUID = "12340002-5678-9abc-def0-112233445566"
+CONNECT_UUID = "12340003-5678-9abc-def0-112233445566"
+STATUS_UUID = "12340004-5678-9abc-def0-112233445566"
+DISCONNECT_UUID = "12340005-5678-9abc-def0-112233445566"
+
+# ---------------------------------------------------------------------------
+# Chunking protocol
+# ---------------------------------------------------------------------------
+CHUNK_FIRST = 0x01
+CHUNK_LAST = 0x02
+CHUNK_SINGLE = 0x03  # first + last
+DEFAULT_CHUNK_SIZE = 180  # conservative for BLE 4.2+ (MTU 185)
+
+log = logging.getLogger("elk-wifi-prov")
+
+
+def chunk_message(data: bytes, chunk_size: int = DEFAULT_CHUNK_SIZE) -> list:
+    """Split data into BLE notification frames with 1-byte flags prefix."""
+    if len(data) <= chunk_size:
+        return [[CHUNK_SINGLE] + list(data)]
+
+    frames = []
+    offset = 0
+    while offset < len(data):
+        end = min(offset + chunk_size, len(data))
+        chunk = list(data[offset:end])
+        if offset == 0:
+            flags = CHUNK_FIRST
+        elif end >= len(data):
+            flags = CHUNK_LAST
+        else:
+            flags = 0x00
+        frames.append([flags] + chunk)
+        offset = end
+    return frames
+
+
+class ChunkAssembler:
+    """Reassemble chunked BLE write frames into a complete message."""
+
+    def __init__(self):
+        self._buffer = bytearray()
+
+    def feed(self, data: list) -> bytes | None:
+        """Feed a frame. Returns the complete message when the last chunk arrives."""
+        if not data:
+            return None
+        flags = data[0]
+        payload = bytes(data[1:])
+
+        if flags & CHUNK_FIRST:
+            self._buffer = bytearray()
+        self._buffer.extend(payload)
+
+        if flags & CHUNK_LAST:
+            result = bytes(self._buffer)
+            self._buffer = bytearray()
+            return result
+        return None
+
+
+# ---------------------------------------------------------------------------
+# Connman WiFi Manager
+# ---------------------------------------------------------------------------
+CONNMAN_BUS = "net.connman"
+CONNMAN_MANAGER_IFACE = "net.connman.Manager"
+CONNMAN_SERVICE_IFACE = "net.connman.Service"
+CONNMAN_TECH_IFACE = "net.connman.Technology"
+AGENT_PATH = "/elk/wifi_provisioning/agent"
+
+
+class ConnmanAgent:
+    """Minimal connman agent that supplies a passphrase on demand.
+
+    Implements the net.connman.Agent DBus interface via pydbus XML introspection.
+    """
+
+    dbus = """
+    <node>
+      <interface name="net.connman.Agent">
+        <method name="Release"/>
+        <method name="ReportError">
+          <arg name="service" type="o" direction="in"/>
+          <arg name="error" type="s" direction="in"/>
+        </method>
+        <method name="RequestBrowser">
+          <arg name="service" type="o" direction="in"/>
+          <arg name="url" type="s" direction="in"/>
+        </method>
+        <method name="RequestInput">
+          <arg name="service" type="o" direction="in"/>
+          <arg name="fields" type="a{sv}" direction="in"/>
+          <arg name="response" type="a{sv}" direction="out"/>
+        </method>
+        <method name="Cancel"/>
+      </interface>
+    </node>
+    """
+
+    def __init__(self):
+        self.passphrase = ""
+        self.last_error = ""
+
+    def Release(self):
+        log.debug("Agent released")
+
+    def ReportError(self, service, error):
+        log.error("connman error for %s: %s", service, error)
+        self.last_error = error
+
+    def RequestBrowser(self, service, url):
+        log.warning("RequestBrowser not supported: %s", url)
+
+    def RequestInput(self, service, fields):
+        log.info("Providing passphrase for %s", service)
+        from gi.repository import GLib as _GLib
+        return {"Passphrase": _GLib.Variant("s", self.passphrase)}
+
+    def Cancel(self):
+        log.debug("Agent request cancelled")
+
+
+class ConnmanWifiManager:
+    """Manage WiFi via connman's DBus API."""
+
+    def __init__(self):
+        self._bus = pydbus.SystemBus()
+        self._manager = self._bus.get(CONNMAN_BUS, "/")
+        self._agent = ConnmanAgent()
+        self._agent_registered = False
+
+    def _ensure_agent(self):
+        if not self._agent_registered:
+            self._bus.register_object(AGENT_PATH, self._agent, None)
+            self._manager.RegisterAgent(AGENT_PATH)
+            self._agent_registered = True
+            log.info("connman agent registered at %s", AGENT_PATH)
+
+    def scan(self) -> list:
+        """Trigger a WiFi scan and return available networks."""
+        try:
+            wifi_tech = self._bus.get(CONNMAN_BUS,
+                                      "/net/connman/technology/wifi")
+            wifi_tech.Scan()
+            # Scan is async; wait briefly for results
+            time.sleep(4)
+        except Exception as e:
+            log.error("WiFi scan failed: %s", e)
+            return []
+
+        return self._get_networks()
+
+    def _get_networks(self) -> list:
+        """Parse connman services into a network list."""
+        networks = []
+        try:
+            services = self._manager.GetServices()
+            for path, props in services:
+                if not path.startswith("/net/connman/service/wifi_"):
+                    continue
+                name = props.get("Name", "")
+                if not name:
+                    continue
+                strength = int(props.get("Strength", 0))
+                security = props.get("Security", ["none"])
+                if isinstance(security, list):
+                    security = security[0] if security else "none"
+                state = str(props.get("State", "idle"))
+                networks.append({
+                    "ssid": name,
+                    "rssi": strength,
+                    "security": security,
+                    "connected": state in ("online", "ready"),
+                })
+        except Exception as e:
+            log.error("Failed to list networks: %s", e)
+        return networks
+
+    def connect(self, ssid: str, passphrase: str = "") -> dict:
+        """Connect to a WiFi network by SSID."""
+        self._ensure_agent()
+        service_path = self._find_service(ssid)
+        if not service_path:
+            return {"success": False, "error": f"Network '{ssid}' not found"}
+
+        self._agent.passphrase = passphrase
+        self._agent.last_error = ""
+
+        try:
+            service = self._bus.get(CONNMAN_BUS, service_path)
+            service.Connect()
+            # Wait for connection to establish
+            for _ in range(15):
+                time.sleep(1)
+                props = service.GetProperties()
+                state = str(props.get("State", ""))
+                if state in ("online", "ready"):
+                    return {"success": True, "error": ""}
+                if state == "failure":
+                    break
+        except Exception as e:
+            err = str(e)
+            log.error("Connect failed: %s", err)
+            return {"success": False, "error": err}
+
+        error = self._agent.last_error or "Connection failed"
+        return {"success": False, "error": error}
+
+    def disconnect(self) -> dict:
+        """Disconnect from the currently connected WiFi network."""
+        try:
+            services = self._manager.GetServices()
+            for path, props in services:
+                if not path.startswith("/net/connman/service/wifi_"):
+                    continue
+                state = str(props.get("State", ""))
+                if state in ("online", "ready"):
+                    service = self._bus.get(CONNMAN_BUS, path)
+                    service.Disconnect()
+                    return {"success": True, "error": ""}
+            return {"success": False, "error": "No connected WiFi network"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
+    def get_status(self) -> dict:
+        """Return current WiFi connection status."""
+        status = {"state": "idle", "ssid": "", "ip": "", "error": ""}
+        try:
+            services = self._manager.GetServices()
+            for path, props in services:
+                if not path.startswith("/net/connman/service/wifi_"):
+                    continue
+                state = str(props.get("State", "idle"))
+                if state in ("online", "ready", "association", "configuration"):
+                    status["state"] = state
+                    status["ssid"] = props.get("Name", "")
+                    ipv4 = props.get("IPv4", {})
+                    if isinstance(ipv4, dict):
+                        status["ip"] = ipv4.get("Address", "")
+                    break
+        except Exception as e:
+            status["state"] = "error"
+            status["error"] = str(e)
+        return status
+
+    def _find_service(self, ssid: str) -> str | None:
+        """Find the connman service object path for a given SSID."""
+        try:
+            services = self._manager.GetServices()
+            for path, props in services:
+                if props.get("Name") == ssid:
+                    return path
+        except Exception as e:
+            log.error("Failed to find service for '%s': %s", ssid, e)
+        return None
+
+
+# ---------------------------------------------------------------------------
+# BLE GATT Service
+# ---------------------------------------------------------------------------
+class BleGattService:
+    """BLE GATT peripheral for WiFi provisioning."""
+
+    def __init__(self, wifi_manager: ConnmanWifiManager):
+        self._wifi = wifi_manager
+        self._periph = None
+        self._scan_chr = None
+        self._status_chr = None
+        self._connect_assembler = ChunkAssembler()
+
+    def setup(self):
+        """Create the BLE peripheral with GATT service and characteristics."""
+        adapters = adapter.list_adapters()
+        if not adapters:
+            log.error("No Bluetooth adapters found")
+            sys.exit(1)
+
+        adapter_addr = adapters[0]
+        log.info("Using adapter %s", adapter_addr)
+
+        self._periph = peripheral.Peripheral(
+            adapter_addr, local_name="ElkAudioOS")
+
+        # Service
+        self._periph.add_service(
+            srv_id=1, uuid=SERVICE_UUID, primary=True)
+
+        # Scan Control: write to trigger, notify to receive results
+        self._periph.add_characteristic(
+            srv_id=1, chr_id=1, uuid=SCAN_UUID,
+            value=[], notifying=False,
+            flags=["write", "notify"],
+            write_callback=self._on_scan_write,
+            notify_callback=self._on_scan_notify,
+        )
+
+        # Connect: write SSID + passphrase JSON
+        self._periph.add_characteristic(
+            srv_id=1, chr_id=2, uuid=CONNECT_UUID,
+            value=[], notifying=False,
+            flags=["write", "notify"],
+            write_callback=self._on_connect_write,
+            notify_callback=self._on_connect_notify,
+        )
+
+        # Status: read current state, subscribe for updates
+        self._periph.add_characteristic(
+            srv_id=1, chr_id=3, uuid=STATUS_UUID,
+            value=[], notifying=False,
+            flags=["read", "notify"],
+            read_callback=self._on_status_read,
+            notify_callback=self._on_status_notify,
+        )
+
+        # Disconnect: write to disconnect
+        self._periph.add_characteristic(
+            srv_id=1, chr_id=4, uuid=DISCONNECT_UUID,
+            value=[], notifying=False,
+            flags=["write", "notify"],
+            write_callback=self._on_disconnect_write,
+            notify_callback=self._on_disconnect_notify,
+        )
+
+    def start(self):
+        """Start BLE advertising and GATT server (blocks in GLib main loop)."""
+        log.info("Starting BLE WiFi provisioning service")
+        self._periph.publish()
+
+    # -- Scan characteristic callbacks ---
+
+    def _on_scan_write(self, value, options):
+        """Client writes 0x01 to trigger a WiFi scan."""
+        if value and value[0] == 0x01:
+            log.info("WiFi scan requested via BLE")
+            # Run scan in a thread to avoid blocking the GLib loop
+            threading.Thread(target=self._do_scan, daemon=True).start()
+
+    def _on_scan_notify(self, notifying, characteristic):
+        if notifying:
+            self._scan_chr = characteristic
+
+    def _do_scan(self):
+        """Perform scan and send chunked results via notification."""
+        networks = self._wifi.scan()
+        payload = json.dumps({"networks": networks}).encode("utf-8")
+        frames = chunk_message(payload)
+
+        if self._scan_chr:
+            for frame in frames:
+                self._scan_chr.set_value(frame)
+                time.sleep(0.05)  # small delay between notifications
+
+    # -- Connect characteristic callbacks ---
+
+    def _on_connect_write(self, value, options):
+        """Client writes JSON with ssid and psk."""
+        complete = self._connect_assembler.feed(value)
+        if complete is None:
+            return
+
+        log.info("WiFi connect requested via BLE")
+        try:
+            data = json.loads(complete.decode("utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            log.error("Invalid connect payload: %s", e)
+            self._send_connect_result(
+                {"success": False, "error": "Invalid JSON"})
+            return
+
+        ssid = data.get("ssid", "")
+        psk = data.get("psk", "")
+        if not ssid:
+            self._send_connect_result(
+                {"success": False, "error": "Missing SSID"})
+            return
+
+        threading.Thread(
+            target=self._do_connect, args=(ssid, psk), daemon=True).start()
+
+    def _on_connect_notify(self, notifying, characteristic):
+        if notifying:
+            self._connect_chr = characteristic
+
+    def _do_connect(self, ssid, psk):
+        result = self._wifi.connect(ssid, psk)
+        self._send_connect_result(result)
+        # Also push a status update
+        self._push_status()
+
+    def _send_connect_result(self, result):
+        if hasattr(self, "_connect_chr") and self._connect_chr:
+            payload = json.dumps(result).encode("utf-8")
+            frames = chunk_message(payload)
+            for frame in frames:
+                self._connect_chr.set_value(frame)
+                time.sleep(0.05)
+
+    # -- Status characteristic callbacks ---
+
+    def _on_status_read(self):
+        """Return current WiFi status as JSON bytes."""
+        status = self._wifi.get_status()
+        data = json.dumps(status).encode("utf-8")
+        return list(data)
+
+    def _on_status_notify(self, notifying, characteristic):
+        if notifying:
+            self._status_chr = characteristic
+
+    def _push_status(self):
+        if self._status_chr:
+            status = self._wifi.get_status()
+            payload = json.dumps(status).encode("utf-8")
+            frames = chunk_message(payload)
+            for frame in frames:
+                self._status_chr.set_value(frame)
+                time.sleep(0.05)
+
+    # -- Disconnect characteristic callbacks ---
+
+    def _on_disconnect_write(self, value, options):
+        """Client writes 0x01 to disconnect."""
+        if value and value[0] == 0x01:
+            log.info("WiFi disconnect requested via BLE")
+            threading.Thread(
+                target=self._do_disconnect, daemon=True).start()
+
+    def _on_disconnect_notify(self, notifying, characteristic):
+        if notifying:
+            self._disconnect_chr = characteristic
+
+    def _do_disconnect(self):
+        result = self._wifi.disconnect()
+        if hasattr(self, "_disconnect_chr") and self._disconnect_chr:
+            payload = json.dumps(result).encode("utf-8")
+            frames = chunk_message(payload)
+            for frame in frames:
+                self._disconnect_chr.set_value(frame)
+                time.sleep(0.05)
+        self._push_status()
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+def main():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(name)s %(levelname)s %(message)s",
+    )
+
+    wifi_mgr = ConnmanWifiManager()
+    ble_svc = BleGattService(wifi_mgr)
+    ble_svc.setup()
+
+    def shutdown(signum, frame):
+        log.info("Shutting down")
+        sys.exit(0)
+
+    signal.signal(signal.SIGTERM, shutdown)
+    signal.signal(signal.SIGINT, shutdown)
+
+    ble_svc.start()
+
+
+if __name__ == "__main__":
+    main()

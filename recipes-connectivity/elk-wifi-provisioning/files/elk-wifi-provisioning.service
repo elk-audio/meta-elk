@@ -1,0 +1,13 @@
+[Unit]
+Description=BLE WiFi Provisioning Service
+After=bluetooth.target connman.service
+Wants=bluetooth.target connman.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/elk-wifi-provisioning
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
