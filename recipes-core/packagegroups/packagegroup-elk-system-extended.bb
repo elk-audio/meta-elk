@@ -16,4 +16,5 @@ RDEPENDS:packagegroup-elk-system-extended = "\
     libusb1 \
     connman-client \
     sudo \
+    elk-wifi-provisioning \
 "

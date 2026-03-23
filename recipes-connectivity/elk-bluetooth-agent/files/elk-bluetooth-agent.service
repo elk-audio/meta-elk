@@ -1,0 +1,13 @@
+[Unit]
+Description=Elk Bluetooth Auto-Pairing Agent
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/elk-bluetooth-agent
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

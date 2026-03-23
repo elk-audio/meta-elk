@@ -22,11 +22,15 @@ EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_GMOCK=OFF \
     -DINSTALL_GTEST=OFF \
-    -DRASPA_WITH_PIPEWIRE=OFF \
+    -DRASPA_WITH_PIPEWIRE=${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', 'ON', 'OFF', d)} \
     -DRASPA_WITH_TESTS=OFF \
     -DRASPA_WITH_APPS=OFF \
     -DXENOMAI_BASE_DIR=${WORKDIR}/recipe-sysroot/usr/xenomai \
     -DWITH_UNIT_TESTS=FALSE \
+"
+
+DEPENDS:append = "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', 'pipewire', '', d)} \
 "
 
 # if DISTRO features has evl, then enable WITH_EVL option
