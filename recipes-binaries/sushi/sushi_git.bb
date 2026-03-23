@@ -33,7 +33,7 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "e7ab1d5f9d32e83b50aff6f5b1b70e194be9f1d2"
+SRCREV = "94ba63a4ca7097d81a024ef74aacef334d6dbbc4"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
@@ -72,6 +72,15 @@ EXTRA_OECMAKE += "\
     -DSUSHI_WITH_SENTRY=OFF \
     -DSUSHI_DISABLE_MULTICORE_UNIT_TESTS=OFF \
 "
+# Enable PipeWire linking when bluetooth-audio feature is active
+EXTRA_OECMAKE += "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', '-DSUSHI_LINK_WITH_PIPEWIRE=ON', '', d)} \
+"
+
+DEPENDS += "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', 'pipewire', '', d)} \
+"
+
 # Add VST2 support if VST2SDK_PATH variable in local.conf is set and not empty.
 EXTRA_OECMAKE += "${@bb.utils.contains('VST2SDK_PATH', \
                  '', \
