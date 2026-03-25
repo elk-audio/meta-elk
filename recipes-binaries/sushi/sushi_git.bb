@@ -33,13 +33,13 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "94ba63a4ca7097d81a024ef74aacef334d6dbbc4"
+SRCREV = "08f24e9cd47ce2f95c827db19350593b023cebe9"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"
 
 SRC_URI = "\
-    gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1 \
+    gitsm://github.com/elk-audio/sushi;protocol=https;nobranch=1 \
     file://sushi \
 "
 
