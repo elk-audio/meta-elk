@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 DEPENDS = ""
 
 # SRCREV should be mentioned in the product layer as it will be specific to that.
-SRCREV = "771f77503fbd71113428625b2e44a983bca7e105"
+SRCREV = "daaf1b6b0ae74906188e89487ebbd065b1c55dcf"
 
 # The specific version should be overidden in the meta-product layers
 PV = "0.1.0"
