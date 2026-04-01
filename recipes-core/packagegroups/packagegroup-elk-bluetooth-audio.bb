@@ -13,7 +13,5 @@ RDEPENDS:${PN} = "\
     pipewire \
     wireplumber \
     pipewire-spa-plugins-bluez5 \
-    pipewire-alsa \
-    pipewire-alsa-card-profile \
     pipewire-tools \
 "

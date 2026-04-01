@@ -7,6 +7,7 @@ import dbus.mainloop.glib
 from gi.repository import GLib
 import subprocess
 import sys
+import time
 
 AGENT_INTERFACE = "org.bluez.Agent1"
 AGENT_PATH = "/org/bluez/elk/AutoPairAgent"
@@ -59,10 +60,42 @@ class AutoPairAgent(dbus.service.Object):
         pass
 
 
-def setup_adapter():
+def wait_for_adapter(bus, timeout=30):
+    """Poll DBus ObjectManager until a BlueZ Adapter1 is registered."""
+    print(f"Waiting for Bluetooth adapter (up to {timeout}s)...", flush=True)
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            om = dbus.Interface(
+                bus.get_object("org.bluez", "/"),
+                "org.freedesktop.DBus.ObjectManager",
+            )
+            for path, ifaces in om.GetManagedObjects().items():
+                if "org.bluez.Adapter1" in ifaces:
+                    print(f"Bluetooth adapter ready at {path}", flush=True)
+                    return True
+        except dbus.exceptions.DBusException:
+            pass
+        time.sleep(1)
+    return False
+
+
+def setup_adapter(bus, max_retries=5, retry_delay=2):
+    if not wait_for_adapter(bus):
+        print("Warning: no Bluetooth adapter found after timeout, skipping setup", flush=True)
+        return
     for cmd in ["power on", "discoverable on", "pairable on"]:
-        r = subprocess.run(["bluetoothctl", cmd], capture_output=True, text=True)
-        print(f"bluetoothctl {cmd}: {r.stdout.strip()}", flush=True)
+        for attempt in range(1, max_retries + 1):
+            r = subprocess.run(["bluetoothctl"] + cmd.split(), capture_output=True, text=True)
+            output = r.stdout.strip()
+            print(f"bluetoothctl {cmd}: {output}", flush=True)
+            if r.returncode == 0 and "failed" not in output.lower() and "error" not in output.lower():
+                break
+            if attempt < max_retries:
+                print(f"  retrying in {retry_delay}s ({attempt}/{max_retries})...", flush=True)
+                time.sleep(retry_delay)
+        else:
+            print(f"Warning: '{cmd}' did not succeed after {max_retries} attempts", flush=True)
 
 
 def main():
@@ -79,7 +112,7 @@ def main():
     manager.RequestDefaultAgent(AGENT_PATH)
     print(f"Agent registered ({CAPABILITY}), waiting for connections...", flush=True)
 
-    setup_adapter()
+    setup_adapter(bus)
 
     loop = GLib.MainLoop()
     try:

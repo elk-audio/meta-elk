@@ -1,13 +1,17 @@
 [Unit]
 Description=Elk Bluetooth Auto-Pairing Agent
-After=bluetooth.service
+After=bluetooth.service pipewire.service wireplumber.service
 Requires=bluetooth.service
+Wants=pipewire.service wireplumber.service
 
 [Service]
 Type=simple
+ExecStartPre=/bin/sh -c 'printf "bridge_input_channels=2\nbridge_output_channels=2\n" > /etc/raspa/pipewire_bridge.conf'
 ExecStart=/usr/bin/elk-bluetooth-agent
+ExecStopPost=/bin/sh -c 'printf "bridge_input_channels=0\nbridge_output_channels=0\n" > /etc/raspa/pipewire_bridge.conf'
 Restart=on-failure
 RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
+Also=pipewire.service wireplumber.service
