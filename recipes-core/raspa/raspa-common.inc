@@ -10,9 +10,9 @@ DEPENDS:append = "\
     libsndfile1 \
 "
 
-PV = "1.2.3"
+PV = "1.2.4"
 SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
-SRCREV = "0fbda5ede05c5ab9ef42a7600a883369f22c11b6"
+SRCREV = "f1ad6b57e97e89531578e17c99910108c6d50beb"
 
 S = "${WORKDIR}/git"
 
