@@ -24,8 +24,15 @@ RDEPENDS:${PN} = "\
     sushi \
     python3-protobuf \
     liberation-fonts \
-    python3-grpcio  \
-    python3-grpcio-tools  \
+    python3-grpcio \
+    python3-grpcio-tools \
+    python3-pyzmq \
+    zeromq \
+"
+
+DEPENDS += "\
+    python3-pyzmq \
+    zeromq \
 "
 
 FILES:${PN}:append = "\

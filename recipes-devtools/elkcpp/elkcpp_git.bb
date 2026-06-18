@@ -3,13 +3,19 @@ HOMEPAGE = "https://github.com/elk-audio/elkcpp"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
+RDEPENDS:${PN} = "\
+    zeromq \
+"
+
 DEPENDS = "\
     grpc \
     grpc-native \
     protobuf \
     protobuf-native \
     protobuf-c \
-    protobuf-c-native\
+    protobuf-c-native \
+    python3-protobuf \
+    zeromq \
 "
 
 SRCREV = "4a7d6e968d29ed408b281bafb5d737cc60e97821"

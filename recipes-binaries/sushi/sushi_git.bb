@@ -15,6 +15,10 @@ LIC_FILES_CHKSUM = "\
     file://third-party/vst3sdk/base/LICENSE.txt;md5=aadb35b59414dcb1fc666a0e4f6541f5 \
 "
 
+RDEPENDS:${PN} = "\
+    zeromq \
+"
+
 DEPENDS = "\
     raspa \
     twine \
@@ -26,9 +30,11 @@ DEPENDS = "\
     protobuf \
     protobuf-native \
     protobuf-c \
-    protobuf-c-native\
+    protobuf-c-native \
     lv2 \
     lilv \
+    python3-protobuf \
+    zeromq \
 "
 
 # NOTE: Override this in the meta-<product> layer with a
