@@ -31,15 +31,16 @@ DEPENDS = "\
     protobuf-native \
     protobuf-c \
     protobuf-c-native \
+    python3-protobuf \
+    python3-protobuf-native \
     lv2 \
     lilv \
-    python3-protobuf \
     zeromq \
 "
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "08f24e9cd47ce2f95c827db19350593b023cebe9"
+SRCREV = "75999802b8e7eb9674d76bf58b809caad822c6f9"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.2.0"

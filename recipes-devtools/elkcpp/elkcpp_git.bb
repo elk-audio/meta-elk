@@ -15,16 +15,17 @@ DEPENDS = "\
     protobuf-c \
     protobuf-c-native \
     python3-protobuf \
+    python3-protobuf-native \
     zeromq \
 "
 
-SRCREV = "4a7d6e968d29ed408b281bafb5d737cc60e97821"
+SRCREV = "1632ce56debe8364f4b8d3f0026cbff4f512bb03"
 
 SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
 
-inherit cmake
+inherit cmake python3native
 
 # gRPCConfig.cmake skips gRPCPluginTargets.cmake when CMAKE_CROSSCOMPILING=TRUE,
 # so gRPC::grpc_cpp_plugin is undefined. Inject it from the native sysroot via
