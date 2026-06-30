@@ -22,7 +22,7 @@ SRCREV = "654abd6d14495f08917dcbbfa37325bfdc4553ae"
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "0.5.0"
 
-SRC_URI = "gitsm://github.com/elk-audio/sensei;protocol=https;nobranch=1"
+SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sensei.git;protocol=ssh;nobranch=1"
 
 S = "${WORKDIR}/git"
 

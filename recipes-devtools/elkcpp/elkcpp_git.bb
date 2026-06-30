@@ -21,7 +21,7 @@ DEPENDS = "\
 
 SRCREV = "1632ce56debe8364f4b8d3f0026cbff4f512bb03"
 
-SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
+SRC_URI = "gitsm://git@bitbucket.org/mindswteam/elkcpp.git;protocol=ssh;nobranch=1"
 
 S = "${WORKDIR}/git"
 
