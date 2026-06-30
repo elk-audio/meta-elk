@@ -4,7 +4,7 @@ LICENSE = "AGPL-3.0-only"
 LIC_FILES_CHKSUM = " \
     file://COPYING;md5=3db23ab95801691a1b98ff9ddb8dc98b \
     file://test/gtest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
-    file://third-party/spdlog/LICENSE;md5=9573510928429ad0cbe5ba4de77546e9 \
+    file://third-party/spdlog/LICENSE;md5=13886a8d1692948ea9b78edc50e9447c \
     file://elk-gpio-protocol/COPYING;md5=e49f4652534af377a713df3d9dec60cb \
 "
 
@@ -17,7 +17,7 @@ DEPENDS = " \
 
 # NOTE: You can override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "654abd6d14495f08917dcbbfa37325bfdc4553ae"
+SRCREV = "ca402d6e5c872a2ec1992558d8355459eceefc75"
 
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "0.5.0"
