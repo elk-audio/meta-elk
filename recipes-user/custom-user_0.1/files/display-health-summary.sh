@@ -1,33 +1,39 @@
 #!/bin/bash
 
+GREEN='\e[32m'
+RED='\e[31m'
+YELLOW='\e[33m'
+DIM='\e[2m'
+RESET='\e[0m'
+
 echo ""
 
 if [ -f /etc/elk_image_info ]; then
     source /etc/elk_image_info
-    echo -e "  Build Type:    \e[40;38;5;48m$ELK_BUILD_TYPE\e[0m"
-    echo -e "  Storage Type:  \e[40;38;5;48m$ELK_STORAGE_TYPE\e[0m"
-    echo -e "  Image Type:    \e[40;38;5;48m$ELK_IMAGE_TYPE\e[0m"
-    echo -e "  Image Name:    \e[40;38;5;48m$ELK_IMAGE_NAME\e[0m"
+    echo -e "  Build Type:    ${GREEN}$ELK_BUILD_TYPE${RESET}"
+    echo -e "  Storage Type:  ${GREEN}$ELK_STORAGE_TYPE${RESET}"
+    echo -e "  Image Type:    ${GREEN}$ELK_IMAGE_TYPE${RESET}"
+    echo -e "  Image Name:    ${GREEN}$ELK_IMAGE_NAME${RESET}"
 else
-    echo -e "  \e[1;33mWARNING: /etc/elk_image_info not found\e[0m"
+    echo -e "  ${YELLOW}WARNING: /etc/elk_image_info not found${RESET}"
 fi
 echo ""
 
 if [ -f /tmp/healthcheck-summary ]; then
     while IFS= read -r line; do
         if [[ "$line" == *": OK" ]]; then
-            echo -e "  \e[1;32m$line\e[0m"
+            echo -e "  ${GREEN}$line${RESET}"
         elif [[ "$line" == *": FAILED" ]]; then
-            echo -e "  \e[1;31m$line\e[0m"
+            echo -e "  ${RED}$line${RESET}"
         else
             echo "  $line"
         fi
     done < /tmp/healthcheck-summary
     echo ""
-    echo -e "  \e[2mFor full logs: journalctl -u healthcheck.service\e[0m"
+    echo -e "  ${DIM}For full logs: journalctl -u healthcheck.service${RESET}"
 else
-    echo -e "  \e[1;33mHealthcheck summary not found\e[0m"
-    echo -e "  \e[2mRun: systemctl status healthcheck.service\e[0m"
+    echo -e "  ${YELLOW}Healthcheck summary not found${RESET}"
+    echo -e "  ${DIM}Run: systemctl status healthcheck.service${RESET}"
 fi
 
 echo ""
