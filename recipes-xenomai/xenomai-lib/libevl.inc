@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 DEPENDS += "ninja virtual/kernel"
 
 SRC_URI = "\
-    git://source.denx.de/Xenomai/xenomai4/libevl.git;protocol=https;nobranch=1 \
+    git://gitlab.com/Xenomai/xenomai4/libevl.git;protocol=https;nobranch=1 \
     file://evl.rules \
 "
 
