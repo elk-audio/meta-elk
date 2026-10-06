@@ -14,7 +14,7 @@ DEPENDS += "\
 SRCREV = "4a36c54419f05e74670a1afba53654c2dd0d81bc"
 
 # The specific version should be overidden in the meta-product layers
-PV = "1.0.0"
+PV = "1.1.0"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/twine.git;protocol=ssh;nobranch=1"
 
