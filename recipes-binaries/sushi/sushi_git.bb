@@ -40,10 +40,10 @@ DEPENDS = "\
 
 # NOTE: Override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "ae4702d5363160df035426a81593aec8b6138f14"
+SRCREV = "73fb6b64446ed18f62e337a80ce6c47406526880"
 
 # Note: Same as SRCREV; Overide in meta-<product>
-PV = "1.2.0"
+PV = "1.4.0"
 
 SRC_URI = "\
     gitsm://git@bitbucket.org/mindswteam/sushi.git;protocol=ssh;nobranch=1 \
