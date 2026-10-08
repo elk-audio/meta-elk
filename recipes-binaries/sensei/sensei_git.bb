@@ -17,10 +17,10 @@ DEPENDS = " \
 
 # NOTE: You can override this in the meta-<product> layer with a
 # .bbappend recipe choosing the specific commit required"
-SRCREV = "ca402d6e5c872a2ec1992558d8355459eceefc75"
+SRCREV = "d8d6503c70677d5fc34d7428f30b8b523fb83036"
 
 # Note: Same as SRCREV; Overide in meta-<product>
-PV = "0.5.0"
+PV = "1.0.0"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sensei.git;protocol=ssh;nobranch=1"
 
