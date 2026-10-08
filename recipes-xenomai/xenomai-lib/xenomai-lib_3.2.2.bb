@@ -29,8 +29,6 @@ SRC_URI = "\
     file://rtdm.rules \
 "
 
-S = "${WORKDIR}/git"
-
 inherit pkgconfig autotools
 
 # Specify any options you want to pass to the configure script using EXTRA_OECONF:
@@ -39,7 +37,7 @@ UDEV_RULES_DIR = "/etc/udev/rules.d"
 
 do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
-    install -m 0644 ${WORKDIR}/rtdm.rules ${D}${UDEV_RULES_DIR}
+    install -m 0644 ${UNPACKDIR}/rtdm.rules ${D}${UDEV_RULES_DIR}
     # xenomai installs rtp device. We do not want that in the image as its only
     # needed for some tests
     rm -rf ${D}/dev

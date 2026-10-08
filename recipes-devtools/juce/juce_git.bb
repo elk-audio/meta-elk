@@ -13,8 +13,6 @@ DEPENDS = "pkgconfig-native freetype-native fontconfig-native"
 SRC_URI = "git://github.com/juce-framework/JUCE;protocol=https;nobranch=1"
 SRCREV = "29396c22c93392d6738e021b83196283d6e4d850"
 PV = "8.0.12"
-S = "${WORKDIR}/git"
-
 # JUCE_TOOL_INSTALL_DIR sets the install location for juceaide relative to
 # CMAKE_INSTALL_PREFIX. Must match the path used in FILES:${PN}-devtools below.
 EXTRA_OECMAKE = " \
@@ -95,8 +93,9 @@ FILES:${PN}-devtools = "${bindir}/JUCE-${PV}/*"
 INSANE_SKIP:${PN}-devtools += "arch"
 # juceaide is an x86_64 host binary — its runtime deps (libc, libm,
 # libfontconfig, libfreetype) are host libraries, not target packages.
-# build paths are embedded in the debug-info of the host binary (expected).
-INSANE_SKIP:${PN}-devtools += "file-rdeps buildpaths"
+# build paths are embedded in the debug-info of the host binary (expected),
+# and its RPATH points at the native sysroot so it finds freetype/fontconfig-native.
+INSANE_SKIP:${PN}-devtools += "file-rdeps buildpaths rpaths"
 
 # Reinforce dev package paths (also covered by Yocto defaults for ${PN}-dev):
 #   ${includedir}       → include/JUCE-${PV}/modules/  (module headers)

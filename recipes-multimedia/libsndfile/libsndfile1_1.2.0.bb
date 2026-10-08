@@ -17,8 +17,6 @@ SRC_URI = "\
 "
 SRC_URI[sha256sum] = "75c4813917b53990c5ca3117d6bedb3f95bf5f656def1129514c0d92b28d40ed"
 
-S = "${WORKDIR}/git"
-
 inherit cmake
 
 EXTRA_OECMAKE += "\
@@ -36,3 +34,6 @@ EXTRA_OECMAKE += "\
 "
 
 CVE_PRODUCT = "libsndfile"
+
+# CMake 4 dropped compatibility with cmake_minimum_required < 3.5
+EXTRA_OECMAKE += "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"

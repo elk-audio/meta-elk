@@ -8,7 +8,7 @@ SRC_URI = "\
     file://elk-wifi-provisioning.service \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 RDEPENDS:${PN} = "\
     python3-core \
@@ -29,10 +29,10 @@ SYSTEMD_AUTO_ENABLE = "enable"
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0755 ${WORKDIR}/elk-wifi-provisioning ${D}${bindir}/elk-wifi-provisioning
+    install -m 0755 ${UNPACKDIR}/elk-wifi-provisioning ${D}${bindir}/elk-wifi-provisioning
 
     install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${WORKDIR}/elk-wifi-provisioning.service ${D}${systemd_system_unitdir}/
+    install -m 0644 ${UNPACKDIR}/elk-wifi-provisioning.service ${D}${systemd_system_unitdir}/
 }
 
 FILES:${PN} += "\

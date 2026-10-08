@@ -12,3 +12,5 @@ SRC_URI[sha256sum] = "bc1e40c24f7df052df9b1e586b82a6987f899ae1a8596ec682af662df2
 inherit pypi setuptools3
 
 PYPI_PACKAGE = "rtmidi"
+
+SRC_URI += "file://0001-Fix-build-with-Python-3.13-and-glibc.patch"

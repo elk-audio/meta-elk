@@ -9,8 +9,6 @@ PV = "0.1.0+${SRCREV}"
 
 SRC_URI = "git://github.com/elk-audio/mda-vst2;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
-
 inherit cmake
 
 # VST2SDK_PATH should be defined in the local.conf file

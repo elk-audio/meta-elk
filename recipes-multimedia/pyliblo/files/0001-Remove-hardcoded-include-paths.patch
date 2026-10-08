@@ -3,6 +3,8 @@ From: Pedro Burgos <pedro@elk.audio>
 Date: Wed, 15 Jan 2025 10:00:00 +0000
 Subject: [PATCH] Remove hardcoded include paths
 
+
+Upstream-Status: Inappropriate [oe specific]
 ---
  setup.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

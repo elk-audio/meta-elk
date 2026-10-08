@@ -1,3 +1,9 @@
+Fix cross-compilation architecture detection
+
+Use CMAKE_SYSTEM_PROCESSOR instead of uname -m, which returns the host arch.
+
+Upstream-Status: Inappropriate [embedded specific]
+
 diff --git a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake b/vst3sdk/cmake/modules/AddSMTGLibrary.cmake
 index e67fac7..7533b9a 100644
 --- a/vst3sdk/cmake/modules/AddSMTGLibrary.cmake

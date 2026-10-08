@@ -6,7 +6,6 @@ SRC_URI = " \
     gitsm://github.com/lv2/lv2.git;branch=main;protocol=https \
     file://lv2-config.cmake \
 "
-S = "${WORKDIR}/git"
 SRCREV = "0bcde338db1c63bbc503b4d1f6d7b55ed43154af"
 
 PV = "1.18.10"
@@ -23,7 +22,7 @@ EXTRA_OEMESON = " \
 # Install CMake config file so other recipes can find LV2 via find_package()
 do_install:append() {
     install -d ${D}${libdir}/cmake/lv2
-    install -m 0644 ${WORKDIR}/lv2-config.cmake \
+    install -m 0644 ${UNPACKDIR}/lv2-config.cmake \
         ${D}${libdir}/cmake/lv2/lv2-config.cmake
 }
 

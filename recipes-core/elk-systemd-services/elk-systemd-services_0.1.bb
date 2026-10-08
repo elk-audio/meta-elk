@@ -12,7 +12,7 @@ SRC_URI += "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'user-autostart-service', 'file://user-autostart.service', '', d)} \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE:${PN} += " \
@@ -26,10 +26,10 @@ inherit features_check
 
 do_install () {
     install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${WORKDIR}/custom-elk.target ${D}${systemd_system_unitdir}/
-    install -m 0644 ${WORKDIR}/var-lib-overlay.service ${D}${systemd_system_unitdir}/
+    install -m 0644 ${UNPACKDIR}/custom-elk.target ${D}${systemd_system_unitdir}/
+    install -m 0644 ${UNPACKDIR}/var-lib-overlay.service ${D}${systemd_system_unitdir}/
     if ${@bb.utils.contains('DISTRO_FEATURES', 'user-autostart-service', 'true', 'false', d)}; then
-        install -m 0644 ${WORKDIR}/user-autostart.service ${D}${systemd_system_unitdir}/
+        install -m 0644 ${UNPACKDIR}/user-autostart.service ${D}${systemd_system_unitdir}/
     fi
 }
 

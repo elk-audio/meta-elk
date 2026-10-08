@@ -9,7 +9,7 @@ SRC_URI = "\
     file://pipewire_bridge.conf \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 RDEPENDS:${PN} = "\
     python3-core \
@@ -26,13 +26,13 @@ SYSTEMD_AUTO_ENABLE = "disable"
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0755 ${WORKDIR}/elk-bluetooth-agent ${D}${bindir}/elk-bluetooth-agent
+    install -m 0755 ${UNPACKDIR}/elk-bluetooth-agent ${D}${bindir}/elk-bluetooth-agent
 
     install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${WORKDIR}/elk-bluetooth-agent.service ${D}${systemd_system_unitdir}/
+    install -m 0644 ${UNPACKDIR}/elk-bluetooth-agent.service ${D}${systemd_system_unitdir}/
 
     install -d ${D}${sysconfdir}/raspa
-    install -m 0644 ${WORKDIR}/pipewire_bridge.conf ${D}${sysconfdir}/raspa/
+    install -m 0644 ${UNPACKDIR}/pipewire_bridge.conf ${D}${sysconfdir}/raspa/
 }
 
 FILES:${PN} += "\

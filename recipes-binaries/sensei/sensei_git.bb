@@ -24,8 +24,6 @@ PV = "0.5.0"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sensei.git;protocol=ssh;nobranch=1"
 
-S = "${WORKDIR}/git"
-
 inherit cmake python3native
 
 OECMAKE_C_FLAGS_RELEASE += "-O3"

@@ -14,10 +14,10 @@ PV = "0.16.2"
 
 SRC_URI = "gitsm://github.com/gesellkammer/pyliblo3.git;protocol=https;nobranch=1 \
            file://0001-Remove-hardcoded-include-paths.patch \
+           file://0002-Replace-Python-2-long-builtin-for-Cython-3.patch \
+           file://0003-type-erase-lo_blob_dataptr-input.patch \
           "
 
-S = "${WORKDIR}/git"
-
-inherit setuptools3 pkgconfig
+inherit python_setuptools_build_meta pkgconfig
 
 RDEPENDS:${PN} += "python3-core liblo"

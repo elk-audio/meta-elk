@@ -9,11 +9,9 @@ DEPENDS = "lv2"
 SRCREV = "a4bd7f86c3773c6fa23e4eca2683654db52804de"
 
 # Modify these as desired
-PV = "0.1+git${SRCPV}"
+PV = "0.1+git"
 
 SRC_URI = "git://github.com/x42/testsignal.lv2.git;protocol=https;branch=master"
-
-S = "${WORKDIR}/git"
 
 
 do_configure () {

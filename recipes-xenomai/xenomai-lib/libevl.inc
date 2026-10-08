@@ -10,8 +10,6 @@ SRC_URI = "\
     file://evl.rules \
 "
 
-S = "${WORKDIR}/git"
-
 EXTRA_OEMESON += "-Duapi=${STAGING_KERNEL_DIR}"
 UDEV_RULES_DIR = "/etc/udev/rules.d"
 
@@ -19,7 +17,7 @@ inherit meson pkgconfig
 
 do_install:append() {
     install -d ${D}${UDEV_RULES_DIR}
-    install -m 0644 ${WORKDIR}/evl.rules ${D}${UDEV_RULES_DIR}
+    install -m 0644 ${UNPACKDIR}/evl.rules ${D}${UDEV_RULES_DIR}
 }
 
 FILES:${PN}-dev += "/usr/tests/*"

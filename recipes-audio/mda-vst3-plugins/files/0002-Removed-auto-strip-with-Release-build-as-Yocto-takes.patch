@@ -4,6 +4,7 @@ Date: Mon, 14 Oct 2019 00:46:56 +0200
 Subject: [PATCH] Removed auto strip with Release build as Yocto takes care of
  it
 
+Upstream-Status: Inappropriate [embedded specific]
 ---
  modules/AddSMTGLibrary.cmake | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)

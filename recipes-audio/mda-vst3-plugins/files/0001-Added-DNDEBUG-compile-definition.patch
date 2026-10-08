@@ -3,6 +3,7 @@ From: Sharan Yagneswar <sharan.yagneswar@mindmusiclabs.com>
 Date: Mon, 8 Apr 2019 14:29:24 +0200
 Subject: [PATCH] Added DNDEBUG compile definition
 
+Upstream-Status: Inappropriate [embedded specific]
 ---
  CMakeLists.txt | 1 +
  1 file changed, 1 insertion(+)

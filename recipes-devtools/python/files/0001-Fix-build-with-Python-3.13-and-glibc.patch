@@ -1,0 +1,27 @@
+From: Stefano Zambon <stefano@elk.audio>
+Subject: [PATCH] Fix build with Python 3.13 and recent glibc
+
+PyEval_CallObject() was removed in Python 3.13, use PyObject_CallObject().
+Include <sys/time.h> explicitly for gettimeofday() and TIMEVAL_TO_TIMESPEC.
+
+Upstream-Status: Inactive-Upstream [rtmidi 2.5.0 on pypi is unmaintained]
+---
+--- a/src/rtmidimodule.cpp	2026-10-02 14:54:16.233128162 +0200
++++ b/src/rtmidimodule.cpp	2026-10-02 14:54:16.236128165 +0200
+@@ -22,6 +22,7 @@
+ #include "PyMidiMessage.h"
+ #include "pkglobals.h"
+ #include <queue>
++#include <sys/time.h>
+   
+ static PyObject *rtmidi_Error;
+ 
+@@ -94,7 +95,7 @@
+     (*outMidi->m) = inMidi;  
+ 
+     args = Py_BuildValue("(O)", outMidi);  
+-    result = PyEval_CallObject(self->callback, args);
++    result = PyObject_CallObject(self->callback, args);
+     if(result == NULL)
+     {
+       PyThreadState_SetAsyncExc(self->calling_thread_id, 0);

@@ -12,6 +12,6 @@ SRC_URI += "\
 
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${WORKDIR}/hostapd-elk.conf ${D}${sysconfdir}/hostapd.conf
-    install -m 0644 ${WORKDIR}/hostapd.service ${D}${systemd_system_unitdir}/
+    install -m 0644 ${UNPACKDIR}/hostapd-elk.conf ${D}${sysconfdir}/hostapd.conf
+    install -m 0644 ${UNPACKDIR}/hostapd.service ${D}${systemd_system_unitdir}/
 }

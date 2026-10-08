@@ -14,8 +14,6 @@ PV = "1.2.4"
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/raspalib-elk.git;protocol=ssh;nobranch=1"
 SRCREV = "f1ad6b57e97e89531578e17c99910108c6d50beb"
 
-S = "${WORKDIR}/git"
-
 inherit cmake
 
 EXTRA_OECMAKE += "\

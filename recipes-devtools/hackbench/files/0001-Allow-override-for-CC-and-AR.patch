@@ -3,6 +3,8 @@ From: Marco Del Fiasco <marco@elk.audio>
 Date: Thu, 15 Jun 2023 12:17:30 +0200
 Subject: [PATCH] Allow override for CC and AR.
 
+
+Upstream-Status: Inappropriate [oe specific]
 ---
  Makefile | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

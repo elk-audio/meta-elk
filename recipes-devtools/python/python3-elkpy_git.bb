@@ -10,8 +10,6 @@ PV = "1.3.0"
 
 SRC_URI = "gitsm://github.com/elk-audio/elkpy;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
-
 inherit python_setuptools_build_meta
 
 # Usually this is handled by setuptools and (something else?). but the files

@@ -7,14 +7,12 @@ DEPENDS = "alsa-utils"
 
 SRCREV = "4f9be5945cbabf511ea6c38beb19e50e3c123a95"
 
-PV = "0.4.2+git${SRCPV}"
+PV = "0.4.2+git"
 
 SRC_URI = "\
     git://github.com/ppaez/alsaseq.git;protocol=https;branch=master \
     file://0001-setup-is-imported-from-setuptools-instead-of-the-dep.patch \
 "
-
-S = "${WORKDIR}/git"
 
 inherit setuptools3
 

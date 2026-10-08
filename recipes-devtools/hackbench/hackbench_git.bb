@@ -15,8 +15,6 @@ SRC_URI = "\
     file://0001-Allow-override-for-CC-and-AR.patch \
 "
 
-S = "${WORKDIR}/git"
-
 do_compile() {
     make hackbench PYLIB=
 }

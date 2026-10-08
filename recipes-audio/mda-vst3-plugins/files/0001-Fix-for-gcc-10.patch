@@ -3,6 +3,7 @@ From: kknitin <nitin@elk.audio>
 Date: Wed, 6 Oct 2021 17:36:10 +0000
 Subject: [PATCH] Fix for gcc 10
 
+Upstream-Status: Inappropriate [embedded specific]
 ---
  source/mdaPianoProcessor.cpp | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

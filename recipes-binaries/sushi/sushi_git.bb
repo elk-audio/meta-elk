@@ -50,7 +50,6 @@ SRC_URI = "\
     file://sushi \
 "
 
-S = "${WORKDIR}/git"
 SUPPORTED_BUFFER_SIZES = "16 32 64 128 256 512"
 
 # NOTE: the following library dependencies are unknown, ignoring: cobalt Cocoa
@@ -116,7 +115,7 @@ do_install() {
         chrpath -d sushi_b$b
         install -m 0755 sushi_b$b ${D}${bindir}
     done
-    install -m 0755 ${WORKDIR}/sushi ${D}${bindir}
+    install -m 0755 ${UNPACKDIR}/sushi ${D}${bindir}
 }
 
 RDEPENDS:{PN} = "\

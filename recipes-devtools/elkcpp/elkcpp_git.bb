@@ -23,8 +23,6 @@ SRCREV = "1632ce56debe8364f4b8d3f0026cbff4f512bb03"
 
 SRC_URI = "gitsm://git@bitbucket.org/mindswteam/elkcpp.git;protocol=ssh;nobranch=1"
 
-S = "${WORKDIR}/git"
-
 inherit cmake python3native
 
 # gRPCConfig.cmake skips gRPCPluginTargets.cmake when CMAKE_CROSSCOMPILING=TRUE,

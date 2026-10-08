@@ -14,6 +14,4 @@ PV = "0.1.0"
 
 SRC_URI = "gitsm://github.com/elk-audio/elk-warning-suppressor;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
-
 inherit cmake

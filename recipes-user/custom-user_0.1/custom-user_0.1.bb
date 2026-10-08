@@ -12,6 +12,8 @@ SRC_URI = "\
     file://display-health-summary.sh \
 "
 
+S = "${UNPACKDIR}"
+
 inherit useradd extrausers
 
 EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
@@ -19,14 +21,14 @@ EXTRA_USERS_PARAMS = "usermod -s /bin/bash root;"
 HOME_DIR = "/home/mind"
 do_install() {
     install -d ${D}${HOME_DIR}
-    install -m 0755 ${WORKDIR}/README ${D}${HOME_DIR}/README
+    install -m 0755 ${UNPACKDIR}/README ${D}${HOME_DIR}/README
     chown -R mind:mind ${D}${HOME_DIR}/
     chown mind:mind ${D}${HOME_DIR}/README
     # install elk logo display scrip
     install -d ${D}${sysconfdir}/profile.d
-    install -m 0755 ${WORKDIR}/logo.sh ${D}${sysconfdir}/profile.d/logo.sh
-    install -m 0755 ${WORKDIR}/display-elk-logo.sh ${D}${sysconfdir}/display-elk-logo.sh
-    install -m 0755 ${WORKDIR}/display-health-summary.sh ${D}${sysconfdir}/display-health-summary.sh
+    install -m 0755 ${UNPACKDIR}/logo.sh ${D}${sysconfdir}/profile.d/logo.sh
+    install -m 0755 ${UNPACKDIR}/display-elk-logo.sh ${D}${sysconfdir}/display-elk-logo.sh
+    install -m 0755 ${UNPACKDIR}/display-health-summary.sh ${D}${sysconfdir}/display-health-summary.sh
 }
 
 RDEPENDS:${PN} += "bash"

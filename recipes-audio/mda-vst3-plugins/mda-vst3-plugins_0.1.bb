@@ -15,11 +15,10 @@ SRC_URI = "\
     file://0003-Fix-cross-compilation-architecture-detection.patch \
 "
 
-S = "${WORKDIR}/git"
-
 inherit cmake
 
-EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
+# The bundled vst3sdk declares cmake_minimum_required < 3.5, rejected by CMake 4
+EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
 OECMAKE_C_FLAGS_RELEASE += "-O3"
 OECMAKE_CXX_FLAGS_RELEASE += "-O3"

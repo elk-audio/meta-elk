@@ -12,8 +12,6 @@ SRC_URI = " \
     gitsm://gitlab.com/drobilla/mda-lv2.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
-
 inherit waf features_check pkgconfig
 
 EXTRA_OECONF = " \

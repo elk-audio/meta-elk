@@ -3,6 +3,7 @@ From: stez-mind <stefano.zambon@mindmusiclabs.com>
 Date: Mon, 7 Oct 2019 19:54:32 +0200
 Subject: [PATCH] Hack: remove timer calls from RT process callback
 
+Upstream-Status: Inappropriate [embedded specific]
 ---
  src/synth/fluid_synth.c | 30 +++++++++++++++++++++---------
  1 file changed, 21 insertions(+), 9 deletions(-)

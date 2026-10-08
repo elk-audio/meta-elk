@@ -11,8 +11,6 @@ SRCREV = "f8a0efe03aa69b3336d8e228b37d4ccb17324b88"
 
 SRC_URI = "git://github.com/gflags/gflags.git;branch=master;protocol=https"
 
-S = "${WORKDIR}/git"
-
 inherit cmake
 
 EXTRA_OECMAKE = "\

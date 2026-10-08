@@ -14,8 +14,6 @@ SRCREV = "bf7bd0c462cf2d760278ae0a4fed9c36e11f3fba"
 
 SRC_URI = "git://github.com/shigmas/BasicQuick.git;branch=master;protocol=https"
 
-S = "${WORKDIR}/git"
-
 do_install() {
     install -d ${D}${bindir}
     install -m 0755 BasicQuick ${D}${bindir}/simple-qt

@@ -5,6 +5,8 @@ Subject: [PATCH] setup is imported from setuptools instead of the deprecated
  distutils
 
 This is needed to ensure that when yocto calls setup.py bdist_wheel, things play nice
+
+Upstream-Status: Pending
 ---
  setup.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
