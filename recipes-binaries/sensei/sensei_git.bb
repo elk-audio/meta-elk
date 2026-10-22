@@ -22,7 +22,7 @@ SRCREV = "d8d6503c70677d5fc34d7428f30b8b523fb83036"
 # Note: Same as SRCREV; Overide in meta-<product>
 PV = "1.0.0"
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/sensei.git;protocol=ssh;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/sensei;protocol=https;nobranch=1"
 
 inherit cmake python3native
 

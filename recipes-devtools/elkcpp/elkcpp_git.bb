@@ -23,7 +23,7 @@ SRCREV = "573f6b753f4e27a9aaa1710cf269e98130791363"
 
 PV = "1.1.0"
 
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/elkcpp.git;protocol=ssh;nobranch=1"
+SRC_URI = "gitsm://github.com/elk-audio/elkcpp;protocol=https;nobranch=1"
 
 inherit cmake python3native
 
