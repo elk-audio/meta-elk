@@ -10,9 +10,9 @@ DEPENDS:append = "\
     libsndfile1 \
 "
 
-PV = "1.2.4"
-SRC_URI = "gitsm://git@bitbucket.org/mindswteam/raspalib-elk.git;protocol=ssh;nobranch=1"
-SRCREV = "f1ad6b57e97e89531578e17c99910108c6d50beb"
+PV = "1.2.5"
+SRC_URI = "gitsm://github.com/elk-audio/raspa;protocol=https;nobranch=1"
+SRCREV = "0b375f7ecf54460c4f4ff6d1593d35e46b6d4c62"
 
 inherit cmake
 
