@@ -18,12 +18,14 @@ PACKAGES = "\
     ${PN}-nodejs \
     ${PN}-python \
     ${PN}-nginx \
+    ${PN}-sushi-webui \
 "
 
 RDEPENDS:${PN} = "\
     ${PN}-nodejs \
     ${PN}-python \
     ${PN}-nginx \
+    ${PN}-sushi-webui \
 "
 
 # Node.js runtime and npm, e.g. for scraporchestra
@@ -45,4 +47,11 @@ RDEPENDS:${PN}-python = "\
 # Static files and reverse proxy
 RDEPENDS:${PN}-nginx = "\
     nginx \
+"
+
+# Web UI for Sushi, with its services. They are installed but not enabled:
+# elk-wifi-provisioning turns them on over BLE.
+RDEPENDS:${PN}-sushi-webui = "\
+    sushi-webui \
+    sushi-webui-setup \
 "

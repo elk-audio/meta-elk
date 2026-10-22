@@ -1,0 +1,17 @@
+[Unit]
+Description=Connect hardware MIDI inputs to Sushi
+# Soft dependency: if Sushi restarts, the monitor keeps polling and reconnects.
+Wants=sushi-webui-engine.service
+After=sushi-webui-engine.service
+
+[Service]
+Type=simple
+User=mind
+ExecStart=/usr/bin/sushi-midi-autoconnect
+# Keep the poll loop away from the real-time audio threads
+Nice=10
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

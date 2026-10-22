@@ -1,0 +1,27 @@
+[Unit]
+Description=Sushi audio plugin host (empty session, controlled by sushi-webui)
+# The audio driver is loaded by load-drivers.service (creates /dev/audio_evl)
+After=load-drivers.service
+ConditionPathExists=/dev/audio_evl
+# Two Sushi instances would fight over the audio device
+Conflicts=sushi.service
+
+[Service]
+Type=simple
+User=mind
+LimitRTPRIO=infinity
+LimitMEMLOCK=infinity
+LimitSTACK=infinity
+WorkingDirectory=/udata
+# Sushi finds LV2 plugins through LV2_PATH only (it replaces the default search path);
+# /opt/plugins/lv2 holds the Gx, x42 and Infamous bundles
+Environment=LV2_PATH=/opt/plugins/lv2:/usr/lib/lv2
+# Real-time frontend. The session only carries the placeholder track that Sushi's
+# JSON schema demands; sushi-webui hides it. Control interfaces are left at their
+# defaults (gRPC :51051, ZeroMQ ipc:///tmp/sushi_{ipc,pub}.sock).
+ExecStart=/usr/bin/sushi -r -c /usr/share/sushi-webui/sushi-empty-session.json
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

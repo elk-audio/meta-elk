@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# Attach every hardware MIDI input to Sushi's ALSA sequencer input port.
+#
+# This automates what is otherwise done by hand over ssh:
+#
+#     aconnect -l          # find the controller's client:port, and Sushi's
+#     aconnect 16:0 128:0
+#
+# It cannot be a one-shot. Sushi registers its sequencer client some time after
+# systemd considers sushi.service started, and USB MIDI devices come and go at
+# any time. So it polls and re-attempts every connection. aconnect refuses a
+# duplicate with "Connection is already subscribed", which keeps a steady state
+# quiet and, because the subscription really is gone after an unplug, makes a
+# replug (or a Sushi restart) reconnect by itself.
+#
+# What gets connected:
+#  - ports of clients backed by a real sound card ("card=" in aconnect -i), so
+#    client 0 "System" (timer/announce), the cardless "Midi Through" loopback
+#    and userspace clients such as Sushi itself are never used as a source;
+#  - minus ports whose name matches EXCLUDE_PORTS: the second "InControl" /
+#    "DAW" port of Novation-style controllers is a control-surface side channel,
+#    not a MIDI stream for the instruments.
+#
+# Everything lands on Sushi's MIDI port 0 (its only ALSA input port); which
+# tracks hear it is decided by the track's MIDI connection (sushi-webui makes
+# one when a MIDI track is created).
+
+set -u
+
+POLL_INTERVAL="${POLL_INTERVAL:-3}"
+SUSHI_CLIENT_NAME="${SUSHI_CLIENT_NAME:-Sushi}"
+EXCLUDE_PORTS="${EXCLUDE_PORTS:-InCo|DAW}"
+
+log() { echo "sushi-midi-autoconnect: $*"; }
+
+# "client:port" of Sushi's first writable port ('listen:in'). Empty until Sushi is up.
+sushi_port() {
+    aconnect -o 2>/dev/null | awk -v name="'${SUSHI_CLIENT_NAME}'" '
+        $1 == "client" { in_sushi = 0
+                         if (index($0, name)) { in_sushi = 1; c = $2; sub(/:$/, "", c) } }
+        in_sushi && $1 ~ /^[0-9]+$/ { print c ":" $1; exit }'
+}
+
+# "client:port" of every readable port of a card-backed client, minus EXCLUDE_PORTS.
+hardware_midi_ports() {
+    aconnect -i 2>/dev/null | awk -v excl="${EXCLUDE_PORTS}" '
+        $1 == "client" { hw = ($0 ~ /card=/); c = $2; sub(/:$/, "", c); next }
+        hw && $1 ~ /^[0-9]+$/ && !(excl != "" && tolower($0) ~ tolower(excl)) { print c ":" $1 }'
+}
+
+log "polling every ${POLL_INTERVAL}s for MIDI inputs to attach to '${SUSHI_CLIENT_NAME}' (skipping ports matching '${EXCLUDE_PORTS}')"
+
+declare -A warned
+while true; do
+    dst=$(sushi_port)
+
+    if [ -n "${dst}" ]; then
+        for src in $(hardware_midi_ports); do
+            if out=$(aconnect "${src}" "${dst}" 2>&1); then
+                log "connected ${src} -> ${dst} ($(aconnect -i | awk -v c="${src%%:*}" '$1 == "client" && $2 == c":" { print $3, $4, $5 }'))"
+                unset "warned[${src}]"
+            elif ! grep -qi 'already subscribed' <<<"${out}"; then
+                # Say it once, not every poll
+                if [ -z "${warned[${src}]:-}" ]; then
+                    log "WARNING: aconnect ${src} ${dst} failed: ${out}"
+                    warned[${src}]=1
+                fi
+            fi
+        done
+    fi
+
+    sleep "${POLL_INTERVAL}"
+done

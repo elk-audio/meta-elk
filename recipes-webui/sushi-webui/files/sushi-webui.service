@@ -1,0 +1,34 @@
+[Unit]
+Description=Sushi WebUI
+# Start Sushi first. Wants= (not Requires=) so that restarting or stopping
+# Sushi does not take the UI down: the backend keeps retrying the connection.
+Wants=sushi-webui-engine.service
+After=sushi-webui-engine.service network.target
+
+[Service]
+Type=simple
+User=mind
+# /udata is a separate partition, make sure the data dir is writable by mind
+ExecStartPre=+/bin/sh -c 'mkdir -p /udata/sushi-webui && chown mind /udata/sushi-webui'
+# Transport to Sushi: zmq (same-machine ZeroMQ over ipc sockets) or grpc.
+# To switch: systemctl edit sushi-webui  ->  [Service]
+#                                            Environment=SUSHI_WEBUI_TRANSPORT=grpc
+Environment=SUSHI_WEBUI_TRANSPORT=zmq
+# Where the LV2 plugins of the list are looked for, same as the engine
+Environment=LV2_PATH=/opt/plugins/lv2:/usr/lib/lv2
+# --default-input/-output: stereo bus new tracks use (1-based; 1 = engine channels 1-2)
+ExecStart=/usr/bin/sushi-webui \
+    --listen :8081 \
+    --transport ${SUSHI_WEBUI_TRANSPORT} \
+    --data-dir /udata/sushi-webui \
+    --plugin-list /usr/share/sushi-webui/installed_plugins.json \
+    --audio-dir /home/mind \
+    --default-input 1 \
+    --default-output 1
+Restart=always
+RestartSec=2
+# Keep the UI from competing with Sushi's audio threads
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+{
+    "host_config": {
+        "samplerate": 48000
+    },
+    "post_track": {
+        "name": "Master",
+        "plugins": []
+    },
+    "tracks": [
+        {
+            "name": "__placeholder__",
+            "channels": 2,
+            "inputs": [
+                {
+                    "engine_channel": 0,
+                    "track_channel": 0
+                },
+                {
+                    "engine_channel": 0,
+                    "track_channel": 1
+                }
+            ],
+            "outputs": [
+                {
+                    "engine_bus": 0,
+                    "track_bus": 0
+                }
+            ],
+            "plugins": []
+        }
+    ]
+}
