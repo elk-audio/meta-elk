@@ -42,3 +42,11 @@ USERADD_PACKAGES = "${PN}"
 MIND_PASSWD = "RxEA3Y8sRxpxw"
 USERADD_PARAM:${PN} = "-g xenomai -G audio,sudo -p '${MIND_PASSWD}' -m -d ${HOME_DIR}  -s /bin/bash mind"
 GROUPADD_PARAM:${PN} = "mind; -g 2004 xenomai"
+
+# With bluetooth-audio, RASPA bridges every audio application (Sushi runs as mind) to
+# PipeWire, whose socket is only accessible to the pipewire group. This is not part of
+# USERADD_PARAM, which the platform layers override with their own group list.
+GROUPMEMS_PARAM:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', '-g pipewire -a mind', '', d)}"
+# The pipewire package creates the group
+DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', 'pipewire', '', d)}"
+RDEPENDS:${PN} += "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth-audio', 'pipewire', '', d)}"
