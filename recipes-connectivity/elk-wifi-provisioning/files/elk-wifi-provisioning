@@ -6,6 +6,7 @@ Exposes a BLE GATT interface that allows clients to:
 - Connect to a WiFi network with credentials
 - Query current WiFi connection status
 - Disconnect from WiFi
+- Enable or disable the sushi-webui services at startup
 
 Uses bluezero for BLE GATT and pydbus for connman interaction.
 """
@@ -13,6 +14,7 @@ Uses bluezero for BLE GATT and pydbus for connman interaction.
 import json
 import logging
 import signal
+import subprocess
 import sys
 import threading
 import time
@@ -29,6 +31,7 @@ SCAN_UUID = "12340002-5678-9abc-def0-112233445566"
 CONNECT_UUID = "12340003-5678-9abc-def0-112233445566"
 STATUS_UUID = "12340004-5678-9abc-def0-112233445566"
 DISCONNECT_UUID = "12340005-5678-9abc-def0-112233445566"
+WEBUI_UUID = "12340006-5678-9abc-def0-112233445566"
 
 # ---------------------------------------------------------------------------
 # Chunking protocol
@@ -283,13 +286,60 @@ class ConnmanWifiManager:
 
 
 # ---------------------------------------------------------------------------
+# sushi-webui services
+# ---------------------------------------------------------------------------
+# Installed but not enabled by default (see the sushi-webui recipe)
+WEBUI_SERVICES = [
+    "sushi-webui-engine.service",
+    "sushi-webui.service",
+    "sushi-midi-autoconnect.service",
+]
+
+
+class WebuiManager:
+    """Enable or disable, at startup, the services behind the sushi web UI."""
+
+    @staticmethod
+    def _systemctl(*args) -> subprocess.CompletedProcess:
+        return subprocess.run(["systemctl", *args], capture_output=True,
+                              text=True, timeout=60)
+
+    def is_enabled(self) -> bool:
+        """True when every service is enabled."""
+        try:
+            result = self._systemctl("is-enabled", *WEBUI_SERVICES)
+        except (OSError, subprocess.SubprocessError) as e:
+            log.error("systemctl is-enabled failed: %s", e)
+            return False
+        return result.returncode == 0
+
+    def set_enabled(self, enable: bool) -> dict:
+        """Enable (and start) or disable (and stop) all the services."""
+        action = "enable" if enable else "disable"
+        try:
+            result = self._systemctl(action, "--now", *WEBUI_SERVICES)
+        except (OSError, subprocess.SubprocessError) as e:
+            log.error("systemctl %s failed: %s", action, e)
+            return {"success": False, "enabled": self.is_enabled(),
+                    "error": str(e)}
+        if result.returncode != 0:
+            err = result.stderr.strip() or f"systemctl {action} failed"
+            log.error("systemctl %s: %s", action, err)
+            return {"success": False, "enabled": self.is_enabled(),
+                    "error": err}
+        return {"success": True, "enabled": enable, "error": ""}
+
+
+# ---------------------------------------------------------------------------
 # BLE GATT Service
 # ---------------------------------------------------------------------------
 class BleGattService:
     """BLE GATT peripheral for WiFi provisioning."""
 
-    def __init__(self, wifi_manager: ConnmanWifiManager):
+    def __init__(self, wifi_manager: ConnmanWifiManager,
+                 webui_manager: WebuiManager):
         self._wifi = wifi_manager
+        self._webui = webui_manager
         self._periph = None
         self._scan_chr = None
         self._status_chr = None
@@ -346,6 +396,17 @@ class BleGattService:
             flags=["write", "notify"],
             write_callback=self._on_disconnect_write,
             notify_callback=self._on_disconnect_notify,
+        )
+
+        # sushi-webui services: write 0x01 to enable, 0x00 to disable;
+        # read the current state as JSON, notified with the outcome
+        self._periph.add_characteristic(
+            srv_id=1, chr_id=5, uuid=WEBUI_UUID,
+            value=[], notifying=False,
+            flags=["read", "write", "notify"],
+            read_callback=self._on_webui_read,
+            write_callback=self._on_webui_write,
+            notify_callback=self._on_webui_notify,
         )
 
     def start(self):
@@ -466,6 +527,35 @@ class BleGattService:
                 time.sleep(0.05)
         self._push_status()
 
+    # -- Web UI characteristic callbacks ---
+
+    def _on_webui_read(self):
+        """Return whether the web UI services start at boot, as JSON bytes."""
+        data = json.dumps({"enabled": self._webui.is_enabled()}).encode("utf-8")
+        return list(data)
+
+    def _on_webui_write(self, value, options):
+        """Client writes 0x01 to enable the web UI services, 0x00 to disable."""
+        if value and value[0] in (0x00, 0x01):
+            enable = value[0] == 0x01
+            log.info("Web UI services %s requested via BLE",
+                     "enable" if enable else "disable")
+            threading.Thread(
+                target=self._do_webui, args=(enable,), daemon=True).start()
+
+    def _on_webui_notify(self, notifying, characteristic):
+        if notifying:
+            self._webui_chr = characteristic
+
+    def _do_webui(self, enable):
+        result = self._webui.set_enabled(enable)
+        if hasattr(self, "_webui_chr") and self._webui_chr:
+            payload = json.dumps(result).encode("utf-8")
+            frames = chunk_message(payload)
+            for frame in frames:
+                self._webui_chr.set_value(frame)
+                time.sleep(0.05)
+
 
 # ---------------------------------------------------------------------------
 # Main
@@ -477,7 +567,7 @@ def main():
     )
 
     wifi_mgr = ConnmanWifiManager()
-    ble_svc = BleGattService(wifi_mgr)
+    ble_svc = BleGattService(wifi_mgr, WebuiManager())
     ble_svc.setup()
 
     def shutdown(signum, frame):
